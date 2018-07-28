@@ -1,11 +1,8 @@
-package com.fuzamei.common.model.vo;
+package com.model.vo;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fuzamei.common.bean.I18nResource;
-import com.fuzamei.common.enums.ResponseEnum;
+import com.bean.I18nResource;
+import com.enums.ResponseEnum;
 import lombok.Data;
-
-import java.io.Serializable;
 
 /**
  * @author qbanxiaoli

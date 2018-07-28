@@ -1,4 +1,4 @@
-package com.fuzamei.common.model.dto;
+package com.model.dto;
 
 import lombok.Data;
 

@@ -60,7 +60,12 @@
             <version>1.2.4</version>
         </dependency>
         <!--分页插件pagehelper-->
-
+        <!--lombok插件-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!--lombok插件-->
     </dependencies>
 
     <build>

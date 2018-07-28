@@ -1,4 +1,4 @@
-package com.fuzamei.common.bean;
+package com.bean;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;

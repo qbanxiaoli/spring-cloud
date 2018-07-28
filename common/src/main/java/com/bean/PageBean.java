@@ -1,4 +1,4 @@
-package com.fuzamei.common.bean;
+package com.bean;
 
 import lombok.Data;
 import java.util.List;

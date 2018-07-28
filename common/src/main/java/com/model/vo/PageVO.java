@@ -1,4 +1,4 @@
-package com.fuzamei.common.model.vo;
+package com.model.vo;
 
 import lombok.Data;
 

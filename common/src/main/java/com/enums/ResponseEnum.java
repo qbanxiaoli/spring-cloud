@@ -1,4 +1,4 @@
-package com.fuzamei.common.enums;
+package com.enums;
 
 /**
  * @author qbanxiaoli

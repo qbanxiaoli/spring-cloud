@@ -1,4 +1,4 @@
-package com.fuzamei.common.util;
+package com.util;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

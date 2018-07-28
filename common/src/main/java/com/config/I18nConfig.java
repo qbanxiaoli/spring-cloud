@@ -1,4 +1,4 @@
-package com.fuzamei.common.config;
+package com.config;
 
 import java.util.Locale;
 
