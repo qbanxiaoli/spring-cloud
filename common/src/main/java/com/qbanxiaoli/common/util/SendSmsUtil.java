@@ -24,7 +24,7 @@ public class SendSmsUtil {
      * @author qbanxiaoli
      * @description 发送短信
      */
-    public static boolean sendSms(String phone, String code) throws ClientException {
+    public static SendSmsResponse sendSms(String phone, String code) throws ClientException {
         //设置超时时间-可自行调整
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
@@ -57,14 +57,7 @@ public class SendSmsUtil {
         //可选:outId为提供给业务方扩展字段,最终在短信回执消息中将此值带回给调用者
         request.setOutId("yourOutId");
         //请求失败这里会抛ClientException异常
-        SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
-        if (sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
-            log.info("短信发送成功！\n");
-            return true;
-            //请求成功
-        }
-        log.info("短信发送失败！\n");
-        return false;
+        return acsClient.getAcsResponse(request);
     }
 
     public static String getRandNum(int min, int max) {

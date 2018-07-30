@@ -1,5 +1,6 @@
 package com.qbanxiaoli.sms.service;
 
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.SendSmsUtil;
@@ -35,18 +36,19 @@ public class SmsService {
     public ResponseVO sendMessage(String phone) {
         //获取6位数验证码
         String code = SendSmsUtil.getRandNum(1, 999999);
-        Boolean result = true;
+        SendSmsResponse sendSmsResponse = null;
         try {
-            result = SendSmsUtil.sendSms(phone, code);
+            sendSmsResponse = SendSmsUtil.sendSms(phone, code);
         } catch (ClientException e) {
             e.printStackTrace();
         }
-        // map最好规定好大小
-        Map<String, Boolean> map = new HashMap<>(16);
-        map.put(RESULT, result);
         //返回数据
-        log.info("短信验证码发送成功");
-        return new ResponseVO<>(result ? SmsResponseEnum.SUCCESS : SmsResponseEnum.FAILURE, map);
+        if (sendSmsResponse != null && sendSmsResponse.getCode().equals("OK")) {
+            log.info("短信验证码发送成功");
+            return new ResponseVO<>(SmsResponseEnum.SUCCESS, sendSmsResponse);
+        }
+        log.info("短信验证码发送失败");
+        return new ResponseVO<>(SmsResponseEnum.FAILURE, sendSmsResponse);
     }
 
 }

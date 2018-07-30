@@ -48,6 +48,9 @@ spring:
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
 
+  #i18n configuration(添加语言国际化支持)
+  messages:
+    basename: i18n/messages
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
@@ -83,10 +86,6 @@ ribbon:
   MaxAutoRetriesNextServer: 2
   # 对当前实例的重试次数
   MaxAutoRetries: 1
-
-  #i18n configuration(添加语言国际化支持)
-  messages:
-    basename: i18n/messages
 
 #pagehelper分页插件
 pagehelper:

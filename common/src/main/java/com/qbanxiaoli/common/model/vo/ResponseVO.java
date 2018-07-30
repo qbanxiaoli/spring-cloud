@@ -13,44 +13,41 @@ import lombok.Data;
 public class ResponseVO<T> {
 
     /** 结果状态 */
-    private String success;
-
+    private Boolean result;
+    /** 结果码 */
+    private Integer code;
     /** 结果信息 */
     private String message;
-
-    /** 结果码 */
-    private String code;
-
     /** 返回数据 */
     private T data;
 
     //返回结果不包含数据，返回信息不包含变量
     public ResponseVO(ResponseEnum responseEnum) {
-        this.message = I18nResource.getMessage(responseEnum.getMessage());
-        this.success = responseEnum.getSuccess();
+        this.result = responseEnum.getResult();
         this.code = responseEnum.getCode();
+        this.message = I18nResource.getMessage(responseEnum.getMessage());
     }
 
     //返回结果不包含数据，返回信息包含变量
     public ResponseVO(ResponseEnum responseEnum, Object[] args) {
-        this.message = I18nResource.getMessage(responseEnum.getMessage(), args);
-        this.success = responseEnum.getSuccess();
+        this.result = responseEnum.getResult();
         this.code = responseEnum.getCode();
+        this.message = I18nResource.getMessage(responseEnum.getMessage(), args);
     }
 
     //返回结果包含数据，返回信息不包含变量
     public ResponseVO(ResponseEnum responseEnum, T data) {
-        this.message = I18nResource.getMessage(responseEnum.getMessage());
-        this.success = responseEnum.getSuccess();
+        this.result = responseEnum.getResult();
         this.code = responseEnum.getCode();
+        this.message = I18nResource.getMessage(responseEnum.getMessage());
         this.data = data;
     }
 
     //返回结果包含数据，返回信息包含变量
     public ResponseVO(ResponseEnum responseEnum, T data, Object[] args) {
-        this.message = I18nResource.getMessage(responseEnum.getMessage(), args);
-        this.success = responseEnum.getSuccess();
+        this.result = responseEnum.getResult();
         this.code = responseEnum.getCode();
+        this.message = I18nResource.getMessage(responseEnum.getMessage(), args);
         this.data = data;
     }
 

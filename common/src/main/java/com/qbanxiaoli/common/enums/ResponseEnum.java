@@ -9,8 +9,8 @@ public interface ResponseEnum {
 
     String getMessage();
 
-    String getSuccess();
+    Boolean getResult();
 
-    String getCode();
+    Integer getCode();
 
 }

@@ -9,34 +9,34 @@ import com.qbanxiaoli.common.enums.ResponseEnum;
  */
 public enum SmsResponseEnum implements ResponseEnum {
 
-    VARIABLE("true", "VARIABLE", "300"),
-    SUCCESS("true","SUCCESS","200"),
-    FAILURE("false", "FAILURE", "400"),
-    PHONE_NOT_NULL("false", "PHONE_NOT_NULL", "501");
+    VARIABLE(true, 300, "VARIABLE"),
+    SUCCESS(true, 200, "SUCCESS"),
+    FAILURE(false, 400, "FAILURE"),
+    PHONE_NOT_NULL(false, 501, "PHONE_NOT_NULL");
 
-    private String success;
+    private Boolean result;
+    private Integer code;
     private String message;
-    private String code;
+
+    @Override
+    public Boolean getResult() {
+        return result;
+    }
+
+    @Override
+    public Integer getCode() {
+        return code;
+    }
 
     @Override
     public String getMessage() {
         return message;
     }
 
-    @Override
-    public String getSuccess() {
-        return success;
-    }
-
-    @Override
-    public String getCode() {
-        return code;
-    }
-
-    SmsResponseEnum(String success, String message, String code) {
-        this.success = success;
-        this.message = message;
+    SmsResponseEnum(Boolean result, Integer code, String message) {
+        this.result = result;
         this.code = code;
+        this.message = message;
     }
 
 }
