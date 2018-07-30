@@ -1,0 +1,25 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: zuul
+  cloud:
+    config:
+      profile: service
+      label: master
+      username: admin
+      password: 123456
+      fail-fast: true
+      discovery:
+        enabled: true
+        serviceId: sms-config-server
+  http:
+    encoding:
+      force: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@${eureka.host:123.207.85.155}:${eureka.port:1111}/eureka/
+
