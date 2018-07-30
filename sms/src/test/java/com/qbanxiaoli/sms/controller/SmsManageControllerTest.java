@@ -39,7 +39,7 @@ public class SmsManageControllerTest {
 
     @Test
     public void sendMessage() throws Exception {
-        this.mockMvc.perform(get("/sms/sendsms/15657109220"))
+        this.mockMvc.perform(get("/sendsms/15657109220"))
                 .andExpect(status().isOk()).andDo(print())         //打印出请求和相应的内容
                 .andReturn().getResponse().getContentAsString();   //将相应的数据转换为字符串;
     }

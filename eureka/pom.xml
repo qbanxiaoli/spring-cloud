@@ -17,11 +17,12 @@
     </parent>
 
     <dependencies>
+        <!-- 本模块作为注册中心，故添加spring-cloud-starter-netflix-eureka-server依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
-        <!--注册服务安全认证-->
+        <!-- 本模块需要进行安全认证，故添加spring-cloud-starter-security依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>

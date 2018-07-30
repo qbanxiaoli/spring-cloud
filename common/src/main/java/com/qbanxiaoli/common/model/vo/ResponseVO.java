@@ -2,6 +2,8 @@ package com.qbanxiaoli.common.model.vo;
 
 import com.qbanxiaoli.common.bean.I18nResource;
 import com.qbanxiaoli.common.enums.ResponseEnum;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -10,15 +12,19 @@ import lombok.Data;
  * @create 2018/7/3 13:31
  */
 @Data
+@ApiModel(value = "数据返回模型")
 public class ResponseVO<T> {
 
-    /** 结果状态 */
+    @ApiModelProperty(value = "结果状态", required = true)
     private Boolean result;
-    /** 结果码 */
+
+    @ApiModelProperty(value = "结果码", required = true)
     private Integer code;
-    /** 结果信息 */
+
+    @ApiModelProperty(value = "结果信息", required = true)
     private String message;
-    /** 返回数据 */
+
+    @ApiModelProperty(value = "返回数据", required = true)
     private T data;
 
     //返回结果不包含数据，返回信息不包含变量

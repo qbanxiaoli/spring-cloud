@@ -9,10 +9,13 @@ import com.qbanxiaoli.common.enums.ResponseEnum;
  */
 public enum SmsResponseEnum implements ResponseEnum {
 
-    VARIABLE(true, 300, "VARIABLE"),
-    SUCCESS(true, 200, "SUCCESS"),
-    FAILURE(false, 400, "FAILURE"),
-    PHONE_NOT_NULL(false, 501, "PHONE_NOT_NULL");
+    VARIABLE(true, 300, "VARIABLE"),//传入变量
+    SUCCESS(true, 200, "SUCCESS"),//成功
+    MSG_SEND_SUCCESS(true, 201, "MSG_SEND_SUCCESS"),//短信验证码发送成功
+    FAILURE(false, 400, "FAILURE"),//失败
+    MSG_SEND_FAILURE(false, 401, "MSG_SEND_FAILURE"),//短信验证码发送失败
+    MSG_SAVE_FAILURE(false, 402, "MSG_SAVE_FAILURE"),//短信保存失败
+    PHONE_NOT_NULL(false, 501, "PHONE_NOT_NULL");//手机号码不能为空
 
     private Boolean result;
     private Integer code;

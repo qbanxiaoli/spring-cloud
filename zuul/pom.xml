@@ -27,11 +27,6 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
-		<!-- 本模块需要进行安全认证，故添加spring-cloud-starter-security依赖 -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter</artifactId>
-		</dependency>
 		<!-- 本模块需要进行网关验证，故添加spring-cloud-starter-netflix-zuul依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

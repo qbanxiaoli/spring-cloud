@@ -6,6 +6,8 @@ import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.SendSmsUtil;
 import com.qbanxiaoli.sms.dao.SmsDao;
 import com.qbanxiaoli.sms.enums.SmsResponseEnum;
+import com.qbanxiaoli.sms.model.converter.MessageAssembly;
+import com.qbanxiaoli.sms.model.entity.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,8 +26,6 @@ import java.util.Map;
 @Transactional
 public class SmsService {
 
-    private static final String RESULT = "result";
-
     private final SmsDao smsDao;
 
     @Autowired
@@ -35,20 +35,31 @@ public class SmsService {
 
     public ResponseVO sendMessage(String phone) {
         //获取6位数验证码
-        String code = SendSmsUtil.getRandNum(1, 999999);
-        SendSmsResponse sendSmsResponse = null;
+        String captcha = SendSmsUtil.getRandNum(1, 999999);
+        SendSmsResponse sendSmsResponse;
         try {
-            sendSmsResponse = SendSmsUtil.sendSms(phone, code);
+            log.info("向手机号" + phone + "发送了一条短信验证码为：" + captcha);
+            sendSmsResponse = SendSmsUtil.sendSms(phone, captcha);
         } catch (ClientException e) {
             e.printStackTrace();
+            log.info("短信验证码发送失败");
+            return new ResponseVO<>(SmsResponseEnum.MSG_SEND_FAILURE);
+        }
+        Message message = MessageAssembly.toDomain(sendSmsResponse, phone, captcha);
+        try {
+            smsDao.save(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.info("短信保存失败");
+            return new ResponseVO<>(SmsResponseEnum.MSG_SAVE_FAILURE);
         }
         //返回数据
-        if (sendSmsResponse != null && sendSmsResponse.getCode().equals("OK")) {
+        if (sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
             log.info("短信验证码发送成功");
-            return new ResponseVO<>(SmsResponseEnum.SUCCESS, sendSmsResponse);
+            return new ResponseVO<>(SmsResponseEnum.MSG_SEND_SUCCESS, sendSmsResponse);
         }
         log.info("短信验证码发送失败");
-        return new ResponseVO<>(SmsResponseEnum.FAILURE, sendSmsResponse);
+        return new ResponseVO<>(SmsResponseEnum.MSG_SEND_FAILURE, sendSmsResponse);
     }
 
 }

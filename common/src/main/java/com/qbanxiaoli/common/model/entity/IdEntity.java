@@ -1,27 +1,25 @@
 package com.qbanxiaoli.common.model.entity;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
- * @author Q版小李
- * @description
- * @create 2018/7/30 2:06
+ * Created by qbanxiaoli on 2017/9/5.
  */
+@Data
 @MappedSuperclass
-public class IdEntity {
+@ApiModel(value = "主键模型")
+class IdEntity {
 
-    /**
-     * 必须是ToStringStyle.SHORT_PREFIX_STYLE，形式如下:</br>
-     * Person[name=John Doe,age=33,smoker=false]</br>
-     *
-     * @see Object#toString()
-     */
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(value = "自增主键", required = true)
+    private Long id;
 
 }

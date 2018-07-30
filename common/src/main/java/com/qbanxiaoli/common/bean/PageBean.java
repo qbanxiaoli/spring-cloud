@@ -1,5 +1,7 @@
 package com.qbanxiaoli.common.bean;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -10,20 +12,28 @@ import java.util.List;
  * @create 2018/4/19
  */
 @Data
+@ApiModel(value = "分页模型")
 public class PageBean<T> {
-    /** 当前页 */
+
+    @ApiModelProperty(value = "当前页", required = true)
     private Integer currentPage;
-    /** 每页显示的总条数 */
+
+    @ApiModelProperty(value = "每页显示的总条数", required = true)
     private Integer pageSize;
-    /** 总条数 */
+
+    @ApiModelProperty(value = "总条数", required = true)
     private Integer totalNum;
-    /** 是否有下一页 */
+
+    @ApiModelProperty(value = "是否有下一页", required = true)
     private Integer isMore;
-    /** 总页数 */
+
+    @ApiModelProperty(value = "总页数", required = true)
     private Integer totalPage;
-    /** 开始索引 */
+
+    @ApiModelProperty(value = "开始索引", required = true)
     private Integer startIndex;
-    /** 分页结果 */
+
+    @ApiModelProperty(value = "分页结果", required = true)
     private List<T> obj;
 
     public PageBean(List<T> obj, Integer currentPage, Integer pageSize, Integer totalNum) {

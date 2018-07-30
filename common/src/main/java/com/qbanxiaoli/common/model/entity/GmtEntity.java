@@ -1,10 +1,14 @@
 package com.qbanxiaoli.common.model.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,11 +16,11 @@ import java.util.Date;
  * @description
  * @create 2018/7/30 2:06
  */
+@Data
 @MappedSuperclass
-public class GmtEntity extends MysqlLongIdEntity implements Serializable {
-
-    /**  */
-    private static final long serialVersionUID = -7421425389751465637L;
+@EqualsAndHashCode(callSuper = true)
+@ApiModel(value = "时间模型")
+public class GmtEntity extends IdEntity {
 
     /**
      * 数据创建时间
@@ -24,13 +28,15 @@ public class GmtEntity extends MysqlLongIdEntity implements Serializable {
      * updatable=false表明这个字段在更新的时候不会保存入库。
      */
     @Column(nullable = false, updatable = false)
-    protected Date gmtCreate;
+    @ApiModelProperty(value = "创建时间", required = true)
+    private Date gmtCreate;
 
     /**
      * 数据修改时间
      */
     @Column(nullable = false)
-    protected Date gmtModified;
+    @ApiModelProperty(value = "修改时间", required = true)
+    private Date gmtModified;
 
     /**
      * 注解说明：
@@ -57,48 +63,6 @@ public class GmtEntity extends MysqlLongIdEntity implements Serializable {
     @PreUpdate
     public void preUpdate() {
         this.setGmtModified(new Date());
-    }
-
-    /**
-     * 注解说明：
-     * @PreRemove 和 @PostRemove 事件的触发由删除实体引起。
-     * @PreRemove 事件在实体从数据库删除之前触发，即调用了EntityManager.remove()方法或者级联删除。
-     */
-
-    /**
-     * Getter method for property <tt>gmtCreate</tt>.
-     *
-     * @return property value of gmtCreate
-     */
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
-
-    /**
-     * Setter method for property <tt>gmtCreate</tt>.
-     *
-     * @param gmtCreate value to be assigned to property gmtCreate
-     */
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    /**
-     * Getter method for property <tt>gmtModified</tt>.
-     *
-     * @return property value of gmtModified
-     */
-    public Date getGmtModified() {
-        return gmtModified;
-    }
-
-    /**
-     * Setter method for property <tt>gmtModified</tt>.
-     *
-     * @param gmtModified value to be assigned to property gmtModified
-     */
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
     }
 
 }

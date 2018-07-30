@@ -17,14 +17,17 @@
 	</parent>
 
 	<dependencies>
+		<!-- 本模块作为配置中心，故添加spring-cloud-starter-netflix-eureka-server依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
+		<!-- 本模块需要作为一个微服务应用向服务中心发布自己，故添加spring-cloud-starter-netflix-eureka-client依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+		<!-- 本模块需要进行安全认证，故添加spring-cloud-starter-security依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-security</artifactId>
