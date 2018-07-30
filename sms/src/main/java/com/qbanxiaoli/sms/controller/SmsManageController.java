@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/sms")
 public class SmsManageController {
 
     private final SmsService smsService;
@@ -42,4 +41,5 @@ public class SmsManageController {
         log.info("参数校验正常");
         return smsService.sendMessage(phone);
     }
+
 }

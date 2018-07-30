@@ -1,21 +1,21 @@
 server:
-  port: 8002
+  port: 8888
 
 spring:
   application:
-    name: bonuspoint-config-server
+    name: sms-config-server
   cloud:
     config:
       server:
         git:
           # git仓库位置
-          uri: https://dev.33.cn/wangtao/bonus-point-cloud.git
+          uri: https://github.com/qbanxiaoli/sms-cloud-config.git
           # 仓库路径下的相对搜索位置
-          search-paths: bonuspoint-config-repo
+          search-paths: /**
           # git仓库的用户名
-          username: wangtao
+          username: qbanxiaoli
           # git仓库的用户密码
-          password: wang5341.
+          password: 9c780q4126
 
   security:
     user:
