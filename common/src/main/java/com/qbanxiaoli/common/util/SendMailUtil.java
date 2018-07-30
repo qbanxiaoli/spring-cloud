@@ -10,6 +10,11 @@ import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.Properties;
 
+/**
+ * @author qbanxiaoli
+ * @description 邮件工具类
+ * @create 2018/7/3 13:31
+ */
 @Slf4j
 public class SendMailUtil {
 

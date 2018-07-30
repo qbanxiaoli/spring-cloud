@@ -1,6 +1,7 @@
 package com.qbanxiaoli.sms.model.converter;
 
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
+import com.qbanxiaoli.common.util.StringUtil;
 import com.qbanxiaoli.sms.constant.MessageConstant;
 import com.qbanxiaoli.sms.model.entity.Message;
 
@@ -16,22 +17,22 @@ public class MessageAssembly {
             return null;
         }
         Message message = new Message();
-        if (sendSmsResponse.getRequestId() != null) {
+        if (StringUtil.isNotBlank(sendSmsResponse.getRequestId())) {
             message.setRequestId(sendSmsResponse.getRequestId());
         }
-        if (sendSmsResponse.getBizId() != null) {
+        if (StringUtil.isNotBlank(sendSmsResponse.getBizId())) {
             message.setBizId(sendSmsResponse.getBizId());
         }
-        if (sendSmsResponse.getCode() != null) {
+        if (StringUtil.isNotBlank(sendSmsResponse.getCode())) {
             message.setCode(sendSmsResponse.getCode());
         }
-        if (sendSmsResponse.getMessage() != null) {
+        if (StringUtil.isNotBlank(sendSmsResponse.getMessage())) {
             message.setMessage(sendSmsResponse.getMessage());
         }
-        if (phone != null) {
+        if (StringUtil.isNotBlank(phone)) {
             message.setPhone(phone);
         }
-        if (captcha != null) {
+        if (StringUtil.isNotBlank(captcha)) {
             message.setCaptcha(captcha);
         }
         message.setType(MessageConstant.SIGN_UP);

@@ -4,6 +4,11 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author qbanxiaoli
+ * @description MD5加密工具类
+ * @create 2018/7/3 13:31
+ */
 public class MD5Util {
 
     private MD5Util(){

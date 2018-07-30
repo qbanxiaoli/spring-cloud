@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
  * @description
  * @create 2018/7/30 2:14
  */
-@Repository
 public interface SmsDao extends BaseDao<Message, Long> {
 
 }

@@ -10,6 +10,11 @@ import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author qbanxiaoli
+ * @description 短信工具类
+ * @create 2018/7/3 13:31
+ */
 @Slf4j
 public class SendSmsUtil {
 
