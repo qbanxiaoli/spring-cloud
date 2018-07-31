@@ -4,6 +4,9 @@ import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.StringUtil;
 import com.qbanxiaoli.sms.enums.SmsResponseEnum;
 import com.qbanxiaoli.sms.service.SmsService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
+@Api(tags = "发送短信接口")
 public class SmsManageController {
 
     private final SmsService smsService;
@@ -30,8 +34,9 @@ public class SmsManageController {
      * @author qbanxiaoli
      * @description 发送短信验证码
      */
+    @ApiOperation(value = "获取短信验证码", notes = "用户获取短信验证码")
     @GetMapping("/sendsms/{phone}")
-    public ResponseVO sendMessage(@PathVariable("phone") String phone) {
+    public ResponseVO sendMessage(@ApiParam(name = "phone", value = "手机号码", required = true) @PathVariable("phone") String phone) {
         log.info("发送短信验证码请求");
         log.info("进行参数校验");
         // 参数处理判断

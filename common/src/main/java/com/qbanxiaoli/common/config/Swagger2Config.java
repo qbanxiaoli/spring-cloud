@@ -20,7 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class Swagger2Config {
 
-    private static final String SWAGGER_SCAN_BASE_PACKAGE = "com.qbanxiaoli.sms";
+    private static final String SWAGGER_SCAN_BASE_PACKAGE = "com.qbanxiaoli";
 
     private static final String VERSION = "1.0";
 
@@ -40,10 +40,12 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("测试项目")//设置文档的标题
+                .title("微服务")//设置文档的标题
                 .description("Swagger2 接口文档示例")//设置文档的描述
                 .version(VERSION)//设置文档的版本信息
-                .termsOfServiceUrl("www.qbanxiaoli.cn")//设置文档的License信息
+//                .license("www.qbanxiaoli.cn")
+//                .termsOfServiceUrl("www.qbanxiaoli.cn")//设置文档的License信息
+//                .contact(new Contact("qbanxiaoli", "www.qbanxiaoli.cn", "823730820@qq.com"))
                 .build();
     }
 
