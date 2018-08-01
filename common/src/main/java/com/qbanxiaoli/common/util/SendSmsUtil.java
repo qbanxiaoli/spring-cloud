@@ -40,8 +40,7 @@ public class SendSmsUtil {
         final String accessKeyId = "180gidLp2JoiCt8E";//你的accessKeyId,参考本文档步骤2
         final String accessKeySecret = "KD0k8yEHdpUOnw3oUKms18vnYaXZbH";//你的accessKeySecret，参考本文档步骤2
         //初始化ascClient,暂时不支持多region（请勿修改）
-        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId,
-                accessKeySecret);
+        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
         DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
         IAcsClient acsClient = new DefaultAcsClient(profile);
         //组装请求对象

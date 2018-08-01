@@ -12,9 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 /**
  * @author Q版小李
@@ -33,25 +31,34 @@ public class SmsService {
         this.smsDao = smsDao;
     }
 
+    /**
+     * @param phone 手机号码
+     * @return 请求响应
+     * @author qbanxiaoli
+     * @description 获取短信验证码
+     */
     public ResponseVO sendMessage(String phone) {
         //获取6位数验证码
         String captcha = SendSmsUtil.getRandNum(1, 999999);
+        //发送短信验证码
         SendSmsResponse sendSmsResponse;
         try {
             log.info("向手机号" + phone + "发送了一条短信验证码为：" + captcha);
             sendSmsResponse = SendSmsUtil.sendSms(phone, captcha);
         } catch (ClientException e) {
-            e.printStackTrace();
             log.info("短信验证码发送失败");
             return new ResponseVO<>(SmsResponseEnum.MSG_SEND_FAILURE);
         }
+        //装配短信实体类
         Message message = MessageAssembly.toDomain(sendSmsResponse, phone, captcha);
+        //保存发送短信
         try {
             smsDao.save(message);
         } catch (Exception e) {
-            e.printStackTrace();
             log.info("短信保存失败");
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return new ResponseVO<>(SmsResponseEnum.MSG_SAVE_FAILURE);
+
         }
         //返回数据
         if (sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {

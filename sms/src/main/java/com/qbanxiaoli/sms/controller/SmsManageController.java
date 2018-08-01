@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-@Api(tags = "发送短信接口")
+@Api(tags = "发送短信")
 public class SmsManageController {
 
     private final SmsService smsService;
@@ -32,7 +32,7 @@ public class SmsManageController {
      * @param phone 手机号码
      * @return 请求响应
      * @author qbanxiaoli
-     * @description 发送短信验证码
+     * @description 获取短信验证码
      */
     @ApiOperation(value = "获取短信验证码", notes = "用户获取短信验证码")
     @GetMapping("/sendsms/{phone}")

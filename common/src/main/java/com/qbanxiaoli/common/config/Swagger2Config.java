@@ -40,7 +40,7 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("微服务")//设置文档的标题
+                .title("第三方微服务接口文档")//设置文档的标题
                 .description("Swagger2 接口文档示例")//设置文档的描述
                 .version(VERSION)//设置文档的版本信息
 //                .license("www.qbanxiaoli.cn")
