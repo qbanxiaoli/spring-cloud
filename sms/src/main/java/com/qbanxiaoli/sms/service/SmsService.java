@@ -46,6 +46,7 @@ public class SmsService {
             log.info("向手机号" + phone + "发送了一条短信验证码为：" + captcha);
             sendSmsResponse = SendSmsUtil.sendSms(phone, captcha);
         } catch (ClientException e) {
+            e.printStackTrace();
             log.info("短信验证码发送失败");
             return new ResponseVO<>(SmsResponseEnum.MSG_SEND_FAILURE);
         }
@@ -55,6 +56,7 @@ public class SmsService {
         try {
             smsDao.save(message);
         } catch (Exception e) {
+            e.printStackTrace();
             log.info("短信保存失败");
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return new ResponseVO<>(SmsResponseEnum.MSG_SAVE_FAILURE);

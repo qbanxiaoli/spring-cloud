@@ -10,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
- * Created by qbanxiaoli on 2017/9/5.
+ * @author Q版小李
+ * @description
+ * @create 2018/7/30 2:06
  */
 @Data
 @MappedSuperclass

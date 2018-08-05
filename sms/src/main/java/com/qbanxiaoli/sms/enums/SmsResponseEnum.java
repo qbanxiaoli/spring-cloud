@@ -15,7 +15,8 @@ public enum SmsResponseEnum implements ResponseEnum {
     FAILURE(false, 400, "FAILURE"),//失败
     MSG_SEND_FAILURE(false, 401, "MSG_SEND_FAILURE"),//短信验证码发送失败
     MSG_SAVE_FAILURE(false, 402, "MSG_SAVE_FAILURE"),//短信保存失败
-    PHONE_NOT_NULL(false, 501, "PHONE_NOT_NULL");//手机号码不能为空
+    PHONE_NOT_NULL(false, 501, "PHONE_NOT_NULL"),//手机号码不能为空
+    PHONE_FORMAT_ERROR(false, 502, "PHONE_FORMAT_ERROR");//手机号码格式错误
 
     private Boolean result;
     private Integer code;

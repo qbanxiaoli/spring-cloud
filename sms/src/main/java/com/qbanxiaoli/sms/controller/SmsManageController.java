@@ -4,6 +4,7 @@ import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.StringUtil;
 import com.qbanxiaoli.sms.enums.SmsResponseEnum;
 import com.qbanxiaoli.sms.service.SmsService;
+import com.qbanxiaoli.sms.validator.Phone;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -36,7 +37,7 @@ public class SmsManageController {
      */
     @ApiOperation(value = "获取短信验证码", notes = "用户获取短信验证码")
     @GetMapping("/sendsms/{phone}")
-    public ResponseVO sendMessage(@ApiParam(name = "phone", value = "手机号码", required = true) @PathVariable("phone") String phone) {
+    public ResponseVO sendMessage(@ApiParam(name = "phone", value = "手机号码", required = true) @Phone @PathVariable("phone") String phone) {
         log.info("发送短信验证码请求");
         log.info("进行参数校验");
         // 参数处理判断

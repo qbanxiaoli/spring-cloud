@@ -40,14 +40,17 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.0.0</version>
                 <configuration>
-                    <imageName>registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/${project.artifactId}</imageName>
+                    <!--指定镜像名称 仓库/镜像名:标签-->
+                    <imageName>${docker.repository}/${docker.registry.name}/${project.artifactId}:${project.version}</imageName>
+                    <!--指定基础镜像，相当于dockerFile中的FROM<image> -->
                     <baseImage>java:8</baseImage>
+                    <!-- 容器启动执行的命令，相当于dockerFile的ENTRYPOINT -->
                     <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
+                        <resource><!-- 指定资源文件 -->
+                            <targetPath>/</targetPath><!-- 指定要复制的目录路径，这里是当前目录 -->
+                            <directory>${project.build.directory}</directory><!-- 指定要复制的根目录，这里是target目录 -->
+                            <include>${project.build.finalName}.jar</include><!-- 指定需要拷贝的文件，这里指最后生成的jar包 -->
                         </resource>
                     </resources>
                 </configuration>
