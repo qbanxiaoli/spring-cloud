@@ -1,7 +1,6 @@
 package com.qbanxiaoli.sms.controller;
 
 import com.qbanxiaoli.common.model.vo.ResponseVO;
-import com.qbanxiaoli.common.util.StringUtil;
 import com.qbanxiaoli.sms.enums.SmsResponseEnum;
 import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
 import com.qbanxiaoli.sms.service.SmsService;
@@ -15,7 +14,6 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * @author Q版小李
