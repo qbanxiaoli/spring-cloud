@@ -1,7 +1,6 @@
 package com.qbanxiaoli.sms.validator.validator;
 
 import com.qbanxiaoli.sms.validator.Phone;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
