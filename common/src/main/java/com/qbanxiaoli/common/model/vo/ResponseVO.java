@@ -1,5 +1,6 @@
 package com.qbanxiaoli.common.model.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.qbanxiaoli.common.bean.I18nResource;
 import com.qbanxiaoli.common.enums.ResponseEnum;
 import io.swagger.annotations.ApiModel;
@@ -12,6 +13,7 @@ import lombok.Data;
  * @create 2018/7/3 13:31
  */
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "数据返回模型")
 public class ResponseVO<T> {
 

@@ -24,7 +24,7 @@ public class I18nTest {
     //返回值传入消息变量测试
     @Test
     public void Test() throws Exception {
-        ResponseVO responseVO = new ResponseVO<>(SmsResponseEnum.VARIABLE, new Object[]{LocaleContextHolder.getLocale()});
+        ResponseVO responseVO = new ResponseVO<>(SmsResponseEnum.SUCCESS_VARIABLE, new Object[]{LocaleContextHolder.getLocale()});
         log.info(JsonUtil.toJsonString(responseVO));
     }
 }

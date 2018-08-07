@@ -1,6 +1,6 @@
-package com.qbanxiaoli.sms.validator;
+package com.qbanxiaoli.sms.validation;
 
-import com.qbanxiaoli.sms.validator.validator.PhoneValidator;
+import com.qbanxiaoli.sms.validation.validator.PhoneValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -21,7 +21,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 public @interface Phone {
 
-    String message() default "PHONE_FORMAT_ERROR";
+    String message() default "{PHONE_FORMAT_ERROR}";
 
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};

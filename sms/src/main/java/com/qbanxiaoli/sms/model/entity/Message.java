@@ -23,7 +23,7 @@ public class Message extends GmtEntity {
 
     @ApiModelProperty(value = "业务类型", required = true)
     @Column(nullable = false, length = 2)
-    private Integer type;
+    private Long type;
 
     @ApiModelProperty(value = "短信验证码", required = true)
     @Column(nullable = false, length = 10)

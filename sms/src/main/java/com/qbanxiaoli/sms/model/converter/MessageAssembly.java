@@ -2,7 +2,7 @@ package com.qbanxiaoli.sms.model.converter;
 
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.qbanxiaoli.common.util.StringUtil;
-import com.qbanxiaoli.sms.constant.MessageConstant;
+import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
 import com.qbanxiaoli.sms.model.entity.Message;
 
 /**
@@ -12,8 +12,8 @@ import com.qbanxiaoli.sms.model.entity.Message;
  */
 public class MessageAssembly {
 
-    public static Message toDomain(SendSmsResponse sendSmsResponse, String phone, String captcha) {
-        if (sendSmsResponse == null) {
+    public static Message toDomain(SendSmsResponse sendSmsResponse, SmsFormDTO smsFormDTO, String captcha) {
+        if (sendSmsResponse == null || smsFormDTO == null) {
             return null;
         }
         Message message = new Message();
@@ -29,13 +29,15 @@ public class MessageAssembly {
         if (StringUtil.isNotBlank(sendSmsResponse.getMessage())) {
             message.setMessage(sendSmsResponse.getMessage());
         }
-        if (StringUtil.isNotBlank(phone)) {
-            message.setPhone(phone);
+        if (StringUtil.isNotBlank(smsFormDTO.getPhone())) {
+            message.setPhone(smsFormDTO.getPhone());
         }
         if (StringUtil.isNotBlank(captcha)) {
             message.setCaptcha(captcha);
         }
-        message.setType(MessageConstant.SIGN_UP);
+        if (smsFormDTO.getType() != null) {
+            message.setType(smsFormDTO.getType());
+        }
         return message;
     }
 

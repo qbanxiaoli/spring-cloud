@@ -3,19 +3,19 @@ package com.qbanxiaoli.sms.controller;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.StringUtil;
 import com.qbanxiaoli.sms.enums.SmsResponseEnum;
+import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
 import com.qbanxiaoli.sms.service.SmsService;
-import com.qbanxiaoli.sms.validator.Phone;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
+import java.util.List;
 
 /**
  * @author Q版小李
@@ -23,7 +23,6 @@ import javax.validation.constraints.Email;
  * @create 2018/7/30 1:16
  */
 @Slf4j
-@Validated
 @RestController
 @Api(tags = "发送短信")
 public class SmsManageController {
@@ -36,23 +35,26 @@ public class SmsManageController {
     }
 
     /**
-     * @param phone 手机号码
+     * @param smsFormDTO 短信请求数据传输类
      * @return 请求响应
      * @author qbanxiaoli
      * @description 获取短信验证码
      */
     @ApiOperation(value = "获取短信验证码", notes = "用户获取短信验证码")
-    @GetMapping("/sendsms/{phone}")
-    public ResponseVO sendMessage(@ApiParam(name = "phone", value = "手机号码", required = true)
-                                  @Phone @PathVariable("phone") String phone) {
+    @PostMapping("/sendsms")
+    public ResponseVO sendMessage(@ApiParam(name = "smsFormDTO", value = "短信请求数据传输类", required = true)
+                                  @Valid @RequestBody SmsFormDTO smsFormDTO,
+                                  BindingResult bindingResult) {
         log.info("发送短信验证码请求");
         log.info("进行参数校验");
-        if (!StringUtil.isNotBlank(phone)) {
-            log.info("手机号码不能为空");
-            return new ResponseVO(SmsResponseEnum.PHONE_NOT_NULL);
+        if (bindingResult.hasErrors()) {
+            for (ObjectError errors : bindingResult.getAllErrors()) {
+                log.info("参数错误：" + errors.getDefaultMessage());
+            }
+            return new ResponseVO(SmsResponseEnum.FAILURE_VARIABLE, new Object[]{bindingResult.getAllErrors().get(0).getDefaultMessage()});
         }
         log.info("参数校验正常");
-        return smsService.sendMessage(phone);
+        return smsService.sendMessage(smsFormDTO);
     }
 
 }
