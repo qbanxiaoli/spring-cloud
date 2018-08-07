@@ -1,6 +1,5 @@
 package com.qbanxiaoli.sms.validator;
 
-import com.qbanxiaoli.sms.enums.SmsResponseEnum;
 import com.qbanxiaoli.sms.validator.validator.PhoneValidator;
 
 import javax.validation.Constraint;
