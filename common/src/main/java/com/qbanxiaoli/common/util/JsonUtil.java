@@ -1,6 +1,7 @@
 package com.qbanxiaoli.common.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,13 +26,18 @@ public class JsonUtil {
 
     }
 
-    public static String toJsonString(Object o) throws Exception {
+    public static String toJsonString(Object o) {
         // 使用ObjectMapper来转化对象为Json
         ObjectMapper objectMapper = new ObjectMapper();
         // 配置objectMapper忽略空属性
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         // 默认情况，Jackson使用Java属性字段名称作为 Json的属性名称,也可以使用Jackson annotations(注解)改变Json属性名称
-        return objectMapper.writeValueAsString(o);
+        try {
+            objectMapper.writeValueAsString(o);
+        } catch (Exception e) {
+            log.error("序列化对象为Json失败：" + e);
+        }
+        return null;
     }
 
     public static <T> T toObject(String json, Class<T> valueType) {
