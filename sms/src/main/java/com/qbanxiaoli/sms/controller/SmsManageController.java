@@ -49,7 +49,7 @@ public class SmsManageController {
             for (ObjectError errors : bindingResult.getAllErrors()) {
                 log.info("参数错误：" + errors.getDefaultMessage());
             }
-            return new ResponseVO(SmsResponseEnum.FAILURE_VARIABLE, new Object[]{bindingResult.getAllErrors().get(0).getDefaultMessage()});
+            return new ResponseVO<>(SmsResponseEnum.PARAMETER_ERROR, bindingResult.getAllErrors());
         }
         log.info("参数校验正常");
         return smsService.sendMessage(smsFormDTO);

@@ -14,8 +14,9 @@ public enum SmsResponseEnum implements ResponseEnum {
     MSG_SEND_SUCCESS(true, 201, "MSG_SEND_SUCCESS"),//短信验证码发送成功
     FAILURE(false, 400, "FAILURE"),//失败
     FAILURE_VARIABLE(false, 400, "FAILURE_VARIABLE"),//传入失败变量信息
-    MSG_SEND_FAILURE(false, 401, "MSG_SEND_FAILURE"),//短信验证码发送失败
-    MSG_SAVE_FAILURE(false, 402, "MSG_SAVE_FAILURE"),//短信保存失败
+    PARAMETER_ERROR(false, 401, "PARAMETER_ERROR"),//参数错误
+    MSG_SEND_FAILURE(false, 402, "MSG_SEND_FAILURE"),//短信验证码发送失败
+    MSG_SAVE_FAILURE(false, 403, "MSG_SAVE_FAILURE"),//短信保存失败
 
     PHONE_NOT_NULL(false, 403, "PHONE_NOT_NULL"),//手机号码不能为空
     PHONE_FORMAT_ERROR(false, 404, "PHONE_FORMAT_ERROR"),//手机号码格式错误
