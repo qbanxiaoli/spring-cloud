@@ -39,9 +39,8 @@ public class SmsManageController {
     @PostMapping("/sendsms")
     public ResponseVO sendMessage(@ApiParam(name = "smsFormDTO", value = "短信请求数据传输类", required = true)
                                   @Valid @RequestBody SmsFormDTO smsFormDTO) {
-        log.info("发送短信验证码请求");
-        log.info("进行参数校验");
         log.info("参数校验正常");
+        log.info("开始发送短信验证码");
         return smsService.sendMessage(smsFormDTO);
     }
 
