@@ -1,7 +1,6 @@
 package com.qbanxiaoli.sms.controller;
 
 import com.qbanxiaoli.common.model.vo.ResponseVO;
-import com.qbanxiaoli.sms.enums.SmsResponseEnum;
 import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
 import com.qbanxiaoli.sms.service.SmsService;
 import io.swagger.annotations.Api;
@@ -9,9 +8,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -42,16 +38,9 @@ public class SmsManageController {
     @ApiOperation(value = "获取短信验证码", notes = "用户获取短信验证码")
     @PostMapping("/sendsms")
     public ResponseVO sendMessage(@ApiParam(name = "smsFormDTO", value = "短信请求数据传输类", required = true)
-                                  @Valid @RequestBody SmsFormDTO smsFormDTO,
-                                  BindingResult bindingResult) {
+                                  @Valid @RequestBody SmsFormDTO smsFormDTO) {
         log.info("发送短信验证码请求");
         log.info("进行参数校验");
-        if (bindingResult.hasErrors()) {
-            for (FieldError errors : bindingResult.getFieldErrors()) {
-                log.info("参数错误：" + errors.getDefaultMessage());
-            }
-            return new ResponseVO<>(SmsResponseEnum.PARAMETER_ERROR, bindingResult.getFieldErrors());
-        }
         log.info("参数校验正常");
         return smsService.sendMessage(smsFormDTO);
     }
