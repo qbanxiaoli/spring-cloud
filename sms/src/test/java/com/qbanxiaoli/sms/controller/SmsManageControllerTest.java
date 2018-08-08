@@ -1,18 +1,21 @@
 package com.qbanxiaoli.sms.controller;
 
+import com.qbanxiaoli.common.util.JsonUtil;
+import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,7 +42,13 @@ public class SmsManageControllerTest {
 
     @Test
     public void sendMessage() throws Exception {
-        this.mockMvc.perform(get("/sendsms/15657109220"))
+        SmsFormDTO smsFormDTO = new SmsFormDTO();
+        smsFormDTO.setPhone("15957180964");
+        smsFormDTO.setType(1);
+        log.info(JsonUtil.toJsonString(smsFormDTO));
+        this.mockMvc.perform(post("/sendsms")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.toJsonBytes(smsFormDTO)))
                 .andExpect(status().isOk()).andDo(print())         //打印出请求和相应的内容
                 .andReturn().getResponse().getContentAsString();   //将相应的数据转换为字符串;
     }

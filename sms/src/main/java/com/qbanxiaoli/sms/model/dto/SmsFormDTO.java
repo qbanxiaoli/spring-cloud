@@ -26,6 +26,6 @@ public class SmsFormDTO {
     @NotNull(message = "{BUSINESS_NOT_NULL}")
     @Range(min = 0, max = 2, message = "{BUSINESS_TYPE_BETWEEN}")
     @ApiModelProperty(value = "业务类型", required = true)
-    private Long type;
+    private Integer type;
 
 }

@@ -2,6 +2,7 @@ package com.qbanxiaoli.sms.controller;
 
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
+import com.qbanxiaoli.sms.model.vo.SendSmsResponseVO;
 import com.qbanxiaoli.sms.service.SmsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,8 +38,8 @@ public class SmsManageController {
      */
     @ApiOperation(value = "获取短信验证码", notes = "用户获取短信验证码")
     @PostMapping("/sendsms")
-    public ResponseVO sendMessage(@ApiParam(name = "smsFormDTO", value = "短信请求数据传输类", required = true)
-                                  @Valid @RequestBody SmsFormDTO smsFormDTO) {
+    public ResponseVO<SendSmsResponseVO> sendMessage(@ApiParam(name = "smsFormDTO", value = "短信请求数据传输类", required = true)
+                                                   @Valid @RequestBody SmsFormDTO smsFormDTO) {
         log.info("参数校验正常");
         log.info("开始发送短信验证码");
         return smsService.sendMessage(smsFormDTO);

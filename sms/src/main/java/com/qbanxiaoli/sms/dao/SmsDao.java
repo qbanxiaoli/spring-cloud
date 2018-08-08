@@ -2,7 +2,6 @@ package com.qbanxiaoli.sms.dao;
 
 import com.qbanxiaoli.common.dao.BaseDao;
 import com.qbanxiaoli.sms.model.entity.Message;
-import org.springframework.stereotype.Repository;
 
 /**
  * @author Q版小李
