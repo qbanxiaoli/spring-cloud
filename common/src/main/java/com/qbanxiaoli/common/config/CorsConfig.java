@@ -23,7 +23,7 @@ public class CorsConfig implements WebMvcConfigurer {
                 //是否允许证书 不再默认开启
                 .allowCredentials(true)
                 //设置允许的方法
-                .allowedMethods("GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "TRACE")
+                .allowedMethods("*")
                 //跨域允许时间
                 .maxAge(3600);
     }
