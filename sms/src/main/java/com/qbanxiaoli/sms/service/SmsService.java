@@ -51,6 +51,11 @@ public class SmsService {
             log.info("短信验证码发送失败");
             return new ResponseVO<>(SmsResponseEnum.MSG_SEND_FAILURE);
         }
+        //返回数据
+        if (sendSmsResponse.getCode() == null || !sendSmsResponse.getCode().equals("OK")) {
+            log.info("短信验证码发送失败");
+            return new ResponseVO<>(SmsResponseEnum.MSG_SEND_FAILURE, sendSmsResponse);
+        }
         //装配短信实体类
         Message message = MessageAssembly.toDomain(sendSmsResponse, smsFormDTO, captcha);
         //保存发送短信
@@ -63,13 +68,8 @@ public class SmsService {
             return new ResponseVO<>(SmsResponseEnum.MSG_SAVE_FAILURE);
 
         }
-        //返回数据
-        if (sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
-            log.info("短信验证码发送成功");
-            return new ResponseVO<>(SmsResponseEnum.MSG_SEND_SUCCESS, sendSmsResponse);
-        }
-        log.info("短信验证码发送失败");
-        return new ResponseVO<>(SmsResponseEnum.MSG_SEND_FAILURE, sendSmsResponse);
+        log.info("短信验证码发送成功");
+        return new ResponseVO<>(SmsResponseEnum.MSG_SEND_SUCCESS, sendSmsResponse);
     }
 
 }
