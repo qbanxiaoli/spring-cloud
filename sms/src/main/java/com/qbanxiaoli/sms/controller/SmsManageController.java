@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,10 +47,10 @@ public class SmsManageController {
         log.info("发送短信验证码请求");
         log.info("进行参数校验");
         if (bindingResult.hasErrors()) {
-            for (ObjectError errors : bindingResult.getAllErrors()) {
+            for (FieldError errors : bindingResult.getFieldErrors()) {
                 log.info("参数错误：" + errors.getDefaultMessage());
             }
-            return new ResponseVO<>(SmsResponseEnum.PARAMETER_ERROR, bindingResult.getAllErrors());
+            return new ResponseVO<>(SmsResponseEnum.PARAMETER_ERROR, bindingResult.getFieldErrors());
         }
         log.info("参数校验正常");
         return smsService.sendMessage(smsFormDTO);
