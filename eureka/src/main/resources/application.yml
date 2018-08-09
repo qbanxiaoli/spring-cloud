@@ -1,6 +1,16 @@
 server:
   port: 1111
 
+spring:
+  application:
+    name: eureka-server
+  security:
+    user:
+      # 认证使用的用户名
+      name: admin
+      # 认证使用的密码
+      password: 123456
+
 eureka:
   instance:
     # 服务注册中心实例的主机名
@@ -18,11 +28,3 @@ eureka:
     enable-self-preservation: false
     # 清理无效节点的时间间隔（单位毫秒，默认是60*1000）
     eviction-interval-timer-in-ms: 30000
-
-spring:
-  security:
-    user:
-      # 认证使用的用户名
-      name: admin
-      # 认证使用的密码
-      password: 123456

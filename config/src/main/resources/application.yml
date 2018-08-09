@@ -4,6 +4,12 @@ server:
 spring:
   application:
     name: sms-config-server
+  security:
+    user:
+      # 认证使用的用户名
+      name: admin
+      # 认证使用的密码
+      password: 123456
   cloud:
     config:
       server:
@@ -17,11 +23,6 @@ spring:
           # git仓库的用户密码
           password: 9c780q4126
 
-  security:
-    user:
-      name: admin
-      password: 123456
-
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
@@ -34,6 +35,6 @@ eureka:
   client:
     # 服务注册中心地址，多个地址用 , 隔开
     service-url:
-      defaultZone: http://admin:123456@${eureka.host:123.207.85.155}:${eureka.port:1111}/eureka/
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:1111}/eureka/
 
 
