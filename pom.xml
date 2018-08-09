@@ -52,11 +52,11 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.1.1</version>
                 <configuration>
-                    <!--指定镜像名称 仓库/镜像名:标签-->
-                    <imageName>${docker.repository}/${docker.registry.name}/${project.artifactId}</imageName>
-                    <!--指定基础镜像，相当于dockerFile中的FROM<image> -->
+                    <!-- 指定镜像名称 仓库/镜像名:标签 -->
+                    <imageName>${docker.repository}/${docker.registry.name}/${project.artifactId}:${project.version}</imageName>
+                    <!-- 指定基础镜像，相当于Dockerfile中的FROM<image> -->
                     <baseImage>java:8</baseImage>
-                    <!-- 容器启动执行的命令，相当于dockerFile的ENTRYPOINT -->
+                    <!-- 容器启动执行的命令，相当于Dockerfile中的ENTRYPOINT -->
                     <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <resources>
                         <resource><!-- 指定资源文件 -->
