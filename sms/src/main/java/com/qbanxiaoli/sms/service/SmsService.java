@@ -3,6 +3,7 @@ package com.qbanxiaoli.sms.service;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
+import com.qbanxiaoli.common.util.RandomUtil;
 import com.qbanxiaoli.common.util.SendSmsUtil;
 import com.qbanxiaoli.sms.dao.SmsDao;
 import com.qbanxiaoli.sms.enums.SmsResponseEnum;
@@ -16,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
+
+import java.util.Optional;
 
 /**
  * @author Q版小李
@@ -41,8 +44,8 @@ public class SmsService {
      * @description 获取短信验证码
      */
     public ResponseVO<SendSmsResponseVO> sendMessage(SmsFormDTO smsFormDTO) {
-        //获取6位数验证码
-        String captcha = SendSmsUtil.getRandNum(1, 999999);
+        //获取6位数随机验证码
+        String captcha = RandomUtil.generateString(6);
         //新建返回对象
         SendSmsResponseVO sendSmsResponseVO = new SendSmsResponseVO();
         //发送短信验证码
@@ -57,7 +60,7 @@ public class SmsService {
         }
         //返回数据
         if (sendSmsResponseVO.getCode() == null || !sendSmsResponseVO.getCode().equals("OK")) {
-            log.info("短信验证码发送失败");
+            log.error("短信验证码发送失败");
             return new ResponseVO<>(SmsResponseEnum.MSG_SEND_FAILURE, sendSmsResponseVO);
         }
         //装配短信实体类
@@ -66,7 +69,7 @@ public class SmsService {
         try {
             smsDao.save(message);
         } catch (Exception e) {
-            log.info("短信保存失败：" + e);
+            log.error("短信保存失败：" + e);
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return new ResponseVO<>(SmsResponseEnum.MSG_SAVE_FAILURE);
 

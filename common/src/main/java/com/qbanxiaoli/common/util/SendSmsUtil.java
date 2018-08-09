@@ -64,8 +64,4 @@ public class SendSmsUtil {
         return acsClient.getAcsResponse(request);
     }
 
-    public static String getRandNum(int min, int max) {
-        int randNum = min + (int) (Math.random() * ((max - min) + 1));
-        return String.valueOf(randNum);
-    }
 }

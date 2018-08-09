@@ -12,10 +12,15 @@ spring:
       # validate ：每次加载hibernate时，验证创建数据库表结构，只会和数据库中的表进行比较，不会创建新表，但是会插入新值。
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: true
 
   #i18n configuration(添加语言国际化支持)
   messages:
     basename: i18n/messages
+
+  #不检查/templates/模板路径
+  freemarker:
+    checkTemplateLocation: false
 
 # pagehelper分页插件
 pagehelper:

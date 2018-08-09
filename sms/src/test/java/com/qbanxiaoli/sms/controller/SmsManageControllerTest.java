@@ -48,7 +48,7 @@ public class SmsManageControllerTest {
         log.info(JsonUtil.toJsonString(smsFormDTO));
         this.mockMvc.perform(post("/sendsms")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.toJsonBytes(smsFormDTO)))
+                .content(JsonUtil.toJsonString(smsFormDTO)))
                 .andExpect(status().isOk()).andDo(print())         //打印出请求和相应的内容
                 .andReturn().getResponse().getContentAsString();   //将相应的数据转换为字符串;
     }
