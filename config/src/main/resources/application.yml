@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: config-service
+    name: config-server
   security:
     user:
       # 认证使用的用户名
