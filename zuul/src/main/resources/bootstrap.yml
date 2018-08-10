@@ -13,7 +13,7 @@ spring:
       fail-fast: true
       discovery:
         enabled: true
-        serviceId: sms-config-server
+        serviceId: config-server
   http:
     encoding:
       force: true
