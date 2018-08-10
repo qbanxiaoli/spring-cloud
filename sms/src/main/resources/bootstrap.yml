@@ -13,7 +13,7 @@ spring:
       fail-fast: true
       discovery:
         enabled: true
-        serviceId: config-service
+        serviceId: config-server
   http:
     encoding:
       force: true
