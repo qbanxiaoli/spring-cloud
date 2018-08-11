@@ -1,27 +1,15 @@
 server:
-  port: 8888
+  port: 8081
 
 spring:
   application:
-    name: config-server
+    name: authorization-server
   security:
     user:
       # 认证使用的用户名
       name: admin
       # 认证使用的密码
       password: 123456
-  cloud:
-    config:
-      server:
-        git:
-          # git仓库位置
-          uri: https://github.com/qbanxiaoli/sms-cloud-config.git
-          # 仓库路径下的相对搜索位置
-          search-paths: /**
-          # git仓库的用户名
-          username: qbanxiaoli
-          # git仓库的用户密码
-          password: 9c780q4126
 
 eureka:
   instance:

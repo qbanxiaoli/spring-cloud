@@ -5,6 +5,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.RandomUtil;
 import com.qbanxiaoli.common.util.SendSmsUtil;
+import com.qbanxiaoli.sms.dao.mapper.MessageMapper;
 import com.qbanxiaoli.sms.dao.repository.MessageRepository;
 import com.qbanxiaoli.sms.enums.SmsResponseEnum;
 import com.qbanxiaoli.sms.model.converter.MessageAssembly;

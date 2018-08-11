@@ -26,7 +26,7 @@ public class PhoneValidator implements ConstraintValidator<Phone, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        //为空 不校验
+        //为空不校验
         return value == null || Pattern.matches(phoneReg, value);
     }
 

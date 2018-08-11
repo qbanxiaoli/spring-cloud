@@ -38,8 +38,6 @@ public class MessageAssembly {
         if (smsFormDTO.getType() != null) {
             message.setType(smsFormDTO.getType());
         }
-        message.setGmtCreate(System.currentTimeMillis());
-        message.setGmtModified(System.currentTimeMillis());
         return message;
     }
 
