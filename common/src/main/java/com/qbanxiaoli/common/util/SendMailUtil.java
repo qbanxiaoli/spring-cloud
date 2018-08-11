@@ -4,7 +4,6 @@ import com.sun.mail.util.MailSSLSocketFactory;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Date;
@@ -69,22 +68,18 @@ public class SendMailUtil {
      * @description 发送邮件
      */
     public static void sendMail(String receiver, String content) throws Exception {
-        Session session = getSession();
-        try {
-            log.info("-------开始发送-------");
-            Message msg = new MimeMessage(session);
-            //设置message属性
-            msg.setFrom(new InternetAddress(SENDER));
-            InternetAddress[] address = {new InternetAddress(receiver)};
-            msg.setRecipients(Message.RecipientType.TO, address);
-            msg.setSubject("短信测试");
-            msg.setSentDate(new Date());
-            msg.setContent(content, "text/html;charset=utf-8");
-            //开始发送
-            Transport.send(msg);
-            log.info("-------发送完成-------");
-        } catch (AddressException e) {
-            e.printStackTrace();
-        }
+        log.info("-------开始发送-------");
+        Message msg = new MimeMessage(getSession());
+        //设置message属性
+        msg.setFrom(new InternetAddress(SENDER));
+        InternetAddress[] address = {new InternetAddress(receiver)};
+        msg.setRecipients(Message.RecipientType.TO, address);
+        msg.setSubject("短信测试");
+        msg.setSentDate(new Date());
+        msg.setContent(content, "text/html;charset=utf-8");
+        //开始发送
+        Transport.send(msg);
+        log.info("-------发送完成-------");
     }
+
 }

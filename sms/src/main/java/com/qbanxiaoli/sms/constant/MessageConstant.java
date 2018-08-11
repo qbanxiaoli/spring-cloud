@@ -8,10 +8,10 @@ package com.qbanxiaoli.sms.constant;
 public class MessageConstant {
 
     /** 注册 */
-    public final static int SIGN_UP = 1;
+    public final static int SIGN_UP = 0;
     /** 登录 */
-    public final static int SIGN_IN = 2;
+    public final static int SIGN_IN = 1;
     /** 修改密码 */
-    public final static int RESET_PWD = 3;
+    public final static int RESET_PWD = 2;
 
 }

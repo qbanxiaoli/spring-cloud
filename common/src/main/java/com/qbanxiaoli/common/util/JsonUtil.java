@@ -16,41 +16,32 @@ public class JsonUtil {
         throw new AssertionError("不能实例化JsonUtil");
     }
 
-    public static byte[] toJsonBytes(Object o) {
+    /**
+     * @param object 待转化的对象
+     * @return Byte数组
+     * @author qbanxiaoli
+     * @description 使用ObjectMapper来转化对象为Byte数组
+     */
+    public static byte[] toJsonBytes(Object object) throws Exception {
         // 使用ObjectMapper来转化对象为Byte数组
         ObjectMapper objectMapper = new ObjectMapper();
         // 配置objectMapper忽略空属性
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        try {
-            return objectMapper.writeValueAsBytes(o);
-        } catch (Exception e) {
-            log.error("序列化对象为Byte数组失败：" + e);
-        }
-        return null;
+        return objectMapper.writeValueAsBytes(object);
     }
 
-    public static String toJsonString(Object o) {
+    /**
+     * @param object 待转化的对象
+     * @return Json字符串
+     * @author qbanxiaoli
+     * @description 使用ObjectMapper来转化对象为Json
+     */
+    public static String toJsonString(Object object) throws Exception {
         // 使用ObjectMapper来转化对象为Json
         ObjectMapper objectMapper = new ObjectMapper();
         // 配置objectMapper忽略空属性
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        try {
-            return objectMapper.writeValueAsString(o);
-        } catch (Exception e) {
-            log.error("序列化对象为Json失败：" + e);
-        }
-        return o.toString();
-    }
-
-    public static <T> T toObject(String json, Class<T> valueType) {
-        // 使用ObjectMapper来转化Json为对象
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.readValue(json, valueType);
-        } catch (Exception e) {
-            log.error("反序列化Json为对象失败:", e);
-        }
-        return null;
+        return objectMapper.writeValueAsString(object);
     }
 
 }
