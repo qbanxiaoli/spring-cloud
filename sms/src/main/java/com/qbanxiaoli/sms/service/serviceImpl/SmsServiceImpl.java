@@ -5,7 +5,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.RandomUtil;
 import com.qbanxiaoli.common.util.SendSmsUtil;
-import com.qbanxiaoli.sms.repository.SmsRepository;
+import com.qbanxiaoli.sms.dao.repository.MessageRepository;
 import com.qbanxiaoli.sms.enums.SmsResponseEnum;
 import com.qbanxiaoli.sms.model.converter.MessageAssembly;
 import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
@@ -29,11 +29,11 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 @Transactional
 public class SmsServiceImpl implements SmsService {
 
-    private final SmsRepository smsRepository;
+    private final MessageRepository messageRepository;
 
     @Autowired
-    public SmsServiceImpl(SmsRepository smsRepository) {
-        this.smsRepository = smsRepository;
+    public SmsServiceImpl(MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
     }
 
     /**
@@ -66,7 +66,7 @@ public class SmsServiceImpl implements SmsService {
         Message message = MessageAssembly.toDomain(sendSmsResponseVO, smsFormDTO, captcha);
         //保存发送短信
         try {
-            smsRepository.save(message);
+            messageRepository.save(message);
         } catch (Exception e) {
             log.error("短信保存失败：" + e);
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();

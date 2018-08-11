@@ -20,12 +20,12 @@ import javax.validation.Valid;
 @Slf4j
 @RestController
 @Api(tags = "发送短信")
-public class SmsManageController {
+public class MessageManageController {
 
     private final SmsService smsService;
 
     @Autowired
-    public SmsManageController(SmsService smsService) {
+    public MessageManageController(SmsService smsService) {
         this.smsService = smsService;
     }
 

@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @Slf4j
 @Transactional
-public class SmsManageControllerTest {
+public class MessageManageControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
