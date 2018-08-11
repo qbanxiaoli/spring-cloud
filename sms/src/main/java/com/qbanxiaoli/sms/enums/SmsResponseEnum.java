@@ -9,12 +9,7 @@ import com.qbanxiaoli.common.enums.ResponseEnum;
  */
 public enum SmsResponseEnum implements ResponseEnum {
 
-    SUCCESS(true, 200, "SUCCESS"),//成功
-    SUCCESS_VARIABLE(true, 200, "SUCCESS_VARIABLE"),//传入成功变量信息
     MSG_SEND_SUCCESS(true, 201, "MSG_SEND_SUCCESS"),//短信验证码发送成功
-    FAILURE(false, 400, "FAILURE"),//失败
-    FAILURE_VARIABLE(false, 400, "FAILURE_VARIABLE"),//传入失败变量信息
-    PARAMETER_ERROR(false, 401, "PARAMETER_ERROR"),//参数错误
     MSG_SEND_FAILURE(false, 402, "MSG_SEND_FAILURE"),//短信验证码发送失败
     MSG_SAVE_FAILURE(false, 403, "MSG_SAVE_FAILURE"),//短信保存失败
 

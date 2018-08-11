@@ -1,8 +1,8 @@
 package com.qbanxiaoli.sms.i18n;
 
+import com.qbanxiaoli.common.enums.CommonResponseEnum;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.JsonUtil;
-import com.qbanxiaoli.sms.enums.SmsResponseEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +24,7 @@ public class I18nTest {
     //返回值传入消息变量测试
     @Test
     public void Test() throws Exception {
-        ResponseVO responseVO = new ResponseVO<>(SmsResponseEnum.SUCCESS_VARIABLE, new Object[]{LocaleContextHolder.getLocale()});
+        ResponseVO responseVO = new ResponseVO<>(CommonResponseEnum.SUCCESS_VARIABLE, new Object[]{LocaleContextHolder.getLocale()});
         log.info(JsonUtil.toJsonString(responseVO));
     }
 }
