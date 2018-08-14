@@ -1,20 +1,17 @@
 package com.qbanxiaoli.sms.service.serviceImpl;
 
-import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
-import com.aliyuncs.exceptions.ClientException;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.RandomUtil;
-import com.qbanxiaoli.common.util.SendSmsUtil;
-import com.qbanxiaoli.sms.dao.mapper.MessageMapper;
-import com.qbanxiaoli.sms.dao.repository.MessageRepository;
+import com.qbanxiaoli.sms.dao.repository.SmsRepository;
 import com.qbanxiaoli.sms.enums.SmsResponseEnum;
-import com.qbanxiaoli.sms.model.converter.MessageAssembly;
+import com.qbanxiaoli.sms.model.converter.SmsAssembly;
 import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
-import com.qbanxiaoli.sms.model.entity.Message;
+import com.qbanxiaoli.sms.model.entity.Sms;
+import com.qbanxiaoli.sms.model.entity.Template;
 import com.qbanxiaoli.sms.model.vo.SendSmsResponseVO;
 import com.qbanxiaoli.sms.service.SmsService;
+import com.qbanxiaoli.sms.util.SendSmsUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,11 +27,11 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 @Transactional
 public class SmsServiceImpl implements SmsService {
 
-    private final MessageRepository messageRepository;
+    private final SmsRepository smsRepository;
 
     @Autowired
-    public SmsServiceImpl(MessageRepository messageRepository) {
-        this.messageRepository = messageRepository;
+    public SmsServiceImpl(SmsRepository smsRepository) {
+        this.smsRepository = smsRepository;
     }
 
     /**
@@ -43,18 +40,17 @@ public class SmsServiceImpl implements SmsService {
      * @author qbanxiaoli
      * @description 获取短信验证码
      */
-    public ResponseVO<SendSmsResponseVO> sendMessage(SmsFormDTO smsFormDTO) {
+    public ResponseVO<SendSmsResponseVO> sendSms(SmsFormDTO smsFormDTO) {
         //获取6位数随机验证码
         String captcha = RandomUtil.generateString(6);
-        //新建返回对象
-        SendSmsResponseVO sendSmsResponseVO = new SendSmsResponseVO();
+        Template template = new Template();
+        SendSmsResponseVO sendSmsResponseVO;
         //发送短信验证码
         try {
             log.info("向手机号" + smsFormDTO.getPhone() + "发送了一条短信验证码为：" + captcha);
-            SendSmsResponse sendSmsResponse = SendSmsUtil.sendSms(smsFormDTO.getPhone(), captcha);
+            sendSmsResponseVO = SendSmsUtil.sendSms(template, smsFormDTO.getPhone(), captcha);
             //属性拷贝
-            BeanUtils.copyProperties(sendSmsResponse, sendSmsResponseVO);
-        } catch (ClientException e) {
+        } catch (Exception e) {
             log.error("短信验证码发送失败：" + e);
             return new ResponseVO<>(SmsResponseEnum.MSG_SEND_FAILURE);
         }
@@ -64,10 +60,10 @@ public class SmsServiceImpl implements SmsService {
             return new ResponseVO<>(SmsResponseEnum.MSG_SEND_FAILURE, sendSmsResponseVO);
         }
         //装配短信实体类
-        Message message = MessageAssembly.toDomain(sendSmsResponseVO, smsFormDTO, captcha);
+        Sms sms = SmsAssembly.toDomain(sendSmsResponseVO, smsFormDTO, captcha);
         //保存发送短信
         try {
-            messageRepository.save(message);
+            smsRepository.save(sms);
         } catch (Exception e) {
             log.error("短信保存失败：" + e);
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();

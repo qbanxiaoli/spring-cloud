@@ -5,7 +5,7 @@ package com.qbanxiaoli.sms.constant;
  * @description
  * @create 2018/7/30 21:59
  */
-public class MessageConstant {
+public class SmsConstant {
 
     /** 注册 */
     public final static int SIGN_UP = 0;

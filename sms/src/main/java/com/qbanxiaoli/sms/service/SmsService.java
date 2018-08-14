@@ -17,6 +17,6 @@ public interface SmsService {
      * @author qbanxiaoli
      * @description 获取短信验证码
      */
-    ResponseVO<SendSmsResponseVO> sendMessage(SmsFormDTO smsFormDTO);
+    ResponseVO<SendSmsResponseVO> sendSms(SmsFormDTO smsFormDTO);
 
 }

@@ -20,12 +20,12 @@ import javax.validation.Valid;
 @Slf4j
 @RestController
 @Api(tags = "发送短信")
-public class MessageManageController {
+public class SmsManageController {
 
     private final SmsService smsService;
 
     @Autowired
-    public MessageManageController(SmsService smsService) {
+    public SmsManageController(SmsService smsService) {
         this.smsService = smsService;
     }
 
@@ -37,11 +37,11 @@ public class MessageManageController {
      */
     @ApiOperation(value = "获取短信验证码", notes = "用户获取短信验证码")
     @PostMapping("/sendsms")
-    public ResponseVO<SendSmsResponseVO> sendMessage(@ApiParam(name = "smsFormDTO", value = "短信请求数据传输类", required = true)
+    public ResponseVO<SendSmsResponseVO> sendSms(@ApiParam(name = "smsFormDTO", value = "短信请求数据传输类", required = true)
                                                    @Valid @RequestBody SmsFormDTO smsFormDTO) {
         log.info("参数校验正常");
         log.info("开始发送短信验证码");
-        return smsService.sendMessage(smsFormDTO);
+        return smsService.sendSms(smsFormDTO);
     }
 
 }

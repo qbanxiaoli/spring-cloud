@@ -12,10 +12,10 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "message")
+@Table(name = "sms")
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "短信模型")
-public class Message extends GmtEntity {
+public class Sms extends GmtEntity {
 
     @ApiModelProperty(value = "用户手机号", required = true)
     @Column(nullable = false, length = 20)

@@ -17,7 +17,7 @@ import javax.persistence.MappedSuperclass;
 @Data
 @MappedSuperclass
 @ApiModel(value = "主键模型")
-class IdEntity {
+public class IdEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

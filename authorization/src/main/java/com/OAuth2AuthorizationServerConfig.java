@@ -73,8 +73,8 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 .withClient("client")       // client_id
                 .secret("secret")                   // client_secret
                 .authorizedGrantTypes("authorization_code")     // 该client允许的授权类型
-                .scopes("app")                     // 允许的授权范围
-                .autoApprove(true);         //登录后绕过批准询问(/oauth/confirm_access)
+                .scopes("app");                     // 允许的授权范围
+//                .autoApprove(true);         //登录后绕过批准询问(/oauth/confirm_access)
 
     }
 

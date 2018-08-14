@@ -2,7 +2,7 @@ package com.qbanxiaoli.sms.model.converter;
 
 import com.qbanxiaoli.common.util.StringUtil;
 import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
-import com.qbanxiaoli.sms.model.entity.Message;
+import com.qbanxiaoli.sms.model.entity.Sms;
 import com.qbanxiaoli.sms.model.vo.SendSmsResponseVO;
 
 /**
@@ -10,35 +10,35 @@ import com.qbanxiaoli.sms.model.vo.SendSmsResponseVO;
  * @description
  * @create 2018/7/30 上午10:23
  */
-public class MessageAssembly {
+public class SmsAssembly {
 
-    public static Message toDomain(SendSmsResponseVO sendSmsResponseVO, SmsFormDTO smsFormDTO, String captcha) {
+    public static Sms toDomain(SendSmsResponseVO sendSmsResponseVO, SmsFormDTO smsFormDTO, String captcha) {
         if (sendSmsResponseVO == null || smsFormDTO == null) {
             return null;
         }
-        Message message = new Message();
+        Sms sms = new Sms();
         if (StringUtil.isNotBlank(sendSmsResponseVO.getRequestId())) {
-            message.setRequestId(sendSmsResponseVO.getRequestId());
+            sms.setRequestId(sendSmsResponseVO.getRequestId());
         }
         if (StringUtil.isNotBlank(sendSmsResponseVO.getBizId())) {
-            message.setBizId(sendSmsResponseVO.getBizId());
+            sms.setBizId(sendSmsResponseVO.getBizId());
         }
         if (StringUtil.isNotBlank(sendSmsResponseVO.getCode())) {
-            message.setCode(sendSmsResponseVO.getCode());
+            sms.setCode(sendSmsResponseVO.getCode());
         }
         if (StringUtil.isNotBlank(sendSmsResponseVO.getMessage())) {
-            message.setMessage(sendSmsResponseVO.getMessage());
+            sms.setMessage(sendSmsResponseVO.getMessage());
         }
         if (StringUtil.isNotBlank(smsFormDTO.getPhone())) {
-            message.setPhone(smsFormDTO.getPhone());
+            sms.setPhone(smsFormDTO.getPhone());
         }
         if (StringUtil.isNotBlank(captcha)) {
-            message.setCaptcha(captcha);
+            sms.setCaptcha(captcha);
         }
         if (smsFormDTO.getType() != null) {
-            message.setType(smsFormDTO.getType());
+            sms.setType(smsFormDTO.getType());
         }
-        return message;
+        return sms;
     }
 
 }
