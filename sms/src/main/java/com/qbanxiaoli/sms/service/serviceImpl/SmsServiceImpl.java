@@ -68,7 +68,6 @@ public class SmsServiceImpl implements SmsService {
             log.error("短信保存失败：" + e);
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return new ResponseVO<>(SmsResponseEnum.MSG_SAVE_FAILURE);
-
         }
         log.info("短信验证码发送成功");
         return new ResponseVO<>(SmsResponseEnum.MSG_SEND_SUCCESS, sendSmsResponseVO);

@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * @author Q版小李
@@ -17,7 +18,7 @@ import javax.persistence.Table;
  */
 @Data
 @Entity
-@Table(name = "information")
+@Table(name = "information", uniqueConstraints = {@UniqueConstraint(columnNames = {"userId", "projectName"})})
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "用户信息模型")
 public class Information extends IdEntity {

@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -25,7 +26,17 @@ public class SmsFormDTO {
 
     @NotNull(message = "{BUSINESS_NOT_NULL}")
     @Range(min = 0, max = 2, message = "{BUSINESS_TYPE_BETWEEN}")
-    @ApiModelProperty(value = "业务类型", required = true)
+    @ApiModelProperty(value = "业务类型(0->注册，1->登陆，2->修改密码)", required = true)
     private Integer type;
+
+    @NotBlank(message = "{PROJECT_NAME_NOT_NULL}")
+    @ApiModelProperty(value = "项目名称", required = true)
+    @Column(nullable = false, length = 30)
+    private String projectName;
+
+    @NotNull
+    @ApiModelProperty(value = "发送者id", required = true)
+    @Column(nullable = false)
+    private Long userId;
 
 }

@@ -17,6 +17,10 @@ import javax.persistence.Table;
 @ApiModel(value = "短信模型")
 public class Sms extends GmtEntity {
 
+    @ApiModelProperty(value = "发送者id", required = true)
+    @Column(nullable = false)
+    private Long userId;
+
     @ApiModelProperty(value = "用户手机号", required = true)
     @Column(nullable = false, length = 20)
     private String phone;
@@ -28,6 +32,10 @@ public class Sms extends GmtEntity {
     @ApiModelProperty(value = "短信验证码", required = true)
     @Column(nullable = false, length = 10)
     private String captcha;
+
+    @ApiModelProperty(value = "项目名称", required = true)
+    @Column(nullable = false, length = 30)
+    private String projectName;
 
     @ApiModelProperty(value = "请求ID", required = true)
     @Column(nullable = false, length = 50)
