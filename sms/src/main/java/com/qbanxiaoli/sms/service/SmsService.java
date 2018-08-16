@@ -2,6 +2,7 @@ package com.qbanxiaoli.sms.service;
 
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
+import com.qbanxiaoli.sms.model.entity.Sms;
 import com.qbanxiaoli.sms.model.vo.SendSmsResponseVO;
 
 /**

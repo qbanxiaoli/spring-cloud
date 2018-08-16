@@ -16,4 +16,5 @@ import java.io.Serializable;
 @NoRepositoryBean
 public interface BaseRepository<E, ID extends Serializable> extends JpaRepository<E, ID>, JpaSpecificationExecutor<E>,
         PagingAndSortingRepository<E, ID>, QuerydslPredicateExecutor<E> {
+
 }

@@ -1,6 +1,6 @@
 package com.qbanxiaoli.sms.model.dto;
 
-import com.qbanxiaoli.sms.validation.Phone;
+import com.qbanxiaoli.common.validation.Phone;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

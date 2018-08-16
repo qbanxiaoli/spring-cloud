@@ -23,7 +23,7 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseVO handleBindException(MethodArgumentNotValidException e) {
-        log.info("参数校验异常：" + e);
+        log.error("参数校验异常：" + e);
         Map<String, String> map = new HashMap<>(16);
         for (FieldError errors : e.getBindingResult().getFieldErrors()) {
             map.put(errors.getField(), errors.getDefaultMessage());
@@ -33,7 +33,7 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(BindException.class)
     public ResponseVO handleBindException(BindException e) {
-        log.info("参数校验异常：" + e);
+        log.error("参数校验异常：" + e);
         Map<String, String> map = new HashMap<>(16);
         for (FieldError errors : e.getBindingResult().getFieldErrors()) {
             map.put(errors.getField(), errors.getDefaultMessage());

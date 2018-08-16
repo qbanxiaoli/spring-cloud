@@ -1,6 +1,6 @@
-package com.qbanxiaoli.sms.validation.validator;
+package com.qbanxiaoli.common.validation.validator;
 
-import com.qbanxiaoli.sms.validation.Phone;
+import com.qbanxiaoli.common.validation.Phone;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 

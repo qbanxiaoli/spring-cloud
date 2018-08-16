@@ -17,7 +17,8 @@ public enum SmsResponseEnum implements ResponseEnum {
     PHONE_FORMAT_ERROR(false, 404, "PHONE_FORMAT_ERROR"),//手机号码格式错误
     BUSINESS_TYPE_BETWEEN(false, 405, "BUSINESS_TYPE_BETWEEN"),//业务类型的值在0到2之间
     BUSINESS_NOT_NULL(false, 406, "BUSINESS_NOT_NULL"),//业务类型不能为空
-    PROJECT_NAME_NOT_NULL(false, 407, "PROJECT_NAME_NOT_NULL");//项目名称不能为空
+    PROJECT_NAME_NOT_NULL(false, 407, "PROJECT_NAME_NOT_NULL"),//项目名称不能为空
+    TEMPLATE_NOT_FOUND(false, 408, "TEMPLATE_NOT_FOUND");//未找到对应短信模板
 
     private Boolean result;
     private Integer code;

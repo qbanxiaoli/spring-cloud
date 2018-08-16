@@ -42,7 +42,7 @@ public class Sms extends GmtEntity {
     private String requestId;
 
     @ApiModelProperty(value = "状态码-返回OK代表请求成功,其他错误码详见错误码列表", required = true)
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     private String bizId;
 
     @ApiModelProperty(value = "状态码的描述", required = true)

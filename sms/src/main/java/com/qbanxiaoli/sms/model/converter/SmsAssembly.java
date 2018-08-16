@@ -32,8 +32,14 @@ public class SmsAssembly {
         if (StringUtil.isNotBlank(smsFormDTO.getPhone())) {
             sms.setPhone(smsFormDTO.getPhone());
         }
+        if (StringUtil.isNotBlank(smsFormDTO.getProjectName())) {
+            sms.setProjectName(smsFormDTO.getProjectName());
+        }
         if (StringUtil.isNotBlank(captcha)) {
             sms.setCaptcha(captcha);
+        }
+        if (smsFormDTO.getUserId() != null) {
+            sms.setUserId(smsFormDTO.getUserId());
         }
         if (smsFormDTO.getType() != null) {
             sms.setType(smsFormDTO.getType());
