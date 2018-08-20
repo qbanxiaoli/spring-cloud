@@ -46,6 +46,28 @@
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-core</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <!--添加Docker插件支持-->
@@ -57,7 +79,7 @@
                     <!-- 指定镜像名称 仓库/镜像名:标签 -->
                     <imageName>${docker.repository}/${docker.registry.name}/${project.artifactId}</imageName>
                     <!-- 指定基础镜像，相当于Dockerfile中的FROM<image> -->
-                    <baseImage>java:8</baseImage>
+                    <baseImage>java</baseImage>
                     <!-- 容器启动执行的命令，相当于Dockerfile中的ENTRYPOINT -->
                     <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <resources>

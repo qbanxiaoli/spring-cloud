@@ -41,10 +41,12 @@ public class SmsManageControllerTest {
     }
 
     @Test
-    public void sendMessage() throws Exception {
+    public void sendSms() throws Exception {
         SmsFormDTO smsFormDTO = new SmsFormDTO();
         smsFormDTO.setPhone("15957180964");
-        smsFormDTO.setType(1);
+        smsFormDTO.setType(0);
+        smsFormDTO.setProjectName("短信服务");
+        smsFormDTO.setUserId(1L);
         log.info(JsonUtil.toJsonString(smsFormDTO));
         this.mockMvc.perform(post("/sendsms")
                 .contentType(MediaType.APPLICATION_JSON)
