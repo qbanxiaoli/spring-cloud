@@ -24,7 +24,7 @@ public class SendMailUtil {
     private static final String HOST = "smtp.qq.com";
     private static final int PORT = 465;
     private static final String SENDER = "823730820@qq.com";//此处需要与host相同的网站
-    private static final String SENDERPWD = "cmlzlhpqjhifbffa";
+    private static final String SENDERPWD = "kspgkobafmnpbbjh";
 
     /**
      * @return Session

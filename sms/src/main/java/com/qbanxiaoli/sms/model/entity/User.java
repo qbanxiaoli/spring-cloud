@@ -1,6 +1,5 @@
 package com.qbanxiaoli.sms.model.entity;
 
-import com.qbanxiaoli.common.model.entity.GmtEntity;
 import com.qbanxiaoli.common.model.entity.IdEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
