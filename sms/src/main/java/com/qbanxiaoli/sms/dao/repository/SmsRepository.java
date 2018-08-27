@@ -3,7 +3,6 @@ package com.qbanxiaoli.sms.dao.repository;
 import com.qbanxiaoli.common.dao.repository.BaseRepository;
 import com.qbanxiaoli.sms.dao.dao.SmsDao;
 import com.qbanxiaoli.sms.model.entity.Sms;
-import com.qbanxiaoli.sms.model.entity.Template;
 
 /**
  * @author Q版小李

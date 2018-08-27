@@ -38,12 +38,8 @@ public class SmsAssembly {
         if (StringUtil.isNotBlank(captcha)) {
             sms.setCaptcha(captcha);
         }
-        if (smsFormDTO.getUserId() != null) {
-            sms.setUserId(smsFormDTO.getUserId());
-        }
-        if (smsFormDTO.getType() != null) {
-            sms.setType(smsFormDTO.getType());
-        }
+        sms.setUserId(smsFormDTO.getUserId());
+        sms.setType(smsFormDTO.getType());
         return sms;
     }
 
