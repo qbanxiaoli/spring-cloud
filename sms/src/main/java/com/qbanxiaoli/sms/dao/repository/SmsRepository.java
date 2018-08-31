@@ -1,7 +1,7 @@
 package com.qbanxiaoli.sms.dao.repository;
 
 import com.qbanxiaoli.common.dao.repository.BaseRepository;
-import com.qbanxiaoli.sms.dao.dao.SmsDao;
+import com.qbanxiaoli.sms.dao.querydsl.SmsDao;
 import com.qbanxiaoli.sms.model.entity.Sms;
 
 /**

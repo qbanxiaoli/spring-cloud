@@ -2,6 +2,7 @@ package com.qbanxiaoli.sms.service.Impl;
 
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.RandomUtil;
+import com.qbanxiaoli.sms.dao.mapper.SmsMapper;
 import com.qbanxiaoli.sms.dao.repository.SmsRepository;
 import com.qbanxiaoli.sms.enums.SmsResponseEnum;
 import com.qbanxiaoli.sms.model.converter.SmsAssembly;
@@ -17,8 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
-import java.util.List;
-
 /**
  * @author Q版小李
  * @description
@@ -31,9 +30,12 @@ public class SmsServiceImpl implements SmsService {
 
     private final SmsRepository smsRepository;
 
+    private final SmsMapper smsMapper;
+
     @Autowired
-    public SmsServiceImpl(SmsRepository smsRepository) {
+    public SmsServiceImpl(SmsRepository smsRepository, SmsMapper smsMapper) {
         this.smsRepository = smsRepository;
+        this.smsMapper = smsMapper;
     }
 
     /**
@@ -42,8 +44,10 @@ public class SmsServiceImpl implements SmsService {
      * @author qbanxiaoli
      * @description 获取短信验证码
      */
+    @Override
     public ResponseVO<SendSmsResponseVO> sendSms(SmsFormDTO smsFormDTO) {
         Template template = smsRepository.findSmsTemplate(smsFormDTO);
+//        Template template = smsMapper.findSmsTemplate(smsFormDTO);
         if (template == null) {
             log.warn("未找到对应短信模板");
             return new ResponseVO<>(SmsResponseEnum.TEMPLATE_NOT_FOUND);
@@ -55,7 +59,6 @@ public class SmsServiceImpl implements SmsService {
         try {
             log.info("向手机号" + smsFormDTO.getPhone() + "发送了一条短信验证码为：" + captcha);
             sendSmsResponseVO = SendSmsUtil.sendSms(template, smsFormDTO.getPhone(), captcha);
-            //属性拷贝
         } catch (Exception e) {
             log.error("短信验证码发送失败：" + e);
             return new ResponseVO<>(SmsResponseEnum.MSG_SEND_FAILURE);
@@ -65,6 +68,7 @@ public class SmsServiceImpl implements SmsService {
         //保存发送短信
         try {
             smsRepository.save(sms);
+//            smsMapper.insert(sms);
         } catch (Exception e) {
             log.error("短信保存失败：" + e);
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();

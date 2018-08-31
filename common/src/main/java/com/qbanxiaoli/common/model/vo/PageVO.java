@@ -1,4 +1,4 @@
-package com.qbanxiaoli.common.bean;
+package com.qbanxiaoli.common.model.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Data
 @ApiModel(value = "分页模型")
-public class PageBean<T> {
+public class PageVO<T> {
 
     @ApiModelProperty(value = "当前页", required = true)
     private Integer currentPage;
@@ -36,7 +36,7 @@ public class PageBean<T> {
     @ApiModelProperty(value = "分页结果", required = true)
     private List<T> obj;
 
-    public PageBean(List<T> obj, Integer currentPage, Integer pageSize, Integer totalNum) {
+    public PageVO(List<T> obj, Integer currentPage, Integer pageSize, Integer totalNum) {
         this.obj = obj;
         this.currentPage = currentPage;
         this.pageSize = pageSize;

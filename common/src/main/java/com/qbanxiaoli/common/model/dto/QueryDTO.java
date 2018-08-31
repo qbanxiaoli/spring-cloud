@@ -14,9 +14,9 @@ import lombok.Data;
 public class QueryDTO {
 
     @ApiModelProperty(value = "每页记录数", required = true)
-    private Long pageSize;
+    private Integer pageSize;
 
     @ApiModelProperty(value = "当前页", required = true)
-    private Long currentPage;
+    private Integer currentPage;
 
 }

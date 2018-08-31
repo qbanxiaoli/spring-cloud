@@ -26,6 +26,7 @@ public class CustomExceptionHandler {
         log.error("参数校验异常：" + e);
         Map<String, String> map = new HashMap<>(16);
         for (FieldError errors : e.getBindingResult().getFieldErrors()) {
+            log.error(errors.getField() + ":" + errors.getDefaultMessage());
             map.put(errors.getField(), errors.getDefaultMessage());
         }
         return new ResponseVO<>(CommonResponseEnum.PARAMETER_ERROR, map);
@@ -36,6 +37,7 @@ public class CustomExceptionHandler {
         log.error("参数校验异常：" + e);
         Map<String, String> map = new HashMap<>(16);
         for (FieldError errors : e.getBindingResult().getFieldErrors()) {
+            log.error(errors.getField() + ":" + errors.getDefaultMessage());
             map.put(errors.getField(), errors.getDefaultMessage());
         }
         return new ResponseVO<>(CommonResponseEnum.PARAMETER_ERROR, map);

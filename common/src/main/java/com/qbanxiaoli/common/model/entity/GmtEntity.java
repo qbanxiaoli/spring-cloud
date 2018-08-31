@@ -39,8 +39,8 @@ public class GmtEntity extends IdEntity {
      */
     @PrePersist
     public void prePersist() {
-        this.setGmtCreate(System.currentTimeMillis());
-        this.setGmtModified(System.currentTimeMillis());
+        this.setGmtCreate(System.currentTimeMillis()/1000);
+        this.setGmtModified(System.currentTimeMillis()/1000);
     }
 
     /**
@@ -52,7 +52,7 @@ public class GmtEntity extends IdEntity {
      */
     @PreUpdate
     public void preUpdate() {
-        this.setGmtModified(System.currentTimeMillis());
+        this.setGmtModified(System.currentTimeMillis()/1000);
     }
 
 }

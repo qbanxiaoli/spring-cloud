@@ -19,9 +19,9 @@ spring:
           # 仓库路径下的相对搜索位置
           search-paths: /**
           # git仓库的用户名
-          username: qbanxiaoli
+#          username:
           # git仓库的用户密码
-          password: 9c780q4126
+#          password: 6
 
 eureka:
   instance:

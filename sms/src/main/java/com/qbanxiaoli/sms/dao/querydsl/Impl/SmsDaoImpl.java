@@ -1,6 +1,6 @@
-package com.qbanxiaoli.sms.dao.dao.Impl;
+package com.qbanxiaoli.sms.dao.querydsl.Impl;
 
-import com.qbanxiaoli.sms.dao.dao.SmsDao;
+import com.qbanxiaoli.sms.dao.querydsl.SmsDao;
 import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
 import com.qbanxiaoli.sms.model.entity.QInformation;
 import com.qbanxiaoli.sms.model.entity.QTemplate;
@@ -38,6 +38,12 @@ public class SmsDaoImpl implements SmsDao {
         queryFactory = new JPAQueryFactory(entityManager);
     }
 
+    /**
+     * @param smsFormDTO 短信请求数据传输类
+     * @return Template 短信模版
+     * @author qbanxiaoli
+     * @description 查询短信模版
+     */
     @Override
     public Template findSmsTemplate(SmsFormDTO smsFormDTO) {
         //添加查询条件

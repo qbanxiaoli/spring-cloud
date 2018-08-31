@@ -40,6 +40,8 @@ public class SmsAssembly {
         }
         sms.setUserId(smsFormDTO.getUserId());
         sms.setType(smsFormDTO.getType());
+//        sms.setGmtCreate(System.currentTimeMillis());
+//        sms.setGmtModified(System.currentTimeMillis());
         return sms;
     }
 
