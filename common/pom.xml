@@ -97,7 +97,7 @@
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-apt</artifactId>
         </dependency>
-        <!-- 阿里巴巴fastjson，解析json视图 -->
+        <!-- 使用阿里巴巴fastjson -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
