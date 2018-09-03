@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 
 /**
@@ -38,7 +39,7 @@ public class SmsManageController {
     @ApiOperation(value = "获取短信验证码", notes = "用户获取短信验证码")
     @PostMapping("/sendsms")
     public ResponseVO<SendSmsResponseVO> sendSms(@ApiParam(name = "smsFormDTO", value = "短信请求数据传输类", required = true)
-                                                   @Valid @RequestBody SmsFormDTO smsFormDTO) {
+                                                 @Valid @RequestBody SmsFormDTO smsFormDTO) {
         log.info("参数校验正常");
         log.info("开始调用发送短信验证码服务");
         return smsService.sendSms(smsFormDTO);

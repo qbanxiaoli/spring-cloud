@@ -21,7 +21,7 @@ public class QGmtEntity extends EntityPathBase<GmtEntity> {
 
     public final QIdEntity _super = new QIdEntity(this);
 
-    public final NumberPath<Long> gmtCreate = createNumber("gmtCreate", Long.class);
+    public final NumberPath<Long> gmtCreated = createNumber("gmtCreated", Long.class);
 
     public final NumberPath<Long> gmtModified = createNumber("gmtModified", Long.class);
 

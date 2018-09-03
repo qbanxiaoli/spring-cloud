@@ -18,7 +18,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Data
 @Entity
-@Table(name = "information", uniqueConstraints = {@UniqueConstraint(columnNames = {"userId", "projectName"})})
+@Table(name = "aliyun_information", uniqueConstraints = {@UniqueConstraint(columnNames = {"userId", "projectName"})})
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "用户信息模型")
 public class Information extends IdEntity {

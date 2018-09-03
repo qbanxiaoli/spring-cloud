@@ -24,7 +24,7 @@ public class GmtEntity extends IdEntity {
 
     @Column(nullable = false)
     @ApiModelProperty(value = "创建时间", required = true)
-    private Long gmtCreate;
+    private Long gmtCreated;
 
     @Column(nullable = false)
     @ApiModelProperty(value = "修改时间", required = true)
@@ -39,7 +39,7 @@ public class GmtEntity extends IdEntity {
      */
     @PrePersist
     public void prePersist() {
-        this.setGmtCreate(System.currentTimeMillis()/1000);
+        this.setGmtCreated(System.currentTimeMillis()/1000);
         this.setGmtModified(System.currentTimeMillis()/1000);
     }
 

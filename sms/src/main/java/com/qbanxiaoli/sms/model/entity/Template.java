@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Data
 @Entity
-@Table(name = "template")
+@Table(name = "aliyun_template")
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "短信模板模型")
 public class Template extends IdEntity {

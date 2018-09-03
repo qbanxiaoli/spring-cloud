@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "sms")
+@Table(name = "aliyun_sms")
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "短信模型")
 public class Sms extends GmtEntity {
