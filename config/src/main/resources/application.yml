@@ -21,7 +21,7 @@ spring:
           # git仓库的用户名
 #          username:
           # git仓库的用户密码
-#          password: 6
+#          password:
 
 eureka:
   instance:
