@@ -76,8 +76,7 @@ public class FastDFSClient {
 
     // 封装图片完整URL地址
     private String getResAccessUrl(StorePath storePath) {
-        String fileUrl = fdfsWebServer.getWebServerUrl() + storePath.getFullPath();
-        return fileUrl;
+        return fdfsWebServer.getWebServerUrl() + storePath.getFullPath();
     }
 
     /**
