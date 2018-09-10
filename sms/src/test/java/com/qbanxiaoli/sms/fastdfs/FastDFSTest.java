@@ -30,7 +30,6 @@ public class FastDFSTest {
         File file = new File("/Users/qbanxiaoli/Pictures/45E2B7F32F61EB3D972C40F88805372D.jpg");
         String str = fastDFSClient.uploadFile(file);
         log.info(str);
-        fastDFSClient.deleteFile("http://123.207.85.155/group1/M00/00/01/CrodvFuT_-OAefKtAAPqBnoWbEk276.jpg");
     }
 
 }
