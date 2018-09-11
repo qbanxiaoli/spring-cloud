@@ -57,7 +57,7 @@
                     <!-- 指定镜像名称 仓库/镜像名:标签 -->
                     <imageName>${docker.repository}/${docker.registry.name}/${project.artifactId}</imageName>
                     <!-- 指定基础镜像，相当于Dockerfile中的FROM<image> -->
-                    <baseImage>java</baseImage>
+                    <baseImage>openjdk:8-jre-alpine</baseImage>
                     <!-- 容器启动执行的命令，相当于Dockerfile中的ENTRYPOINT -->
                     <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <resources>

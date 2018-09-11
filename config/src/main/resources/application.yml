@@ -26,6 +26,8 @@ spring:
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    # 手动指定IP地址
+    ip-address: 123.207.85.155
     # 是否优先使用IP地址作为主机名的标识，默认为false
     prefer-ip-address: true
     # 客户端向服务端发送心跳（服务续约任务）的调用时间间隔，默认为30秒
@@ -35,6 +37,6 @@ eureka:
   client:
     # 服务注册中心地址，多个地址用 , 隔开
     service-url:
-      defaultZone: http://admin:123456@${eureka.host:localhost}:${eureka.port:1111}/eureka/
+      defaultZone: http://admin:123456@${eureka.host:123.207.85.155}:${eureka.port:1111}/eureka/
 
 

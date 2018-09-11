@@ -70,12 +70,12 @@ public class MD5Util {
             }
         }
         // 生成最终的加密盐
-        String Salt = sBuilder.toString();
-        password = md5Hex(password + Salt);
+        String salt = sBuilder.toString();
+        password = md5Hex(password + salt);
         char[] cs = new char[48];
         for (int i = 0; i < 48; i += 3) {
             cs[i] = password.charAt(i / 3 * 2);
-            char c = Salt.charAt(i / 3);
+            char c = salt.charAt(i / 3);
             cs[i + 1] = c;
             cs[i + 2] = password.charAt(i / 3 * 2 + 1);
         }

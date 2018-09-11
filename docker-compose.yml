@@ -1,0 +1,36 @@
+version: '3.0'
+services:
+  # 注册中心
+  eureka:
+    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/eureka
+    restart: always
+    tty: true
+    container_name: eureka
+    ports:
+     - "1111:1111"
+  # 配置中心
+  config:
+    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/config
+    restart: always
+    tty: true
+    container_name: config
+    ports:
+     - "8888:8888"
+  # 短信服务
+  sms:
+    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/sms
+    restart: always
+    tty: true
+    container_name: sms
+    ports:
+     - "8001:8001"
+    volumes:
+     - ${HOME}/logs:/logs
+  # 网关
+  zuul:
+    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/zuul
+    restart: always
+    tty: true
+    container_name: zuul
+    ports:
+     - "8000:8000"

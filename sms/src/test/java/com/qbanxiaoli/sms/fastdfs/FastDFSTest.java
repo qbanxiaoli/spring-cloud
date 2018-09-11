@@ -1,6 +1,7 @@
 package com.qbanxiaoli.sms.fastdfs;
 
 import com.qbanxiaoli.common.bean.FastDFSClient;
+import com.qbanxiaoli.common.util.MD5Util;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +28,7 @@ public class FastDFSTest {
 
     @Test
     public void Test() throws Exception {
-        File file = new File("/Users/qbanxiaoli/Pictures/45E2B7F32F61EB3D972C40F88805372D.jpg");
+        File file = new File("C:/Users/Q版小李/Pictures/Camera Roll/d043ad4bd11373f04fe57a5ea50f4bfbfaed041c.jpg");
         String str = fastDFSClient.uploadFile(file);
         log.info(str);
     }

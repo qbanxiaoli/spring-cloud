@@ -39,19 +39,3 @@ mybatis:
     # 开启驼峰命名转换
     map-underscore-to-camel-case: true
 
-# 分布式文件系统fdfs配置
-fdfs:
-  soTimeout: 1500 #socket连接超时时长
-  connectTimeout: 600 #连接tracker服务器超时时长
-  pool:
-    #从池中借出的对象的最大数目
-    max-total: 153
-    #获取连接时的最大等待毫秒数100
-    max-wait-millis: 102
-  thumbImage: #缩略图生成参数，可选
-    width: 150
-    height: 150
-  trackerList: #TrackerList参数,支持多个，这里只有一个，如果有多个在下方加- x.x.x.x:port
-  - 123.207.85.155:22122
-#  - 192.168.199.182:22122
-  web-server-url: http://123.207.85.155/

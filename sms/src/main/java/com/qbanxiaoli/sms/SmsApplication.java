@@ -15,6 +15,8 @@ import tk.mybatis.spring.annotation.MapperScan;
 @ComponentScan(basePackages = {"com.qbanxiaoli"})
 @MapperScan("com.qbanxiaoli.sms.dao.mapper")
 @Import(FdfsClientConfig.class)
+// 解决jmx重复注册bean的问题
+@EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
 public class SmsApplication {
 
     public static void main(String[] args) {
