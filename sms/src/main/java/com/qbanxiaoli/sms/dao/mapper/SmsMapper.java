@@ -5,7 +5,6 @@ import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
 import com.qbanxiaoli.sms.model.entity.Sms;
 import com.qbanxiaoli.sms.model.entity.Template;
 import com.qbanxiaoli.sms.sql.SmsSqlFactory;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
 

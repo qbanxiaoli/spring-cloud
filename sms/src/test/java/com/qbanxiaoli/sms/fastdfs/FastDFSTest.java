@@ -28,7 +28,7 @@ public class FastDFSTest {
 
     @Test
     public void Test() throws Exception {
-        File file = new File("C:/Users/Q版小李/Pictures/Camera Roll/d043ad4bd11373f04fe57a5ea50f4bfbfaed041c.jpg");
+        File file = new File("/Users/qbanxiaoli/Pictures/45E2B7F32F61EB3D972C40F88805372D.jpg");
         String str = fastDFSClient.uploadFile(file);
         log.info(str);
     }
