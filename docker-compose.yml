@@ -24,8 +24,6 @@ services:
     container_name: sms
     ports:
      - "8001:8001"
-    volumes:
-     - ${HOME}/logs:/logs
   # 网关
   zuul:
     image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/zuul
