@@ -100,7 +100,7 @@ public class FastDFSClient {
      * @author qbanxiaoli
      * @description 下载文件
      */
-    public void downloadFile(String fileUrl, File file) {
+    public Boolean downloadFile(String fileUrl, File file) {
         try {
             StorePath storePath = StorePath.praseFromUrl(fileUrl);
             byte[] bytes = fastFileStorageClient.downloadFile(storePath.getGroup(), storePath.getPath(), new DownloadByteArray());
@@ -108,7 +108,9 @@ public class FastDFSClient {
             stream.write(bytes);
         } catch (IOException e) {
             log.error(e.getMessage());
+            return false;
         }
+        return true;
     }
 
     /**
@@ -116,16 +118,18 @@ public class FastDFSClient {
      * @author qbanxiaoli
      * @description 删除文件
      */
-    public void deleteFile(String fileUrl) {
+    public Boolean deleteFile(String fileUrl) {
         if (StringUtils.isEmpty(fileUrl)) {
-            return;
+            return false;
         }
         try {
             StorePath storePath = StorePath.praseFromUrl(fileUrl);
             fastFileStorageClient.deleteFile(storePath.getGroup(), storePath.getPath());
         } catch (FdfsUnsupportStorePathException e) {
             log.error(e.getMessage());
+            return false;
         }
+        return true;
     }
 
     // 封装文件完整URL地址
