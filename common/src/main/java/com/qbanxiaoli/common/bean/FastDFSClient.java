@@ -3,6 +3,7 @@ package com.qbanxiaoli.common.bean;
 import com.github.tobato.fastdfs.conn.FdfsWebServer;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.exception.FdfsUnsupportStorePathException;
+import com.github.tobato.fastdfs.proto.storage.DownloadByteArray;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
@@ -11,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 
 /**
@@ -98,6 +96,23 @@ public class FastDFSClient {
 
     /**
      * @param fileUrl 文件访问地址
+     * @param file    文件保存路径
+     * @author qbanxiaoli
+     * @description 下载文件
+     */
+    public void downloadFile(String fileUrl, File file) {
+        try {
+            StorePath storePath = StorePath.praseFromUrl(fileUrl);
+            byte[] bytes = fastFileStorageClient.downloadFile(storePath.getGroup(), storePath.getPath(), new DownloadByteArray());
+            FileOutputStream stream = new FileOutputStream(file);
+            stream.write(bytes);
+        } catch (IOException e) {
+            log.error(e.getMessage());
+        }
+    }
+
+    /**
+     * @param fileUrl 文件访问地址
      * @author qbanxiaoli
      * @description 删除文件
      */
@@ -109,7 +124,7 @@ public class FastDFSClient {
             StorePath storePath = StorePath.praseFromUrl(fileUrl);
             fastFileStorageClient.deleteFile(storePath.getGroup(), storePath.getPath());
         } catch (FdfsUnsupportStorePathException e) {
-            log.warn(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 
