@@ -81,16 +81,15 @@ public class FastDFSClient {
     }
 
     /**
-     * @param content       文件内容
-     * @param fileExtension 文件后缀名
+     * @param bytes       byte数组
+     * @param fileExtension 文件扩展名
      * @return 返回文件地址
      * @author qbanxiaoli
-     * @description 将一段字符串生成一个文件上传
+     * @description 将byte数组生成一个文件上传
      */
-    public String uploadFile(String content, String fileExtension) {
-        byte[] buff = content.getBytes(Charset.forName("UTF-8"));
-        ByteArrayInputStream stream = new ByteArrayInputStream(buff);
-        StorePath storePath = fastFileStorageClient.uploadFile(stream, buff.length, fileExtension, null);
+    public String uploadFile(byte[] bytes, String fileExtension) {
+        ByteArrayInputStream stream = new ByteArrayInputStream(bytes);
+        StorePath storePath = fastFileStorageClient.uploadFile(stream, bytes.length, fileExtension, null);
         return storePath.getFullPath();
     }
 

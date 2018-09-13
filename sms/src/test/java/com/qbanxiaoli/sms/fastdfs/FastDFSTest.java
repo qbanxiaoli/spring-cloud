@@ -33,6 +33,8 @@ public class FastDFSTest {
         fastDFSClient.getResAccessUrl(str);
         String str1 = fastDFSClient.uploadImageAndCrtThumbImage(file);
         fastDFSClient.getResAccessUrl(str1);
+        String str2 = fastDFSClient.uploadFile("123456", "jpg");
+        fastDFSClient.getResAccessUrl(str2);
     }
 
     @Test
