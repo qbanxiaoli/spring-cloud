@@ -81,7 +81,7 @@ public class FastDFSClient {
     }
 
     /**
-     * @param bytes       byte数组
+     * @param bytes         byte数组
      * @param fileExtension 文件扩展名
      * @return 返回文件地址
      * @author qbanxiaoli
