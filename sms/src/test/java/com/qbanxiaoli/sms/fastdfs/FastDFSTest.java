@@ -25,13 +25,14 @@ public class FastDFSTest {
 
     @Test
     public void Upload() throws Exception {
-        File file = new File("/Users/qbanxiaoli/Pictures/45E2B7F32F61EB3D972C40F88805372D.png");
-        fastDFSClient.uploadFile(file);
+        File file = new File("/Users/qbanxiaoli/Pictures/45E2B7F32F61EB3D972C40F88805372D.jpg");
+        String str = fastDFSClient.uploadFile(file);
+        fastDFSClient.getResAccessUrl(str);
     }
 
     @Test
     public void Delete() {
-        fastDFSClient.deleteFile("group1/M00/00/00/CrodvFuaFDuAdV5EAAPqBnoWbEk304.png");
+        fastDFSClient.deleteFile("group1/M00/00/00/CrodvFuan_aAHf9WAAPqBnoWbEk562.jpg");
     }
 
 }
