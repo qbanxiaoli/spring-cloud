@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
+import java.net.URL;
 
 /**
  * @author qbanxiaoli
@@ -20,19 +21,17 @@ import java.io.File;
 @Slf4j
 public class FastDFSTest {
 
-    @Autowired
-    private FastDFSClient fastDFSClient;
-
     @Test
-    public void Upload() throws Exception {
-        File file = new File("/Users/qbanxiaoli/Pictures/45E2B7F32F61EB3D972C40F88805372D.jpg");
-        String str = fastDFSClient.uploadFile(file);
-        fastDFSClient.getResAccessUrl(str);
+    public void Upload() {
+        String fileUrl = this.getClass().getResource("/picture.jpg").getPath();
+        File file = new File(fileUrl);
+        String str = FastDFSClient.uploadFile(file);
+        FastDFSClient.getResAccessUrl(str);
     }
 
     @Test
     public void Delete() {
-        fastDFSClient.deleteFile("group1/M00/00/00/CrodvFuan_aAHf9WAAPqBnoWbEk562.jpg");
+        FastDFSClient.deleteFile("group1/M00/00/00/CrodvFuan_aAHf9WAAPqBnoWbEk562.jpg");
     }
 
 }

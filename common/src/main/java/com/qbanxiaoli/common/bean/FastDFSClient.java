@@ -23,14 +23,14 @@ import java.io.*;
 @Component
 public class FastDFSClient {
 
-    private final FastFileStorageClient fastFileStorageClient;
+    private static FastFileStorageClient fastFileStorageClient;
 
-    private final FdfsWebServer fdfsWebServer;
+    private static FdfsWebServer fdfsWebServer;
 
     @Autowired
-    public FastDFSClient(FastFileStorageClient fastFileStorageClient, FdfsWebServer fdfsWebServer) {
-        this.fastFileStorageClient = fastFileStorageClient;
-        this.fdfsWebServer = fdfsWebServer;
+    public void setFastDFSClient(FastFileStorageClient fastFileStorageClient, FdfsWebServer fdfsWebServer) {
+        FastDFSClient.fastFileStorageClient = fastFileStorageClient;
+        FastDFSClient.fdfsWebServer = fdfsWebServer;
     }
 
     /**
@@ -39,9 +39,14 @@ public class FastDFSClient {
      * @author qbanxiaoli
      * @description 上传文件
      */
-    public String uploadFile(MultipartFile multipartFile) throws IOException {
-        StorePath storePath = fastFileStorageClient.uploadFile(multipartFile.getInputStream(), multipartFile.getSize(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()), null);
-        return storePath.getFullPath();
+    public static String uploadFile(MultipartFile multipartFile) {
+        try {
+            StorePath storePath = fastFileStorageClient.uploadFile(multipartFile.getInputStream(), multipartFile.getSize(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()), null);
+            return storePath.getFullPath();
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -50,9 +55,14 @@ public class FastDFSClient {
      * @author qbanxiaoli
      * @description 上传缩略图
      */
-    public String uploadImageAndCrtThumbImage(MultipartFile multipartFile) throws IOException {
-        StorePath storePath = fastFileStorageClient.uploadImageAndCrtThumbImage(multipartFile.getInputStream(), multipartFile.getSize(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()), null);
-        return storePath.getFullPath();
+    public static String uploadImageAndCrtThumbImage(MultipartFile multipartFile) {
+        try {
+            StorePath storePath = fastFileStorageClient.uploadImageAndCrtThumbImage(multipartFile.getInputStream(), multipartFile.getSize(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()), null);
+            return storePath.getFullPath();
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -61,10 +71,15 @@ public class FastDFSClient {
      * @author qbanxiaoli
      * @description 上传文件
      */
-    public String uploadFile(File file) throws IOException {
-        FileInputStream inputStream = new FileInputStream(file);
-        StorePath storePath = fastFileStorageClient.uploadFile(inputStream, file.length(), FilenameUtils.getExtension(file.getName()), null);
-        return storePath.getFullPath();
+    public static String uploadFile(File file) {
+        try {
+            FileInputStream inputStream = new FileInputStream(file);
+            StorePath storePath = fastFileStorageClient.uploadFile(inputStream, file.length(), FilenameUtils.getExtension(file.getName()), null);
+            return storePath.getFullPath();
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -73,10 +88,15 @@ public class FastDFSClient {
      * @author qbanxiaoli
      * @description 上传缩略图
      */
-    public String uploadImageAndCrtThumbImage(File file) throws IOException {
-        FileInputStream inputStream = new FileInputStream(file);
-        StorePath storePath = fastFileStorageClient.uploadImageAndCrtThumbImage(inputStream, file.length(), FilenameUtils.getExtension(file.getName()), null);
-        return storePath.getFullPath();
+    public static String uploadImageAndCrtThumbImage(File file) {
+        try {
+            FileInputStream inputStream = new FileInputStream(file);
+            StorePath storePath = fastFileStorageClient.uploadImageAndCrtThumbImage(inputStream, file.length(), FilenameUtils.getExtension(file.getName()), null);
+            return storePath.getFullPath();
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -86,7 +106,7 @@ public class FastDFSClient {
      * @author qbanxiaoli
      * @description 将byte数组生成一个文件上传
      */
-    public String uploadFile(byte[] bytes, String fileExtension) {
+    public static String uploadFile(byte[] bytes, String fileExtension) {
         ByteArrayInputStream stream = new ByteArrayInputStream(bytes);
         StorePath storePath = fastFileStorageClient.uploadFile(stream, bytes.length, fileExtension, null);
         return storePath.getFullPath();
@@ -98,7 +118,7 @@ public class FastDFSClient {
      * @author qbanxiaoli
      * @description 下载文件
      */
-    public Boolean downloadFile(String fileUrl, File file) {
+    public static boolean downloadFile(String fileUrl, File file) {
         try {
             StorePath storePath = StorePath.praseFromUrl(fileUrl);
             byte[] bytes = fastFileStorageClient.downloadFile(storePath.getGroup(), storePath.getPath(), new DownloadByteArray());
@@ -116,7 +136,7 @@ public class FastDFSClient {
      * @author qbanxiaoli
      * @description 删除文件
      */
-    public Boolean deleteFile(String fileUrl) {
+    public static boolean deleteFile(String fileUrl) {
         if (StringUtils.isEmpty(fileUrl)) {
             return false;
         }
@@ -131,7 +151,7 @@ public class FastDFSClient {
     }
 
     // 封装文件完整URL地址
-    public String getResAccessUrl(String path) {
+    public static String getResAccessUrl(String path) {
         String url = fdfsWebServer.getWebServerUrl() + path;
         log.info("上传文件地址为：\n" + url);
         return url;
