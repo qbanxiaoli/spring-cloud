@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qbanxiaoli.sms.dao.mapper.SmsMapper">
+
+    <select id="findSmsTemplateByXML" resultType="com.qbanxiaoli.sms.model.entity.Template"
+            parameterType="com.qbanxiaoli.sms.model.dto.SmsFormDTO">
+        select *
+        from alidayu_information i
+                 inner join alidayu_template t ON i.id = t.information_id
+        where i.user_id = #{smsFormDTO.userId}
+          and i.project_name = #{smsFormDTO.projectName}
+          and t.type = #{smsFormDTO.type}
+    </select>
+
+</mapper>

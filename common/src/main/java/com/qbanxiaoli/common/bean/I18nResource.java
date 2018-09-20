@@ -3,6 +3,7 @@ package com.qbanxiaoli.common.bean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
@@ -18,7 +19,7 @@ public class I18nResource implements MessageSourceAware {
     private static MessageSource messageSource;
 
     @Override
-    public void setMessageSource(MessageSource messageSource) {
+    public void setMessageSource(@NonNull MessageSource messageSource) {
         I18nResource.messageSource = messageSource;
     }
 

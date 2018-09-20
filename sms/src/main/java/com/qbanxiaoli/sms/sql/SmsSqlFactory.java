@@ -18,11 +18,11 @@ public class SmsSqlFactory {
      * @author qbanxiaoli
      * @description 查询短信模版SQL
      */
-    public String findSmsTemplate(SmsFormDTO smsFormDTO) {
+    public String findSmsTemplateBySqlFactory(SmsFormDTO smsFormDTO) {
         String sql = new SQL() {{
             SELECT("*");
-            FROM("information i");
-            INNER_JOIN("template t ON i.id = t.information_id");
+            FROM("alidayu_information i");
+            INNER_JOIN("alidayu_template t ON i.id = t.information_id");
             WHERE("i.user_id = " + smsFormDTO.getUserId());
             WHERE("i.project_name = " + "'" + smsFormDTO.getProjectName() + "'");
             WHERE("t.type = " + smsFormDTO.getType());

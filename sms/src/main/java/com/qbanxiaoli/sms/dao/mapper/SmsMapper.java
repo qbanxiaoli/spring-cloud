@@ -5,6 +5,7 @@ import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
 import com.qbanxiaoli.sms.model.entity.Sms;
 import com.qbanxiaoli.sms.model.entity.Template;
 import com.qbanxiaoli.sms.sql.SmsSqlFactory;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +23,11 @@ public interface SmsMapper extends TkMapper<Sms> {
      * @author qbanxiaoli
      * @description 查询短信模版
      */
-    @SelectProvider(type = SmsSqlFactory.class, method = "findSmsTemplate")
-    Template findSmsTemplate(SmsFormDTO smsFormDTO);
+    //方式一：通过反射的方式映射到java类中的方法
+    @SelectProvider(type = SmsSqlFactory.class, method = "findSmsTemplateBySqlFactory")
+    Template findSmsTemplateBySqlFactory(SmsFormDTO smsFormDTO);
+
+    //方式二：通过xml与接口进行绑定
+    Template findSmsTemplateByXML(@Param("smsFormDTO") SmsFormDTO smsFormDTO);
 
 }

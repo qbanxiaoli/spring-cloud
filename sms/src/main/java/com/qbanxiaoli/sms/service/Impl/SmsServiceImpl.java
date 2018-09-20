@@ -47,7 +47,7 @@ public class SmsServiceImpl implements SmsService {
     @Override
     public ResponseVO<SendSmsResponseVO> sendSms(SmsFormDTO smsFormDTO) {
         Template template = smsRepository.findSmsTemplate(smsFormDTO);
-//        Template template = smsMapper.findSmsTemplate(smsFormDTO);
+//        Template template = smsMapper.findSmsTemplateBySqlFactory(smsFormDTO);
         if (template == null) {
             log.warn("未找到对应短信模板");
             return new ResponseVO<>(SmsResponseEnum.TEMPLATE_NOT_FOUND);
