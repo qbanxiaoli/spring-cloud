@@ -36,19 +36,19 @@ public class ResponseVO<T> {
         this.message = I18nResource.getMessage(responseEnum.getMessage());
     }
 
-    //返回结果不包含数据，返回信息包含变量
-    public ResponseVO(ResponseEnum responseEnum, Object[] args) {
-        this.result = responseEnum.getResult();
-        this.code = responseEnum.getCode();
-        this.message = I18nResource.getMessage(responseEnum.getMessage(), args);
-    }
-
     //返回结果包含数据，返回信息不包含变量
     public ResponseVO(ResponseEnum responseEnum, T data) {
         this.result = responseEnum.getResult();
         this.code = responseEnum.getCode();
         this.message = I18nResource.getMessage(responseEnum.getMessage());
         this.data = data;
+    }
+
+    //返回结果不包含数据，返回信息包含变量
+    public ResponseVO(ResponseEnum responseEnum, Object[] args) {
+        this.result = responseEnum.getResult();
+        this.code = responseEnum.getCode();
+        this.message = I18nResource.getMessage(responseEnum.getMessage(), args);
     }
 
     //返回结果包含数据，返回信息包含变量

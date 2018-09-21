@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 /**
  * @author qbanxiaoli
  * @description
- * @create 2018/8/8 上午12:47
+ * @create 2018/8/8 上午12 47
  */
 @Data
 @ApiModel("短信请求模型")
