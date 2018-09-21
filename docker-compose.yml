@@ -2,7 +2,7 @@ version: '3.0'
 services:
   # 注册中心
   eureka:
-    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/eureka
+    image: qbanxiaoli/eureka
     restart: always
     tty: true
     container_name: eureka
@@ -10,7 +10,7 @@ services:
       - "1111:1111"
   # 配置中心
   config:
-    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/config
+    image: qbanxiaoli/config
     restart: always
     tty: true
     container_name: config
@@ -18,7 +18,7 @@ services:
       - "8888:8888"
   # 短信服务
   sms:
-    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/sms
+    image: qbanxiaoli/sms
     restart: always
     tty: true
     container_name: sms
@@ -26,7 +26,7 @@ services:
       - "8001:8001"
   # 网关
   zuul:
-    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/zuul
+    image: qbanxiaoli/zuul
     restart: always
     tty: true
     container_name: zuul
