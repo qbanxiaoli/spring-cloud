@@ -53,7 +53,6 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.1.1</version>
                 <configuration>
-                    <dockerHost>unix:///var/run/docker.sock</dockerHost>
                     <!-- 指定镜像名称 仓库/镜像名:标签 -->
                     <imageName>${docker.registry}/${docker.repository}/${project.artifactId}</imageName>
                     <!-- 指定基础镜像，相当于Dockerfile中的FROM<image> -->
