@@ -23,12 +23,12 @@ import javax.validation.Valid;
 @Api(tags = "用户模块")
 public class UserManageController {
 
-//    /**
-//     * @param smsFormDTO 短信请求数据传输类
-//     * @return 请求响应
-//     * @author qbanxiaoli
-//     * @description 获取短信验证码
-//     */
+    /**
+     * @param smsFormDTO 短信请求数据传输类
+     * @return 请求响应
+     * @author qbanxiaoli
+     * @description 获取短信验证码
+     */
 //    @ApiOperation(value = "获取短信验证码", notes = "用户获取短信验证码")
 //    @PostMapping("/register")
 //    public ResponseVO<SendSmsResponseVO> sendSms(@ApiParam(name = "smsFormDTO", value = "短信请求数据传输类", required = true)

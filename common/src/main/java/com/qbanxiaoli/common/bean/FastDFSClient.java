@@ -59,7 +59,7 @@ public class FastDFSClient {
         try {
             StorePath storePath = fastFileStorageClient.uploadImageAndCrtThumbImage(multipartFile.getInputStream(), multipartFile.getSize(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()), null);
             return storePath.getFullPath();
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
             return null;
         }
@@ -76,7 +76,7 @@ public class FastDFSClient {
             FileInputStream inputStream = new FileInputStream(file);
             StorePath storePath = fastFileStorageClient.uploadFile(inputStream, file.length(), FilenameUtils.getExtension(file.getName()), null);
             return storePath.getFullPath();
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
             return null;
         }
@@ -93,7 +93,7 @@ public class FastDFSClient {
             FileInputStream inputStream = new FileInputStream(file);
             StorePath storePath = fastFileStorageClient.uploadImageAndCrtThumbImage(inputStream, file.length(), FilenameUtils.getExtension(file.getName()), null);
             return storePath.getFullPath();
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
             return null;
         }
@@ -124,7 +124,7 @@ public class FastDFSClient {
             byte[] bytes = fastFileStorageClient.downloadFile(storePath.getGroup(), storePath.getPath(), new DownloadByteArray());
             FileOutputStream stream = new FileOutputStream(file);
             stream.write(bytes);
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
             return false;
         }
@@ -143,7 +143,7 @@ public class FastDFSClient {
         try {
             StorePath storePath = StorePath.praseFromUrl(fileUrl);
             fastFileStorageClient.deleteFile(storePath.getGroup(), storePath.getPath());
-        } catch (FdfsUnsupportStorePathException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
             return false;
         }

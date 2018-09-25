@@ -32,3 +32,5 @@ services:
     container_name: zuul
     ports:
       - "8000:8000"
+
+

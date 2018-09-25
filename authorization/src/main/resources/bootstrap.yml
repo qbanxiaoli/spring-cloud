@@ -22,6 +22,9 @@ spring:
           max-interval: 2000
 
 eureka:
+  instance:
+    # 手动指定IP地址
+    ip-address: 123.207.85.155
   client:
     service-url:
       defaultZone: http://admin:123456@${eureka.host:123.207.85.155}:${eureka.port:1111}/eureka/
