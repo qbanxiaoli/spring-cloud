@@ -18,7 +18,7 @@ public class PageVO<T> {
     @ApiModelProperty(value = "当前页", required = true)
     private Integer currentPage;
 
-    @ApiModelProperty(value = "每页显示的总条数", required = true)
+    @ApiModelProperty(value = "页面大小", required = true)
     private Integer pageSize;
 
     @ApiModelProperty(value = "总条数", required = true)
