@@ -3,8 +3,6 @@ package com.qbanxiaoli.sms.model.entity;
 import com.qbanxiaoli.common.model.entity.IdEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,12 +22,12 @@ import javax.persistence.Table;
 @ApiModel(value = "用户模型")
 public class User extends IdEntity {
 
-    @ApiModelProperty(value = "手机号", required = true)
     @Column(nullable = false, length = 20)
+    @ApiModelProperty(value = "手机号", required = true)
     private String phone;
 
-    @ApiModelProperty(value = "密码", required = true)
     @Column(nullable = false, length = 50)
+    @ApiModelProperty(value = "密码", required = true)
     private String password;
 
 }

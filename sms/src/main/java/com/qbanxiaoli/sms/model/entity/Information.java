@@ -3,8 +3,6 @@ package com.qbanxiaoli.sms.model.entity;
 import com.qbanxiaoli.common.model.entity.IdEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,20 +23,20 @@ import javax.persistence.UniqueConstraint;
 @ApiModel(value = "用户信息模型")
 public class Information extends IdEntity {
 
-    @ApiModelProperty(value = "用户id", required = true)
     @Column(nullable = false)
+    @ApiModelProperty(value = "用户id", required = true)
     private Long userId;
 
-    @ApiModelProperty(value = "阿里大于accessKeyId", required = true)
     @Column(nullable = false, length = 20)
+    @ApiModelProperty(value = "阿里大于accessKeyId", required = true)
     private String accessKeyId;
 
-    @ApiModelProperty(value = "阿里大于accessKeySecret", required = true)
     @Column(nullable = false, length = 30)
+    @ApiModelProperty(value = "阿里大于accessKeySecret", required = true)
     private String accessKeySecret;
 
-    @ApiModelProperty(value = "项目名称", required = true)
     @Column(nullable = false, length = 30)
+    @ApiModelProperty(value = "项目名称", required = true)
     private String projectName;
 
 }

@@ -3,8 +3,6 @@ package com.qbanxiaoli.sms.model.entity;
 import com.qbanxiaoli.common.model.entity.IdEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,32 +22,32 @@ import javax.persistence.Table;
 @ApiModel(value = "短信模板模型")
 public class Template extends IdEntity {
 
-    @ApiModelProperty(value = "用户信息id", required = true)
     @Column(nullable = false)
+    @ApiModelProperty(value = "用户信息id", required = true)
     private Long informationId;
 
-    @ApiModelProperty(value = "阿里大于accessKeyId", required = true)
     @Column(nullable = false, length = 20)
+    @ApiModelProperty(value = "阿里大于accessKeyId", required = true)
     private String accessKeyId;
 
-    @ApiModelProperty(value = "阿里大于accessKeySecret", required = true)
     @Column(nullable = false, length = 30)
+    @ApiModelProperty(value = "阿里大于accessKeySecret", required = true)
     private String accessKeySecret;
 
-    @ApiModelProperty(value = "项目名称", required = true)
     @Column(nullable = false, length = 30)
+    @ApiModelProperty(value = "项目名称", required = true)
     private String projectName;
 
-    @ApiModelProperty(value = "短信签名", required = true)
     @Column(nullable = false, length = 20)
+    @ApiModelProperty(value = "短信签名", required = true)
     private String signName;
 
-    @ApiModelProperty(value = "短信模板", required = true)
     @Column(nullable = false, length = 20)
+    @ApiModelProperty(value = "短信模板", required = true)
     private String templateCode;
 
-    @ApiModelProperty(value = "业务类型", required = true)
     @Column(nullable = false)
+    @ApiModelProperty(value = "业务类型", required = true)
     private Integer type;
 
 }

@@ -26,7 +26,7 @@ public class SmsFormDTO {
     @NotNull(message = "{BUSINESS_NOT_NULL}")
     @Range(min = 0, max = 2, message = "{BUSINESS_TYPE_BETWEEN}")
     @ApiModelProperty(value = "业务类型(0->注册，1->登陆，2->修改密码)")
-    private Integer type = 0;
+    private Integer type;
 
     @NotBlank(message = "{PROJECT_NAME_NOT_NULL}")
     @ApiModelProperty(value = "项目名称", required = true)
@@ -34,6 +34,6 @@ public class SmsFormDTO {
 
     @NotNull
     @ApiModelProperty(value = "发送者id")
-    private Long userId = 1L;
+    private Long userId;
 
 }
