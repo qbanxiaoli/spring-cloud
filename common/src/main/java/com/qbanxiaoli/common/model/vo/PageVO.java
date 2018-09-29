@@ -24,14 +24,8 @@ public class PageVO<T> {
     @ApiModelProperty(value = "总条数", required = true)
     private Integer totalNum;
 
-    @ApiModelProperty(value = "是否有下一页", required = true)
-    private Integer isMore;
-
     @ApiModelProperty(value = "总页数", required = true)
     private Integer totalPage;
-
-    @ApiModelProperty(value = "开始索引", required = true)
-    private Integer startIndex;
 
     @ApiModelProperty(value = "分页结果", required = true)
     private List<T> obj;
@@ -41,13 +35,7 @@ public class PageVO<T> {
         this.currentPage = currentPage;
         this.pageSize = pageSize;
         this.totalNum = totalNum;
-        if (pageSize > 0) {
-            this.totalPage = (this.totalNum + this.pageSize - 1) / this.pageSize;
-        } else {
-            this.totalPage = 1;
-        }
-        this.startIndex = (this.currentPage - 1) * this.pageSize;
-        this.isMore = this.currentPage >= this.totalPage ? 0 : 1;
+        this.totalPage = (this.totalNum + this.pageSize - 1) / this.pageSize;
     }
 
 }

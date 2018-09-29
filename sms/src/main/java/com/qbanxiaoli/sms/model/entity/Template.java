@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,10 +17,10 @@ import javax.persistence.Table;
  * @description
  * @create 2018/8/14 11:18
  */
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "alidayu_template")
-@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "短信模板模型")
 public class Template extends IdEntity {
 

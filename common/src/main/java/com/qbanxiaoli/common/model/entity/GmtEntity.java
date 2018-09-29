@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -16,9 +18,9 @@ import javax.persistence.PreUpdate;
  * @description
  * @create 2018/7/30 2:06
  */
-@Data
+@Getter
+@Setter
 @MappedSuperclass
-@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "时间模型")
 public class GmtEntity extends IdEntity {
 

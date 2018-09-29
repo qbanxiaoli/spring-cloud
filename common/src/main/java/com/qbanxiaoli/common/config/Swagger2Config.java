@@ -7,6 +7,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -43,9 +44,8 @@ public class Swagger2Config {
                 .title("第三方微服务接口文档")//设置文档的标题
                 .description("Swagger2 接口文档示例")//设置文档的描述
                 .version(VERSION)//设置文档的版本信息
-//                .license("www.qbanxiaoli.cn")
-//                .termsOfServiceUrl("www.qbanxiaoli.cn")//设置文档的License信息
-//                .contact(new Contact("qbanxiaoli", "www.qbanxiaoli.cn", "823730820@qq.com"))
+                .termsOfServiceUrl("www.qbanxiaoli.cn")//设置文档的License信息
+                .contact(new Contact("qbanxiaoli", "www.qbanxiaoli.cn", "823730820@qq.com"))
                 .build();
     }
 

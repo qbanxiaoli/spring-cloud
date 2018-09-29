@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,10 +17,10 @@ import javax.persistence.Table;
  * @description
  * @create 2018/8/14 11:19
  */
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "user")
-@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "用户模型")
 public class User extends IdEntity {
 

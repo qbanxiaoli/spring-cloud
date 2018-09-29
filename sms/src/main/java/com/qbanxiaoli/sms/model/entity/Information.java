@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,10 +18,10 @@ import javax.persistence.UniqueConstraint;
  * @description
  * @create 2018/8/14 11:18
  */
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "alidayu_information", uniqueConstraints = {@UniqueConstraint(columnNames = {"userId", "projectName"})})
-@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "用户信息模型")
 public class Information extends IdEntity {
 

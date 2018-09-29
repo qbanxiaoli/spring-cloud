@@ -3,13 +3,16 @@ package com.qbanxiaoli.common.model.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author qbanxiaoli
  * @description
  * @create 2018/7/3 13:54
  */
-@Data
+@Getter
+@Setter
 @ApiModel(value = "分页查询请求模型")
 public class QueryDTO {
 
