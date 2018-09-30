@@ -28,3 +28,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://admin:123456@${eureka.host:123.207.85.155}:${eureka.port:1111}/eureka/
+
+logging:
+  config: classpath:log4j2.yml
+
