@@ -30,7 +30,7 @@ public @interface Phone {
     @Documented
     @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
     @Retention(RUNTIME)
-    public @interface List{
+    @interface List{
         Phone[] value();
     }
 

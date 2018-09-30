@@ -14,7 +14,7 @@ spring:
       naming:
         # 遇到大写字母 加”_”的命名
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-    # 使用支持事务的数据库方言InnoDB
+    # 使用支持事务的数据库方言
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: true
   #i18n configuration(添加语言国际化支持)
@@ -38,7 +38,7 @@ pagehelper:
   page-size-zero: true
 
 mybatis:
-  mapper-locations: classpath:**/*.xml
+  mapper-locations: classpath:/mapper/*.xml
   configuration:
     # 开启驼峰命名转换
     map-underscore-to-camel-case: true

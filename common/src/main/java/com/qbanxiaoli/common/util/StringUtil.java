@@ -1093,7 +1093,7 @@ public class StringUtil {
             list.add(str.substring(start, i));
         }
 
-        return (String[]) list.toArray(new String[0]);
+        return list.toArray(new String[0]);
     }
 
     /**
@@ -1228,7 +1228,7 @@ public class StringUtil {
             list.add(str.substring(start, i));
         }
 
-        return (String[]) list.toArray(new String[0]);
+        return list.toArray(new String[0]);
     }
 
     /*
@@ -2729,7 +2729,7 @@ public class StringUtil {
         int end = 0;
 
         while ((end = text.indexOf(repl, start)) != -1) {
-            buf.append(text.substring(start, end)).append(with);
+            buf.append(text, start, end).append(with);
             start = end + repl.length();
 
             if (--max == 0) {

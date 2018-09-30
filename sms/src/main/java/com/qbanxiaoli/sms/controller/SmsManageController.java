@@ -29,14 +29,8 @@ public class SmsManageController {
         this.smsService = smsService;
     }
 
-    /**
-     * @param smsFormDTO 短信请求数据传输类
-     * @return 请求响应
-     * @author qbanxiaoli
-     * @description 获取短信验证码
-     */
     @ApiOperation(value = "获取短信验证码", notes = "用户获取短信验证码")
-    @PostMapping("/sendsms")
+    @PostMapping("/sms/send")
     public ResponseVO<SendSmsResponseVO> sendSms(@ApiParam(name = "smsFormDTO", value = "短信请求数据传输类", required = true)
                                                  @Validated @RequestBody SmsFormDTO smsFormDTO) {
         log.info("开始调用发送短信验证码服务");
