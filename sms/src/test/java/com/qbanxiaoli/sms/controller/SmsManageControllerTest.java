@@ -46,7 +46,7 @@ public class SmsManageControllerTest {
         smsFormDTO.setProjectName("短信服务");
         smsFormDTO.setUserId(1L);
         log.info(JsonUtil.toJsonString(smsFormDTO));
-        this.mockMvc.perform(post("/sendsms?lang=en_US")
+        this.mockMvc.perform(post("/sms/send?lang=en_US")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.toJsonBytes(smsFormDTO)))
                 .andExpect(status().isOk()).andDo(print())         //打印出请求和相应的内容
