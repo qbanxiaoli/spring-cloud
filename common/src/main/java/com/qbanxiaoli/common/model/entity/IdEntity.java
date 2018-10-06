@@ -20,7 +20,6 @@ public class IdEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     @ApiModelProperty(value = "自增主键", required = true)
     private Long id;
 

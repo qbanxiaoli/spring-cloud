@@ -17,11 +17,11 @@ spring:
     # 使用支持事务的数据库方言
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: true
-  #i18n configuration(添加语言国际化支持)
+  # i18n configuration(添加语言国际化支持)
   messages:
     basename: i18n/messages
 
-  #不检查/templates/模板路径
+  # 不检查/templates/模板路径
   freemarker:
     checkTemplateLocation: false
 
