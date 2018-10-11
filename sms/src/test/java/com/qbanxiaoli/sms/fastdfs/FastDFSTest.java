@@ -23,13 +23,9 @@ public class FastDFSTest {
     public void Upload() {
         String fileUrl = this.getClass().getResource("/picture.jpg").getPath();
         File file = new File(fileUrl);
-        String str = FastDFSClient.uploadFile(file);
-        FastDFSClient.getResAccessUrl(str);
-    }
-
-    @Test
-    public void Delete() {
-        FastDFSClient.deleteFile("group1/M00/00/00/CrodvFuan_aAHf9WAAPqBnoWbEk562.jpg");
+        String storePath = FastDFSClient.uploadFile(file);
+        String filePath = FastDFSClient.getResAccessUrl(storePath);
+        log.info("上传文件路径为：" + filePath);
     }
 
 }
