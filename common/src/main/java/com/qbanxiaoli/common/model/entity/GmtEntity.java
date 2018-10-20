@@ -24,11 +24,11 @@ import javax.persistence.PreUpdate;
 @ApiModel(value = "时间模型")
 public class GmtEntity extends IdEntity {
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "bigint unsigned COMMENT '创建时间'")
     @ApiModelProperty(value = "创建时间", required = true)
     private Long gmtCreated;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "bigint unsigned COMMENT '修改时间'")
     @ApiModelProperty(value = "修改时间", required = true)
     private Long gmtModified;
 

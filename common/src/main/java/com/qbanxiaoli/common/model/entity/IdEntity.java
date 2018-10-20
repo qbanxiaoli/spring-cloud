@@ -20,6 +20,7 @@ public class IdEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "bigint unsigned COMMENT '自增主键'")
     @ApiModelProperty(value = "自增主键", required = true)
     private Long id;
 

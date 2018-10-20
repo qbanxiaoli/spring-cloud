@@ -3,11 +3,13 @@ package com.qbanxiaoli.common.exception;
 import com.qbanxiaoli.common.enums.CommonResponseEnum;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.FileUploadBase;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,8 +23,14 @@ import java.util.Map;
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ResponseVO handleMaxUploadSizeExceededException(MaxUploadSizeExceededException e) {
+        log.error("上传单个文件大小不能超过50M：" + e);
+        return new ResponseVO<>(CommonResponseEnum.MAX_FILE_SIZE);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseVO handleBindException(MethodArgumentNotValidException e) {
+    public ResponseVO handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.error("参数校验异常：" + e);
         Map<String, String> map = new HashMap<>(16);
         for (FieldError errors : e.getBindingResult().getFieldErrors()) {

@@ -1,6 +1,5 @@
 package com.qbanxiaoli.sms.controller;
 
-import com.qbanxiaoli.common.enums.CommonResponseEnum;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.FileUtil;
 import com.qbanxiaoli.sms.enums.SmsResponseEnum;
@@ -35,8 +34,8 @@ public class FileManageController {
 
     @ApiOperation(value = "上传图片")
     @PostMapping("/image/upload")
-    public ResponseVO<File> uploadImage(@ApiParam(name = "multipartFile", value = "待上传图片", required = true)
-                                        @RequestPart(value = "multipartFile") MultipartFile multipartFile) {
+    public ResponseVO<File> uploadImage(@ApiParam(name = "file", value = "待上传图片", required = true)
+                                        @RequestPart(value = "file") MultipartFile multipartFile) {
         log.info("上传图片");
         if (multipartFile.isEmpty() || !FileUtil.isImage(multipartFile)) {
             log.warn("上传文件类型错误");

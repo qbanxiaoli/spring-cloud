@@ -149,6 +149,11 @@ public class FastDFSClient {
         return true;
     }
 
+    // 获取文件服务器地址
+    public static String getWebServerUrl() {
+        return fdfsWebServer.getWebServerUrl();
+    }
+
     // 封装文件完整URL地址
     public static String getResAccessUrl(String path) {
         return fdfsWebServer.getWebServerUrl() + path;

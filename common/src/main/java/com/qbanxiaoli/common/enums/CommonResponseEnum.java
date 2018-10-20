@@ -16,7 +16,8 @@ public enum CommonResponseEnum implements ResponseEnum {
     SUCCESS_VARIABLE(true, 200, "SUCCESS_VARIABLE"),//传入成功变量信息
     PARAMETER_ERROR(false, 300, "PARAMETER_ERROR"),//参数错误
     FAILURE(false, 400, "FAILURE"),//失败
-    FAILURE_VARIABLE(false, 400, "FAILURE_VARIABLE");//传入失败变量信息
+    FAILURE_VARIABLE(false, 400, "FAILURE_VARIABLE"),//传入失败变量信息
+    MAX_FILE_SIZE(false, 400, "MAX_FILE_SIZE");//上传单个文件大小不能超过50M
 
     private Boolean result;
     private Integer code;

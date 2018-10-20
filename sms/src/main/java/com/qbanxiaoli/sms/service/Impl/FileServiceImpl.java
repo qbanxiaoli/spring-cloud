@@ -3,6 +3,7 @@ package com.qbanxiaoli.sms.service.Impl;
 import com.qbanxiaoli.common.bean.FastDFSClient;
 import com.qbanxiaoli.common.enums.CommonResponseEnum;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
+import com.qbanxiaoli.common.util.FileUtil;
 import com.qbanxiaoli.sms.dao.repository.FileRepository;
 import com.qbanxiaoli.sms.dao.repository.SmsRepository;
 import com.qbanxiaoli.sms.model.entity.File;
@@ -40,9 +41,21 @@ public class FileServiceImpl implements FileService {
     @Override
     public ResponseVO<File> uploadImage(MultipartFile multipartFile) {
         //上传图片
-        String path = FastDFSClient.uploadFile(multipartFile);
+        String storePath = FastDFSClient.uploadFile(multipartFile);
+        log.info("上传图片地址为：" + FastDFSClient.getResAccessUrl(storePath));
         File file = new File();
-        file.setPath(path);
+        //设置图片地址
+        file.setStorePath(storePath);
+        //设置文件服务器访问地址
+        file.setWebServerUrl(FastDFSClient.getWebServerUrl());
+        //设置文件类型
+        file.setContentType(multipartFile.getContentType());
+        //设置文件后缀名
+        file.setFileExtension(FileUtil.getFileExtension(multipartFile));
+        //设置文件大小
+        file.setFileSize(multipartFile.getSize());
+        //实例化到数据库
+        fileRepository.save(file);
         return new ResponseVO<>(CommonResponseEnum.SUCCESS, file);
     }
 
