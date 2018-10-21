@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * @create 2018/8/8 上午12 47
  */
 @Data
-@ApiModel("短信请求模型")
+@ApiModel("短信请求数据传输模型")
 public class SmsFormDTO {
 
     @Phone
@@ -25,15 +25,7 @@ public class SmsFormDTO {
 
     @NotNull(message = "{BUSINESS_NOT_NULL}")
     @Range(min = 0, max = 2, message = "{BUSINESS_TYPE_BETWEEN}")
-    @ApiModelProperty(value = "业务类型(0->注册，1->登陆，2->修改密码)")
+    @ApiModelProperty(value = "业务类型(0->注册，1->登陆，2->修改密码)", required = true)
     private Integer type;
-
-    @NotBlank(message = "{PROJECT_NAME_NOT_NULL}")
-    @ApiModelProperty(value = "项目名称", required = true)
-    private String projectName;
-
-    @NotNull
-    @ApiModelProperty(value = "发送者id")
-    private Long userId;
 
 }

@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @ApiModel(value = "用户模型")
 public class User extends IdEntity {
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, columnDefinition = "char(11) COMMENT '手机号'")
     @ApiModelProperty(value = "手机号", required = true)
     private String phone;
 

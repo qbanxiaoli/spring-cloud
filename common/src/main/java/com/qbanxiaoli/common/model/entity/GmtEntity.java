@@ -1,5 +1,6 @@
 package com.qbanxiaoli.common.model.entity;
 
+import com.quhaodian.data.entity.UUIDEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -11,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import java.util.UUID;
 
 
 /**
@@ -41,6 +43,7 @@ public class GmtEntity extends IdEntity {
      */
     @PrePersist
     public void prePersist() {
+        this.setUuid(UUID.randomUUID().toString().replace("-", ""));
         this.setGmtCreated(System.currentTimeMillis());
         this.setGmtModified(System.currentTimeMillis());
     }

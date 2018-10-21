@@ -17,27 +17,13 @@ public class SmsAssembly {
             return null;
         }
         Sms sms = new Sms();
-        if (StringUtil.isNotBlank(sendSmsResponseVO.getRequestId())) {
-            sms.setRequestId(sendSmsResponseVO.getRequestId());
-        }
-        if (StringUtil.isNotBlank(sendSmsResponseVO.getBizId())) {
-            sms.setBizId(sendSmsResponseVO.getBizId());
-        }
-        if (StringUtil.isNotBlank(sendSmsResponseVO.getCode())) {
-            sms.setCode(sendSmsResponseVO.getCode());
-        }
-        if (StringUtil.isNotBlank(sendSmsResponseVO.getMessage())) {
-            sms.setMessage(sendSmsResponseVO.getMessage());
-        }
-        if (StringUtil.isNotBlank(smsFormDTO.getPhone())) {
-            sms.setPhone(smsFormDTO.getPhone());
-        }
-        if (StringUtil.isNotBlank(smsFormDTO.getProjectName())) {
-            sms.setProjectName(smsFormDTO.getProjectName());
-        }
-        if (StringUtil.isNotBlank(captcha)) {
-            sms.setCaptcha(captcha);
-        }
+        sms.setRequestId(sendSmsResponseVO.getRequestId());
+        sms.setBizId(sendSmsResponseVO.getBizId());
+        sms.setCode(sendSmsResponseVO.getCode());
+        sms.setMessage(sendSmsResponseVO.getMessage());
+        sms.setPhone(smsFormDTO.getPhone());
+        sms.setProjectName(smsFormDTO.getProjectName());
+        sms.setCaptcha(captcha);
         sms.setUserId(smsFormDTO.getUserId());
         sms.setType(smsFormDTO.getType());
 //        sms.setGmtCreated(System.currentTimeMillis());

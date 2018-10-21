@@ -28,13 +28,10 @@ public class Swagger2Config {
 
     private static final String VERSION = "1.0";
 
-    @Value("${swagger.show}")
-    private Boolean swaggerShow;
-
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .enable(swaggerShow)//设置是否启用swagger文档
+                .enable(true)//设置是否启用swagger文档
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(SWAGGER_SCAN_BASE_PACKAGE))//api接口包扫描路径
