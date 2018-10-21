@@ -3,8 +3,6 @@ package com.qbanxiaoli.common.util;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Objects;
-
 /**
  * @author qbanxiaoli
  * @description
@@ -23,7 +21,10 @@ public class FileUtil {
      * @description 判断上传的文件类型是否图片
      */
     public static boolean isImage(MultipartFile multipartFile) {
-        return Objects.requireNonNull(multipartFile.getContentType()).startsWith("image");
+        if (multipartFile.getContentType() != null) {
+            return multipartFile.getContentType().startsWith("image");
+        }
+        return false;
     }
 
     /**

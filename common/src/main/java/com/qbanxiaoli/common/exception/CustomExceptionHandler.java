@@ -1,5 +1,8 @@
 package com.qbanxiaoli.common.exception;
 
+import com.github.tobato.fastdfs.exception.FdfsConnectException;
+import com.github.tobato.fastdfs.exception.FdfsException;
+import com.github.tobato.fastdfs.exception.FdfsUnavailableException;
 import com.qbanxiaoli.common.enums.CommonResponseEnum;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +26,15 @@ import java.util.Map;
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
+    @ExceptionHandler(FdfsException.class)
+    public ResponseVO handleFdfsException(FdfsException e) {
+        log.error("连接文件服务器失败：" + e.getMessage());
+        return new ResponseVO<>(CommonResponseEnum.FDFS_CONNECT_FAILURE);
+    }
+
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseVO handleMaxUploadSizeExceededException(MaxUploadSizeExceededException e) {
-        log.error("上传单个文件大小不能超过50M：" + e);
+        log.error("上传单个文件大小不能超过1M：" + e);
         return new ResponseVO<>(CommonResponseEnum.MAX_FILE_SIZE);
     }
 

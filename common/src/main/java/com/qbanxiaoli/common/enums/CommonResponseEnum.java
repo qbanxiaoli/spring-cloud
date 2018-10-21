@@ -17,7 +17,8 @@ public enum CommonResponseEnum implements ResponseEnum {
     PARAMETER_ERROR(false, 300, "PARAMETER_ERROR"),//参数错误
     FAILURE(false, 400, "FAILURE"),//失败
     FAILURE_VARIABLE(false, 400, "FAILURE_VARIABLE"),//传入失败变量信息
-    MAX_FILE_SIZE(false, 400, "MAX_FILE_SIZE");//上传单个文件大小不能超过50M
+    MAX_FILE_SIZE(false, 400, "MAX_FILE_SIZE"),//上传单个文件大小不能超过1M
+    FDFS_CONNECT_FAILURE(false, 400, "FDFS_CONNECT_FAILURE");//连接文件服务器失败
 
     private Boolean result;
     private Integer code;
