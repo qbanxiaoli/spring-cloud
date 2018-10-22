@@ -20,12 +20,18 @@ import java.io.File;
 public class FastDFSTest {
 
     @Test
-    public void Upload() {
+    public void upload() {
         String fileUrl = this.getClass().getResource("/picture.jpg").getPath();
         File file = new File(fileUrl);
         String storePath = FastDFSClient.uploadFile(file);
         String filePath = FastDFSClient.getResAccessUrl(storePath);
         log.info("上传文件路径为：" + filePath);
+    }
+
+    @Test
+    public void download() {
+        boolean b = FastDFSClient.downloadFileToLocal("group1/M00/00/06/rBBkQ1vNmrCAHEv1AAPqBnoWbEk420.jpg");
+        log.info("文件下载结果：" + b);
     }
 
 }

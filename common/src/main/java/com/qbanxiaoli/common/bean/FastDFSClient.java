@@ -113,14 +113,14 @@ public class FastDFSClient {
 
     /**
      * @param fileUrl 文件访问地址
-     * @param file    文件保存路径
      * @author qbanxiaoli
      * @description 下载文件
      */
-    public static boolean downloadFile(String fileUrl, File file) {
+    public static boolean downloadFileToLocal(String fileUrl) {
         try {
             StorePath storePath = StorePath.praseFromUrl(fileUrl);
             byte[] bytes = fastFileStorageClient.downloadFile(storePath.getGroup(), storePath.getPath(), new DownloadByteArray());
+            File file = new File(fileUrl.substring(fileUrl.lastIndexOf("/") + 1));
             FileOutputStream stream = new FileOutputStream(file);
             stream.write(bytes);
         } catch (Exception e) {
@@ -128,6 +128,21 @@ public class FastDFSClient {
             return false;
         }
         return true;
+    }
+
+    /**
+     * @param fileUrl 文件访问地址
+     * @author qbanxiaoli
+     * @description 下载文件
+     */
+    public static byte[] downloadFile(String fileUrl) {
+        try {
+            StorePath storePath = StorePath.praseFromUrl(fileUrl);
+            return fastFileStorageClient.downloadFile(storePath.getGroup(), storePath.getPath(), new DownloadByteArray());
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return null;
+        }
     }
 
     /**
