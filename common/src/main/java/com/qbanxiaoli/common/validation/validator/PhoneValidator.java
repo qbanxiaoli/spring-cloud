@@ -21,7 +21,6 @@ public class PhoneValidator implements ConstraintValidator<Phone, String> {
 
     @Override
     public void initialize(Phone constraintAnnotation) {
-
     }
 
     @Override
