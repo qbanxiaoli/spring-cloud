@@ -47,15 +47,13 @@ public class SmsDaoImpl implements SmsDao {
     @Override
     public Template findSmsTemplate(SmsFormDTO smsFormDTO) {
         //添加查询条件
-        Predicate predicate1 = QInformation.information.userId.eq(smsFormDTO.getUserId());
-        Predicate predicate2 = QInformation.information.projectName.eq(smsFormDTO.getProjectName());
-        Predicate predicate3 = QTemplate.template.type.eq(smsFormDTO.getType());
+        Predicate predicate = QTemplate.template.type.eq(smsFormDTO.getType());
         //查询短信模板
         JPAQuery<Template> jpaQuery = queryFactory.select(QTemplate.template)
                 .from(QInformation.information)
                 .innerJoin(QTemplate.template)
                 .on(QInformation.information.id.intValue().eq(QTemplate.template.informationId.intValue()))
-                .where(predicate1, predicate2, predicate3);
+                .where(predicate);
         //拿到结果
         return jpaQuery.fetchOne();
     }

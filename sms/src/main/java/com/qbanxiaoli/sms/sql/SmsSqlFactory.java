@@ -23,8 +23,6 @@ public class SmsSqlFactory {
             SELECT("*");
             FROM("alidayu_information i");
             INNER_JOIN("alidayu_template t ON i.id = t.information_id");
-            WHERE("i.user_id = " + smsFormDTO.getUserId());
-            WHERE("i.project_name = " + "'" + smsFormDTO.getProjectName() + "'");
             WHERE("t.type = " + smsFormDTO.getType());
         }}.toString();
         log.info("查询短信模版SQL:\n" + sql);

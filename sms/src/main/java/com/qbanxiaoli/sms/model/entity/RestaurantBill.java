@@ -31,7 +31,7 @@ public class RestaurantBill extends GmtEntity {
     @ApiModelProperty(value = "餐厅管理员id", required = true)
     private String restaurantId;
 
-    @Column(nullable = false, columnDefinition = "varchar(32) COMMENT '白条编号'")
+    @Column(nullable = false, columnDefinition = "char(32) COMMENT '白条编号'")
     @ApiModelProperty(value = "白条编号", required = true)
     private String number;
 
@@ -42,13 +42,5 @@ public class RestaurantBill extends GmtEntity {
     @Column(nullable = false, columnDefinition = "decimal(10,2) unsigned DEFAULT '0' COMMENT '已兑付金额'")
     @ApiModelProperty(value = "已兑付金额", required = true)
     private BigDecimal paidAmount;
-
-    @Column(nullable = false, columnDefinition = "tinyint COMMENT '白条状态(0->尚未申请兑付，1->待公司兑付，2->已拒绝，3->待确认受到兑付，4->已完成)'")
-    @ApiModelProperty(value = "白条状态", required = true)
-    private Integer status;
-
-    @Column(nullable = false, columnDefinition = "bigint COMMENT '承兑日期'")
-    @ApiModelProperty(value = "承兑日期", required = true)
-    private Long promiseTime;
 
 }

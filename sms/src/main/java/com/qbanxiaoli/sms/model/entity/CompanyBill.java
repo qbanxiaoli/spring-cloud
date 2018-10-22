@@ -31,7 +31,7 @@ public class CompanyBill extends GmtEntity {
     @ApiModelProperty(value = "公司管理员id", required = true)
     private String companyId;
 
-    @Column(nullable = false, columnDefinition = "varchar(32) COMMENT '白条编号'")
+    @Column(nullable = false, columnDefinition = "char(32) COMMENT '白条编号'")
     @ApiModelProperty(value = "白条编号", required = true)
     private String number;
 
@@ -39,11 +39,7 @@ public class CompanyBill extends GmtEntity {
     @ApiModelProperty(value = "白条金额", required = true)
     private BigDecimal amount;
 
-    @Column(nullable = false, columnDefinition = "decimal(10,2) unsigned DEFAULT '0' COMMENT '已兑付金额'")
-    @ApiModelProperty(value = "已兑付金额", required = true)
-    private BigDecimal paidAmount;
-
-    @Column(nullable = false, columnDefinition = "tinyint DEFAULT '-1' COMMENT '白条状态(-2->已撤销，-1->冻结中，0->正常兑付中，1->兑付完成)'")
+    @Column(nullable = false, columnDefinition = "tinyint DEFAULT '-1' COMMENT '白条状态(-2->已撤销，-1->冻结中，0->已解冻)'")
     @ApiModelProperty(value = "白条状态", required = true)
     private Integer status;
 

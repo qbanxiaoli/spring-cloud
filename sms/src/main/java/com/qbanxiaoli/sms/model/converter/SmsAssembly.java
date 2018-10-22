@@ -22,9 +22,7 @@ public class SmsAssembly {
         sms.setCode(sendSmsResponseVO.getCode());
         sms.setMessage(sendSmsResponseVO.getMessage());
         sms.setPhone(smsFormDTO.getPhone());
-        sms.setProjectName(smsFormDTO.getProjectName());
         sms.setCaptcha(captcha);
-        sms.setUserId(smsFormDTO.getUserId());
         sms.setType(smsFormDTO.getType());
 //        sms.setGmtCreated(System.currentTimeMillis());
 //        sms.setGmtModified(System.currentTimeMillis());

@@ -39,11 +39,11 @@ public class BillRecord extends GmtEntity {
     @ApiModelProperty(value = "对方用户名称", required = true)
     private String oppositeName;
 
-    @Column(nullable = false, columnDefinition = "varchar(32) COMMENT '白条编号'")
+    @Column(nullable = false, columnDefinition = "char(32) COMMENT '白条编号'")
     @ApiModelProperty(value = "白条编号", required = true)
     private String number;
 
-    @Column(columnDefinition = "varchar(32) COMMENT '订单编号'")
+    @Column(columnDefinition = "char(32) COMMENT '订单编号'")
     @ApiModelProperty(value = "订单编号")
     private String orderNumber;
 
