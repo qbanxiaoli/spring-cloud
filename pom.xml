@@ -70,6 +70,14 @@
 
     <build>
         <plugins>
+            <!--maven打包跳过测试类-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
             <!--添加Docker插件支持-->
             <plugin>
                 <groupId>com.spotify</groupId>

@@ -4,7 +4,7 @@ import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.RandomUtil;
 import com.qbanxiaoli.sms.dao.mapper.SmsMapper;
 import com.qbanxiaoli.sms.dao.repository.SmsRepository;
-import com.qbanxiaoli.sms.enums.SmsResponseEnum;
+import com.qbanxiaoli.sms.enums.response.SmsResponseEnum;
 import com.qbanxiaoli.sms.model.converter.SmsAssembly;
 import com.qbanxiaoli.sms.model.dto.SmsFormDTO;
 import com.qbanxiaoli.sms.model.entity.Sms;

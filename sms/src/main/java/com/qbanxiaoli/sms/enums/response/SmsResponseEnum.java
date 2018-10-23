@@ -1,4 +1,4 @@
-package com.qbanxiaoli.sms.enums;
+package com.qbanxiaoli.sms.enums.response;
 
 import com.qbanxiaoli.common.enums.ResponseEnum;
 import lombok.AllArgsConstructor;

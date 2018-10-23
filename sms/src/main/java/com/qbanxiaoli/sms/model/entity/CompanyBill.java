@@ -23,13 +23,13 @@ import java.math.BigDecimal;
 @ApiModel(value = "公司白条模型")
 public class CompanyBill extends GmtEntity {
 
-    @Column(nullable = false, columnDefinition = "char(32) COMMENT '餐厅id'")
-    @ApiModelProperty(value = "餐厅管理员id", required = true)
-    private String restaurantId;
-
     @Column(nullable = false, columnDefinition = "char(32) COMMENT '公司id'")
     @ApiModelProperty(value = "公司管理员id", required = true)
     private String companyId;
+
+    @Column(nullable = false, columnDefinition = "char(32) COMMENT '餐厅id'")
+    @ApiModelProperty(value = "餐厅管理员id", required = true)
+    private String restaurantId;
 
     @Column(nullable = false, columnDefinition = "char(32) COMMENT '白条编号'")
     @ApiModelProperty(value = "白条编号", required = true)
