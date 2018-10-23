@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com</groupId>
-    <artifactId>sms-cloud</artifactId>
+    <artifactId>tool-cloud</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -14,8 +14,8 @@
         <module>eureka</module>
         <module>config</module>
         <module>authorization</module>
-        <module>zuul</module>
-        <module>sms</module>
+        <module>gateway</module>
+        <module>tool</module>
     </modules>
 
     <parent>

@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    loadbalancer:
+      # 开启重试机制
+      retry:
+        enabled: true
+    config:
+      profile: service
+      label: master
+      username: admin
+      password: 123456
+      fail-fast: true
+      discovery:
+        enabled: true
+        serviceId: config-server
+      retry:
+        # 配置重试次数，默认为6
+        max-attempts: 6
+        # 间隔乘数，默认1.1
+        multiplier: 1.1
+        # 初始重试间隔时间，默认1000ms
+        initial-interval: 1000
+        # 最大间隔时间，默认2000ms
+        max-interval: 2000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@${eureka.host:123.207.85.155}:${eureka.port:1111}/eureka/
+
