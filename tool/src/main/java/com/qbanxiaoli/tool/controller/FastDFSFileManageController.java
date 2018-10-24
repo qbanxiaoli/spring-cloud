@@ -1,6 +1,7 @@
 package com.qbanxiaoli.tool.controller;
 
 import com.qbanxiaoli.common.bean.FastDFSClient;
+import com.qbanxiaoli.common.enums.CommonResponseEnum;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.FileUtil;
 import com.qbanxiaoli.tool.enums.SmsResponseEnum;
@@ -55,25 +56,29 @@ public class FastDFSFileManageController {
 
     @ApiOperation(value = "下载文件")
     @PostMapping("/download")
-    public void downloadFile(@ApiParam(name = "downloadFormDTO", value = "文件下载数据传输模型", required = true)
-                             @Validated @RequestBody DownloadFormDTO downloadFormDTO,
-                             HttpServletResponse response) {
+    public ResponseVO downloadFile(@ApiParam(name = "downloadFormDTO", value = "文件下载数据传输模型", required = true)
+                                   @Validated @RequestBody DownloadFormDTO downloadFormDTO,
+                                   HttpServletResponse response) {
         log.info("下载文件");
+        log.info("文件访问地址为：" + FastDFSClient.getResAccessUrl(downloadFormDTO.getFileUrl()));
         String fileUrl = downloadFormDTO.getFileUrl();
         String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
         response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
         response.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
         byte[] bytes = FastDFSClient.downloadFile(fileUrl);
-        InputStream inputStream = null;
         //利用字节数组输入流录入字节数组
-        if (bytes != null) {
-            inputStream = new BufferedInputStream(new ByteArrayInputStream(bytes));
+        if (bytes == null) {
+            log.error("下载文件失败");
+            return new ResponseVO(CommonResponseEnum.FAILURE);
         }
+        InputStream inputStream = new BufferedInputStream(new ByteArrayInputStream(bytes));
         try {
             FileUtil.fileUpload(inputStream, response.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        log.info("下载文件成功");
+        return new ResponseVO(CommonResponseEnum.SUCCESS);
     }
 
 }
