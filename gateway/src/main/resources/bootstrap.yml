@@ -2,6 +2,10 @@ spring:
   application:
     name: gateway
   cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+
     loadbalancer:
       # 开启重试机制
       retry:
