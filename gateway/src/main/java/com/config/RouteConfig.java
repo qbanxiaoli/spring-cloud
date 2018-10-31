@@ -1,4 +1,4 @@
-package com;
+package com.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,17 +21,20 @@ import reactor.core.publisher.Mono;
 @Configuration
 public class RouteConfig {
 
+    //这里为支持的请求头，如果有自定义的header字段请自己添加（不知道为什么不能使用*）
+    private static final String ALLOWED_HEADERS = "token, Content-Type";
+
     @Bean
     public WebFilter corsFilter() {
-        return (ServerWebExchange serverWebExchange, WebFilterChain webFilterChain) -> {
-            ServerHttpRequest request = serverWebExchange.getRequest();
+        return (ServerWebExchange exchange, WebFilterChain chain) -> {
+            ServerHttpRequest request = exchange.getRequest();
             if (CorsUtils.isCorsRequest(request)) {
-                ServerHttpResponse response = serverWebExchange.getResponse();
+                ServerHttpResponse response = exchange.getResponse();
                 HttpHeaders headers = response.getHeaders();
                 headers.add("Access-Control-Allow-Origin", "*");
                 headers.add("Access-Control-Allow-Methods", "*");
-                headers.add("Access-Control-Max-Age", "18000L");
-                headers.add("Access-Control-Allow-Headers", "*");
+                headers.add("Access-Control-Max-Age", "3600");
+                headers.add("Access-Control-Allow-Headers", ALLOWED_HEADERS);
                 headers.add("Access-Control-Expose-Headers", "*");
                 headers.add("Access-Control-Allow-Credentials", "true");
                 if (request.getMethod() == HttpMethod.OPTIONS) {
@@ -39,7 +42,7 @@ public class RouteConfig {
                     return Mono.empty();
                 }
             }
-            return webFilterChain.filter(serverWebExchange);
+            return chain.filter(exchange);
         };
     }
 

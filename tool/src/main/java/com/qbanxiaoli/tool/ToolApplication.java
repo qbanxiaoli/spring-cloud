@@ -12,7 +12,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = {"com.qbanxiaoli"})
+@ComponentScan("com.qbanxiaoli")
 @MapperScan("com.qbanxiaoli.tool.dao.mapper")
 @Import(FdfsClientConfig.class)
 @EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)

@@ -1,10 +1,7 @@
 package com.qbanxiaoli.common.model.entity;
 
-import com.quhaodian.data.entity.UUIDEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,7 +40,9 @@ public class GmtEntity extends IdEntity {
      */
     @PrePersist
     public void prePersist() {
-        this.setUuid(UUID.randomUUID().toString().replace("-", ""));
+        if (this.getUuid() == null) {
+            this.setUuid(UUID.randomUUID().toString().replace("-", ""));
+        }
         this.setGmtCreated(System.currentTimeMillis());
         this.setGmtModified(System.currentTimeMillis());
     }

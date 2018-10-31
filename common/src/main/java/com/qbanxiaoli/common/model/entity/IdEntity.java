@@ -38,7 +38,9 @@ public class IdEntity {
      */
     @PrePersist
     public void prePersist() {
-        this.setUuid(UUID.randomUUID().toString().replace("-", ""));
+        if (this.getUuid() == null) {
+            this.setUuid(UUID.randomUUID().toString().replace("-", ""));
+        }
     }
 
 }
