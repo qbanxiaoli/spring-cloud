@@ -10,4 +10,6 @@ import com.qbanxiaoli.tool.model.entity.FastDFSFile;
  */
 public interface FastDFSFileRepository extends BaseRepository<FastDFSFile, Long> {
 
+    FastDFSFile findByStorePath(String fileUrl);
+
 }

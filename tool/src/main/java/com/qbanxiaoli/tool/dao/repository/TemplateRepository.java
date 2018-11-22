@@ -16,6 +16,6 @@ public interface TemplateRepository extends BaseRepository<Template, Long> {
      * @author qbanxiaoli
      * @description 查询短信模版
      */
-    Template findTemplateByType(Integer type);
+    Template findByType(Integer type);
 
 }

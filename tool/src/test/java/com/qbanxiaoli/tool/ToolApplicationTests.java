@@ -1,4 +1,4 @@
-package com.qbanxiaoli.sms;
+package com.qbanxiaoli.tool;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -35,7 +35,7 @@ eureka:
     # 服务端在收到最后一次心跳之后的等待时间上限（服务时效的时间），默认为90秒
     lease-expiration-duration-in-seconds: 90
   client:
-    # 服务注册中心地址，多个地址用 , 隔开
+    # 服务注册中心地址,多个地址用,隔开
     service-url:
       defaultZone: http://admin:123456@${eureka.host:123.207.85.155}:${eureka.port:1111}/eureka/
 

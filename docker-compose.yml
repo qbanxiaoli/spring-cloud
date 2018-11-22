@@ -19,24 +19,24 @@ services:
     depends_on:
     - eureka
   # 短信服务
-  sms:
-    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/sms
+  tool:
+    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/tool
     restart: always
     tty: true
-    container_name: sms
+    container_name: tool
     ports:
     - "8001:8001"
     depends_on:
     - eureka
     - config
     volumes:
-    - ${HOME}/sms/logs/sms:/logs/sms
+    - ${HOME}/sms/logs/sms:/logs/tool
   # 网关
-  zuul:
-    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/zuul
+  gateway:
+    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/gateway
     restart: always
     tty: true
-    container_name: zuul
+    container_name: gateway
     ports:
     - "8000:8000"
     depends_on:

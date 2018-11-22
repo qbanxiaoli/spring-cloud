@@ -1,4 +1,17 @@
 spring:
+  # 默认使用dev环境
+  profiles:
+    active: @spring.profiles.active@
+  # i18n configuration(添加语言国际化支持)
+  messages:
+    basename: i18n/messages
+  # 时间戳统一转换
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  # 不检查/templates/模板路径
+  freemarker:
+    checkTemplateLocation: false
   jpa:
     # Specify the DBMS
     database: MYSQL
@@ -17,13 +30,6 @@ spring:
     # 使用支持事务的数据库方言
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: true
-  # i18n configuration(添加语言国际化支持)
-  messages:
-    basename: i18n/messages
-
-  # 不检查/templates/模板路径
-  freemarker:
-    checkTemplateLocation: false
 
 # pagehelper分页插件
 pagehelper:
@@ -41,3 +47,15 @@ mybatis:
   configuration:
     # 开启驼峰命名转换
     map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+
+security:
+  oauth2:
+    client:
+      client-id: client
+      client-secret: toolsecret
+      access-token-uri: http://localhost:8081/oauth/token
+      user-authorization-uri: http://localhost:8081/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:1111
+      prefer-token-info: false

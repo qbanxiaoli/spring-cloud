@@ -171,7 +171,7 @@
     <!-- 4. 最终的策略 -->
     <!-- 4.1 开发环境:打印控制台-->
     <springProfile name="dev">
-        <logger name="com.qbanxiaoli.sms" level="debug"/>
+        <logger name="com.qbanxiaoli.tool" level="debug"/>
     </springProfile>
 
     <root level="info">

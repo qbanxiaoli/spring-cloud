@@ -1,4 +1,4 @@
-package com.qbanxiaoli.sms.fastdfs;
+package com.qbanxiaoli.tool.fastdfs;
 
 import com.qbanxiaoli.common.bean.FastDFSClient;
 import lombok.extern.slf4j.Slf4j;
@@ -26,12 +26,6 @@ public class FastDFSTest {
         String storePath = FastDFSClient.uploadFile(file);
         String filePath = FastDFSClient.getResAccessUrl(storePath);
         log.info("上传文件路径为：" + filePath);
-    }
-
-    @Test
-    public void download() {
-        boolean b = FastDFSClient.downloadFileToLocal("group1/M00/00/06/rBBkQ1vNmrCAHEv1AAPqBnoWbEk420.jpg");
-        log.info("文件下载结果：" + b);
     }
 
 }

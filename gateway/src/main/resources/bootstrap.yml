@@ -2,6 +2,23 @@ spring:
   application:
     name: gateway
   cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          # 设置允许跨域的路径
+          '[/**]':
+            # 允许所有访问源地址
+            allowedOrigins: "*"
+            # 允许所有请求方式
+            allowedMethods: "*"
+            # 允许所有请求头
+            allowedHeaders: "*"
+            # 设置响应报头，不能使用*号
+            exposedHeaders: "token, Content-Type, Content-Disposition"
+            # 是否允许证书，不再默认开启
+            allowCredentials: true
+            # 设置允许跨域时间为1800s
+            maxAge: 1800
     loadbalancer:
       # 开启重试机制
       retry:
@@ -30,3 +47,27 @@ eureka:
     service-url:
       defaultZone: http://admin:123456@${eureka.host:123.207.85.155}:${eureka.port:1111}/eureka/
 
+security:
+  oauth2:
+    sso:
+      login-path: /login
+    client:
+      client-id: client
+      client-secret: toolsecret
+      access-token-uri: http://localhost:8081/oauth/token
+      user-authorization-uri: http://localhost:8081/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:1111
+      prefer-token-info: false
+      jwt:
+        key-uri: http://localhost:8081/oauth/token_key
+        key-value: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApp32pTzO7PvyTmOl4uM6
+          /8eZsVkCFqTYLI/WWGAJTQwQU4U/yEMPySpUYPPHdWkzxRbY4cyWs0v+oD/ujyjR
+          vNyH/BXIxR/s+IPJd4NUbCgq5fMqnATePwMzJBm1l2igMbbYvrXxvMleBd9L7lBm
+          tn87Wz04wJ4GpQHnafuA0cU/MYJrhCxKN5bNwKgAw/U7pWu4CFH1ky0U0u2ELBD7
+          7x2Iht40ir8fKLxLZBKRDA7+VeUn0K+7uUJDWHIozb7ZZmo1Ubao34JC7KYmkWYX
+          YrIGNytMseae3t5Wm2rSm7XQaBVfZjszqyNO4IffVYAeDyWvVKRzIwyDwBq+w+kG
+          KQIDAQAB
+          -----END PUBLIC KEY-----

@@ -4,6 +4,8 @@ import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.tool.model.entity.FastDFSFile;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author qbanxiaoli
  * @description
@@ -12,11 +14,13 @@ import org.springframework.web.multipart.MultipartFile;
 public interface FastDFSFileService {
 
     /**
-     * @param multipartFile 待上传图片
+     * @param multipartFile 待上传文件
      * @return 请求响应
      * @author qbanxiaoli
-     * @description 上传图片
+     * @description 上传文件
      */
-    ResponseVO<FastDFSFile> uploadImage(MultipartFile multipartFile);
+    ResponseVO<FastDFSFile> uploadFile(MultipartFile multipartFile);
+
+    ResponseVO downloadFile(String fileUrl, HttpServletResponse response);
 
 }

@@ -1,6 +1,12 @@
 spring:
   application:
     name: authorization
+  security:
+    user:
+      # 认证使用的用户名
+      name: admin
+      # 认证使用的密码
+      password: 123456
   cloud:
     config:
       profile: db,service
@@ -25,4 +31,3 @@ eureka:
   client:
     service-url:
       defaultZone: http://admin:123456@${eureka.host:123.207.85.155}:${eureka.port:1111}/eureka/
-

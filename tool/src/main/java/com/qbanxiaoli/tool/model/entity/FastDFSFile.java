@@ -22,7 +22,7 @@ import javax.persistence.Entity;
 @ApiModel(value = "文件存储模型")
 public class FastDFSFile extends GmtEntity {
 
-    @Column(nullable = false, columnDefinition = "varchar(30) COMMENT '文件服务器访问地址'")
+    @Column(nullable = false, columnDefinition = "varchar(50) COMMENT '文件服务器访问地址'")
     @ApiModelProperty(value = "文件服务器访问地址", required = true)
     private String webServerUrl;
 
@@ -33,6 +33,10 @@ public class FastDFSFile extends GmtEntity {
     @Column(nullable = false, columnDefinition = "varchar(20) COMMENT '文件类型'")
     @ApiModelProperty(value = "文件类型", required = true)
     private String contentType;
+
+    @Column(nullable = false, columnDefinition = "varchar(50) COMMENT '文件名'")
+    @ApiModelProperty(value = "文件名", required = true)
+    private String fileName;
 
     @Column(nullable = false, columnDefinition = "varchar(10) COMMENT '文件扩展名'")
     @ApiModelProperty(value = "文件扩展名", required = true)

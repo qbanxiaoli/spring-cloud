@@ -43,7 +43,7 @@ public class SmsServiceImpl implements SmsService {
      */
     @Override
     public ResponseVO<SendSmsResponseVO> sendSms(SmsFormDTO smsFormDTO) {
-        Template template = templateRepository.findTemplateByType(smsFormDTO.getType());
+        Template template = templateRepository.findByType(smsFormDTO.getType());
         if (template == null) {
             log.warn("未找到对应短信模板");
             return new ResponseVO<>(SmsResponseEnum.TEMPLATE_NOT_FOUND);

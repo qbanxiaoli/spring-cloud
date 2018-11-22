@@ -1,4 +1,4 @@
-package com.qbanxiaoli.sms.i18n;
+package com.qbanxiaoli.tool.i18n;
 
 import com.qbanxiaoli.common.enums.CommonResponseEnum;
 import com.qbanxiaoli.common.model.vo.ResponseVO;

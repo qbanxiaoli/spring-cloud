@@ -1,10 +1,8 @@
 package com.qbanxiaoli.tool.controller;
 
-import com.qbanxiaoli.common.bean.FastDFSClient;
-import com.qbanxiaoli.common.enums.CommonResponseEnum;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.FileUtil;
-import com.qbanxiaoli.tool.enums.SmsResponseEnum;
+import com.qbanxiaoli.tool.enums.FileResponseEnum;
 import com.qbanxiaoli.tool.model.dto.DownloadFormDTO;
 import com.qbanxiaoli.tool.model.entity.FastDFSFile;
 import com.qbanxiaoli.tool.service.FastDFSFileService;
@@ -18,11 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author qbanxiaoli
@@ -30,6 +25,7 @@ import java.io.InputStream;
  * @create 2018/10/19 9:06 PM
  */
 @Slf4j
+@Validated
 @RestController
 @Api(tags = "文件写模块")
 @RequestMapping("/fastdfs_file")
@@ -49,9 +45,26 @@ public class FastDFSFileManageController {
         log.info("上传图片");
         if (multipartFile.isEmpty() || !FileUtil.isImage(multipartFile)) {
             log.warn("上传文件类型错误");
-            return new ResponseVO<>(SmsResponseEnum.FILE_CONTENT_TYPE_ERROR);
+            return new ResponseVO<>(FileResponseEnum.FILE_CONTENT_TYPE_ERROR);
         }
-        return fastDFSFileService.uploadImage(multipartFile);
+        return fastDFSFileService.uploadFile(multipartFile);
+    }
+
+    @ApiOperation(value = "上传文件")
+    @PostMapping("/upload")
+    public ResponseVO<FastDFSFile> uploadFile(@ApiParam(name = "file", value = "待上传文件", required = true)
+                                              @NotNull @RequestPart(value = "file") MultipartFile multipartFile) {
+        log.info("上传文件");
+        return fastDFSFileService.uploadFile(multipartFile);
+    }
+
+    @ApiOperation(value = "下载文件")
+    @GetMapping("/download")
+    public ResponseVO downloadFile(@ApiParam(name = "fileUrl", value = "文件路径", required = true)
+                                   @NotBlank @RequestParam("fileUrl") String fileUrl,
+                                   HttpServletResponse response) {
+        log.info("下载文件");
+        return fastDFSFileService.downloadFile(fileUrl, response);
     }
 
     @ApiOperation(value = "下载文件")
@@ -60,25 +73,7 @@ public class FastDFSFileManageController {
                                    @Validated @RequestBody DownloadFormDTO downloadFormDTO,
                                    HttpServletResponse response) {
         log.info("下载文件");
-        log.info("文件访问地址为：" + FastDFSClient.getResAccessUrl(downloadFormDTO.getFileUrl()));
-        String fileUrl = downloadFormDTO.getFileUrl();
-        String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
-        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
-        response.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
-        byte[] bytes = FastDFSClient.downloadFile(fileUrl);
-        //利用字节数组输入流录入字节数组
-        if (bytes == null) {
-            log.error("下载文件失败");
-            return new ResponseVO(CommonResponseEnum.FAILURE);
-        }
-        InputStream inputStream = new BufferedInputStream(new ByteArrayInputStream(bytes));
-        try {
-            FileUtil.fileUpload(inputStream, response.getOutputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        log.info("下载文件成功");
-        return new ResponseVO(CommonResponseEnum.SUCCESS);
+        return fastDFSFileService.downloadFile(downloadFormDTO.getFileUrl(), response);
     }
 
 }
