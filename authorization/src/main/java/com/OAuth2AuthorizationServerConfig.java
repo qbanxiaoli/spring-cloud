@@ -44,7 +44,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     }
 
     @Bean
-    public JwtTokenStore tokenStore() {
+    public JwtTokenStore jwtTokenStore() {
         return new JwtTokenStore(jwtAccessTokenConverter());
     }
 
@@ -56,8 +56,26 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        // 使用JdbcClientDetailsService客户端详情服务
-        clients.withClientDetails(getJdbcClientDetailsService());
+//        // 使用JdbcClientDetailsService客户端详情服务
+//        clients.withClientDetails(getJdbcClientDetailsService());
+        clients.inMemory()
+                .withClient("client1")
+                .secret("passwordforauthserver")
+                .redirectUris("http://localhost:8080/")
+                .authorizedGrantTypes("authorization_code", "refresh_token")
+                .scopes("myscope")
+                .autoApprove(true)
+                .accessTokenValiditySeconds(30)
+                .refreshTokenValiditySeconds(1800)
+                .and()
+                .withClient("client2")
+                .secret("passwordforauthserver")
+                .redirectUris("http://localhost:8081/")
+                .authorizedGrantTypes("authorization_code", "refresh_token")
+                .scopes("myscope")
+                .autoApprove(true)
+                .accessTokenValiditySeconds(30)
+                .refreshTokenValiditySeconds(1800);
     }
 
     //配置认证管理器以及用户信息业务实现
@@ -69,7 +87,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 .accessTokenConverter(jwtAccessTokenConverter())
                 // 配置tokenStore,需要配置userDetailsService，否则refresh_token会报错
                 .userDetailsService(userDetailsService)
-                .tokenStore(tokenStore());
+                .tokenStore(jwtTokenStore());
     }
 
     //配置认证规则，那些需要认证那些不需要
@@ -88,8 +106,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         // 导入证书
-        KeyStoreKeyFactory keyStoreKeyFactory =
-                new KeyStoreKeyFactory(new ClassPathResource("tcm.jks"), "tcmpass".toCharArray());
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("tcm.jks"), "tcmpass".toCharArray());
         converter.setKeyPair(keyStoreKeyFactory.getKeyPair("tcm"));
         return converter;
     }

@@ -53,15 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     protected UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("admin").password(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("admin")).authorities("USER").build());
+        manager.createUser(User.withUsername("admin").password(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("123456")).authorities("USER").build());
         return manager;
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService())
-                .passwordEncoder(passwordEncoder());
     }
 
 }

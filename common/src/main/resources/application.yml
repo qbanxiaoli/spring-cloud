@@ -48,14 +48,3 @@ mybatis:
     # 开启驼峰命名转换
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mapper/*.xml
-
-security:
-  oauth2:
-    client:
-      client-id: client
-      client-secret: toolsecret
-      access-token-uri: http://localhost:8081/oauth/token
-      user-authorization-uri: http://localhost:8081/oauth/authorize
-    resource:
-      user-info-uri: http://localhost:1111
-      prefer-token-info: false
