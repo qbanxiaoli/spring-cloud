@@ -32,11 +32,6 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-security</artifactId>
 		</dependency>
-		<!-- 本模块作为授权服务器，故添加spring-cloud-starter-oauth2依赖 -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-oauth2</artifactId>
-		</dependency>
 		<!-- 使用mysql数据库 -->
 		<dependency>
 			<groupId>mysql</groupId>

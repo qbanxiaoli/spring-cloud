@@ -2,7 +2,7 @@ version: '3.0'
 services:
   # 注册中心
   eureka:
-    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/eureka
+    image: eureka
     restart: always
     tty: true
     container_name: eureka
@@ -10,20 +10,24 @@ services:
     - "1111:1111"
   # 配置中心
   config:
-    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/config
+    image: config
     restart: always
     tty: true
     container_name: config
+    environment:
+    - JASYPT_PASSWORD=tool
     ports:
     - "8888:8888"
     depends_on:
     - eureka
-  # 短信服务
+  # 工具服务
   tool:
-    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/tool
+    image: tool
     restart: always
     tty: true
     container_name: tool
+    environment:
+    - JASYPT_PASSWORD=tool
     ports:
     - "8001:8001"
     depends_on:
@@ -33,10 +37,12 @@ services:
     - ${HOME}/sms/logs/sms:/logs/tool
   # 网关
   gateway:
-    image: registry.cn-hangzhou.aliyuncs.com/qbanxiaoli/gateway
+    image: gateway
     restart: always
     tty: true
     container_name: gateway
+    environment:
+    - JASYPT_PASSWORD=tool
     ports:
     - "8000:8000"
     depends_on:

@@ -30,8 +30,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <skipTests>true</skipTests>
-        <docker.registry>registry.cn-hangzhou.aliyuncs.com</docker.registry>
-        <docker.repository>qbanxiaoli</docker.repository>
     </properties>
 
     <dependencyManagement>
@@ -98,6 +96,12 @@
     </profiles>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <!--添加Docker插件支持-->
             <plugin>
@@ -106,11 +110,12 @@
                 <version>1.1.1</version>
                 <configuration>
                     <!-- 指定镜像名称 仓库/镜像名:标签 -->
-                    <imageName>${docker.registry}/${docker.repository}/${project.artifactId}</imageName>
+                    <imageName>${project.artifactId}</imageName>
                     <!-- 指定基础镜像，相当于Dockerfile中的FROM<image> -->
                     <baseImage>openjdk:11-jre-slim</baseImage>
                     <!-- 容器启动执行的命令，相当于Dockerfile中的ENTRYPOINT -->
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <!--suppress UnresolvedMavenProperty -->
+                    <entryPoint>["java","-Djasypt.encryptor.password=${JASYPT_PASSWORD}","-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <resources>
                         <resource><!-- 指定资源文件 -->
                             <targetPath>/</targetPath><!-- 指定要复制的目录路径，这里是当前目录 -->
