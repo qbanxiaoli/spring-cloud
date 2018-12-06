@@ -48,3 +48,28 @@ mybatis:
     # 开启驼峰命名转换
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mapper/*.xml
+
+security:
+  oauth2:
+    sso:
+      login-path: /login
+    client:
+      client-id: client
+      client-secret: toolsecret
+      access-token-uri: http://localhost:8081/oauth/token
+      user-authorization-uri: http://localhost:8081/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:1111
+      prefer-token-info: false
+      jwt:
+        key-uri: http://localhost:8081/oauth/token_key
+        key-value: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApp32pTzO7PvyTmOl4uM6
+          /8eZsVkCFqTYLI/WWGAJTQwQU4U/yEMPySpUYPPHdWkzxRbY4cyWs0v+oD/ujyjR
+          vNyH/BXIxR/s+IPJd4NUbCgq5fMqnATePwMzJBm1l2igMbbYvrXxvMleBd9L7lBm
+          tn87Wz04wJ4GpQHnafuA0cU/MYJrhCxKN5bNwKgAw/U7pWu4CFH1ky0U0u2ELBD7
+          7x2Iht40ir8fKLxLZBKRDA7+VeUn0K+7uUJDWHIozb7ZZmo1Ubao34JC7KYmkWYX
+          YrIGNytMseae3t5Wm2rSm7XQaBVfZjszqyNO4IffVYAeDyWvVKRzIwyDwBq+w+kG
+          KQIDAQAB
+          -----END PUBLIC KEY-----

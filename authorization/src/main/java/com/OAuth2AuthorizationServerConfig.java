@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
@@ -34,6 +36,8 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     //客户端信息
     private final DataSource dataSource;
 
+    //密码加密器
+
     @Autowired
     public OAuth2AuthorizationServerConfig(AuthenticationManager authenticationManager,
                                            UserDetailsService userDetailsService,
@@ -60,7 +64,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 //        clients.withClientDetails(getJdbcClientDetailsService());
         clients.inMemory()
                 .withClient("client1")
-                .secret("passwordforauthserver")
+                .secret("123456")
                 .redirectUris("http://localhost:8080/")
                 .authorizedGrantTypes("authorization_code", "refresh_token")
                 .scopes("myscope")

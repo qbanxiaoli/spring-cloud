@@ -11,12 +11,8 @@ spring:
       discovery:
         service-id: config-server
         enabled: true
-
 eureka:
   client:
     service-url:
       defaultZone: http://admin:123456@${eureka.host:localhost}:${eureka.port:1111}/eureka/
 
-feign:
-  hystrix:
-    enabled: true

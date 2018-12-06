@@ -30,7 +30,7 @@ public class FastDFSFile extends GmtEntity {
     @ApiModelProperty(value = "文件路径", required = true)
     private String storePath;
 
-    @Column(nullable = false, columnDefinition = "varchar(20) COMMENT '文件类型'")
+    @Column(nullable = false, columnDefinition = "varchar(50) COMMENT '文件类型'")
     @ApiModelProperty(value = "文件类型", required = true)
     private String contentType;
 

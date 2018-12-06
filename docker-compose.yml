@@ -6,6 +6,8 @@ services:
     restart: always
     tty: true
     container_name: eureka
+    environment:
+    - TZ=Asia/Shanghai
     ports:
     - "1111:1111"
   # 配置中心
@@ -15,6 +17,7 @@ services:
     tty: true
     container_name: config
     environment:
+    - TZ=Asia/Shanghai
     - JASYPT_PASSWORD=tool
     ports:
     - "8888:8888"
@@ -27,14 +30,12 @@ services:
     tty: true
     container_name: tool
     environment:
+    - TZ=Asia/Shanghai
     - JASYPT_PASSWORD=tool
     ports:
     - "8001:8001"
-    depends_on:
-    - eureka
-    - config
     volumes:
-    - ${HOME}/sms/logs/sms:/logs/tool
+    - ${HOME}/tool/logs:${HOME}/logs
   # 网关
   gateway:
     image: gateway
@@ -42,11 +43,9 @@ services:
     tty: true
     container_name: gateway
     environment:
+    - TZ=Asia/Shanghai
     - JASYPT_PASSWORD=tool
     ports:
     - "8000:8000"
-    depends_on:
-    - eureka
-    - config
 
 

@@ -14,9 +14,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //调用父类构造函数，开启表单认证和http认证
+        // 调用父类构造函数，开启表单认证和http认证
         super.configure(http);
-        //关闭csrf保护
+        // 关闭csrf保护
         http.csrf().disable();
     }
 
