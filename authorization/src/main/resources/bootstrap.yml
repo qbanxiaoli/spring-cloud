@@ -1,12 +1,6 @@
 spring:
   application:
     name: authorization
-  security:
-    user:
-      # 认证使用的用户名
-      name: admin
-      # 认证使用的密码
-      password: 123456
   cloud:
     config:
       profile: db,service
