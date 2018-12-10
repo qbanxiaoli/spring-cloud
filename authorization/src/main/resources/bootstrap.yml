@@ -14,7 +14,7 @@ spring:
 
 eureka:
   instance:
-    instance-id: ${eureka.instance.ip-address:localhost}:${server.port}
+    instance-id: ${eureka.instance.ip-address:${spring.cloud.client.ip-address}}:${server.port}
     # 是否优先使用IP地址作为主机名的标识，默认为false
     prefer-ip-address: true
     # 客户端向服务端发送心跳（服务续约任务）的调用时间间隔，默认为30秒
