@@ -3,7 +3,7 @@ spring:
     name: gateway
   cloud:
     config:
-      profile: service
+      profile: application
       label: master
       username: admin
       password: 123456
@@ -15,5 +15,5 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://admin:123456@${eureka.host:localhost}:${eureka.port:1111}/eureka/
+      defaultZone: http://admin:123456@${eureka.instance.ip-address:localhost}:${eureka.port:1111}/eureka/
 

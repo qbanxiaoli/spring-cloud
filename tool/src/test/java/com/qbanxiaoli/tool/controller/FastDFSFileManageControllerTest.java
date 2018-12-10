@@ -42,12 +42,12 @@ public class FastDFSFileManageControllerTest {
 
     @Test
     public void uploadImage() throws Exception {
-        String fileUrl = this.getClass().getResource("/picture.jpg").getPath();
+        String fileUrl = this.getClass().getResource("/picture.png").getPath();
         File file = new File(fileUrl);
         MockMultipartFile mockMultipartFile = new MockMultipartFile(
                 "file", //文件名
                 file.getName(), //originalName 相当于上传文件在客户机上的文件名
-                ContentType.IMAGE_JPEG.toString(), //文件类型
+                ContentType.IMAGE_PNG.toString(), //文件类型
                 new FileInputStream(file) //文件流
         );
         this.mockMvc.perform(multipart("/fastdfs_file/image/upload")

@@ -15,13 +15,6 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://admin:123456@${eureka.host:localhost}:${eureka.port:1111}/eureka/
-
-encrypt:
-  key-store:
-    location: classpath:/tcm.jks
-    alias: tcm
-    password: tcmpass
-    secret: tcmpass
+      defaultZone: http://admin:123456@${eureka.instance.ip-address:localhost}:${eureka.port:1111}/eureka/
 
 
