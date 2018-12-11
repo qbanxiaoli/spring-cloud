@@ -27,19 +27,24 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- 本模块需要操作数据库，故添加spring-boot-starter-data-jpa依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <!-- 本模块需要进行安全认证，故添加spring-cloud-starter-security依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
         </dependency>
         <!-- 本模块需要读取配置中心，故添加spring-cloud-starter-config依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
+        <!-- 本模块需要操作数据库，故添加spring-boot-starter-data-jpa依赖 -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-security</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <!-- 使用mysql数据库 -->
         <dependency>
@@ -63,11 +68,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        <!-- 阿里大于短信sdk -->
+        <!-- 使用fastdfs -->
         <dependency>
-            <groupId>com.quhaodian.discover</groupId>
-            <artifactId>discover-plug-alidayu</artifactId>
-            <version>1.8.10</version>
+            <groupId>com.github.tobato</groupId>
+            <artifactId>fastdfs-client</artifactId>
+            <version>1.26.2</version>
         </dependency>
         <!-- 邮件支持 -->
         <dependency>
@@ -101,12 +106,6 @@
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-apt</artifactId>
         </dependency>
-        <!-- 使用fastdfs -->
-        <dependency>
-            <groupId>com.github.tobato</groupId>
-            <artifactId>fastdfs-client</artifactId>
-            <version>1.26.2</version>
-        </dependency>
         <!-- 条形码、二维码生成 -->
         <dependency>
             <groupId>com.google.zxing</groupId>
@@ -128,23 +127,6 @@
                 <configuration>
                     <skipDockerBuild>true</skipDockerBuild>
                 </configuration>
-            </plugin>
-            <!--添加QueryDSL插件支持-->
-            <plugin>
-                <groupId>com.mysema.maven</groupId>
-                <artifactId>apt-maven-plugin</artifactId>
-                <version>1.1.3</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>process</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>target/generated-sources/java</outputDirectory>
-                            <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

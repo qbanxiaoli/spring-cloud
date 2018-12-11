@@ -1,5 +1,6 @@
-package com;
+package com.config;
 
+import com.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -80,9 +81,18 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 // 配置tokenStore,需要配置userDetailsService，否则refresh_token会报错
                 .userDetailsService(userDetailsService())
                 .tokenStore(jwtTokenStore());
+
+        // 配置TokenServices参数 注意这个是默认的uuid的存储设置 与jwt无关 如果要用jwt请注释掉
+//        DefaultTokenServices tokenServices = new DefaultTokenServices();
+//        tokenServices.setTokenStore(endpoints.getTokenStore());
+//        tokenServices.setSupportRefreshToken(false);
+//        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
+//        tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
+//        tokenServices.setAccessTokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(30)); // 30天
+//        endpoints.tokenServices(tokenServices);
     }
 
-    //配置认证规则，那些需要认证那些不需要
+    //配置认证规则，哪些需要认证哪些不需要
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
         oauthServer

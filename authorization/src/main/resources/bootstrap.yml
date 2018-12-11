@@ -24,6 +24,6 @@ eureka:
   client:
     # 服务注册中心地址,多个地址用,隔开
     service-url:
-      defaultZone: http://admin:123456@${eureka.instance.ip-address:localhost}:${eureka.port:1111}/eureka/
+      defaultZone: http://admin:123456@${eureka.host:localhost}:${eureka.port:1111}/eureka/
 
 

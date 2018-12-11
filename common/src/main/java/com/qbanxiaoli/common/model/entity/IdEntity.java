@@ -21,11 +21,11 @@ public class IdEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "bigint COMMENT '自增主键'")
+    @Column(insertable = false, updatable = false, columnDefinition = "bigint COMMENT '自增主键'")
     @ApiModelProperty(value = "自增主键", required = true)
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "char(32) COMMENT '唯一标识'")
+    @Column(nullable = false, updatable = false, columnDefinition = "char(32) COMMENT '唯一标识'")
     @ApiModelProperty(value = "唯一标识", required = true)
     private String uuid;
 

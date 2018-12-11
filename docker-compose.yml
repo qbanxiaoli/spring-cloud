@@ -20,6 +20,7 @@ services:
     environment:
     - TZ=Asia/Shanghai
     - EUREKA_INSTANCE_IP-ADDRESS=192.168.21.61
+    - EUREKA_HOST=192.168.21.61
     - JASYPT_PASSWORD=tool
     ports:
     - "8888:8888"
@@ -32,6 +33,7 @@ services:
     environment:
     - TZ=Asia/Shanghai
     - EUREKA_INSTANCE_IP-ADDRESS=192.168.21.61
+    - EUREKA_HOST=192.168.21.61
     - JASYPT_PASSWORD=tool
     ports:
     - "8001:8001"
@@ -46,6 +48,7 @@ services:
     environment:
     - TZ=Asia/Shanghai
     - EUREKA_INSTANCE_IP-ADDRESS=192.168.21.61
+    - EUREKA_HOST=192.168.21.61
     - JASYPT_PASSWORD=tool
     ports:
     - "8000:8000"
