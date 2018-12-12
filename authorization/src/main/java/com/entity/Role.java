@@ -1,7 +1,6 @@
 package com.entity;
 
-import com.qbanxiaoli.common.model.entity.GmtEntity;
-import io.swagger.annotations.ApiModelProperty;
+import com.qbanxiaoli.common.model.entity.IdEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Table;
@@ -18,7 +17,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(appliesTo = "role", comment = "权限表")
-public class Role extends GmtEntity implements GrantedAuthority {
+public class Role extends IdEntity implements GrantedAuthority {
 
     @Column(nullable = false, updatable = false, columnDefinition = "char(32) COMMENT '用户id'")
     private String userId;

@@ -15,7 +15,7 @@ public class JwtTest {
 
     @Test
     public void test() {
-        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDQ3MTExNDMsInV1aWQiOiJhZDJlMzMzMTk3NGM0Y2RhYmY1MTBmNDlmNDliNTdiMSIsInVzZXJfbmFtZSI6ImFkbWluIiwianRpIjoiNTVkZWQ0YjYtZThjNC00OWI3LTljNTQtNzdkZTk1OWZiODY4IiwiY2xpZW50X2lkIjoiaHEiLCJzY29wZSI6WyJ4eCJdfQ.71FTWTCxzJYiE_0_1QyGtxWaSfW7eS0WWo36Av8xPgE";
+        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDQ3MTEzNjAsInV1aWQiOiJhZDJlMzMzMTk3NGM0Y2RhYmY1MTBmNDlmNDliNTdiMSIsInVzZXJfbmFtZSI6ImFkbWluIiwianRpIjoiZTJkM2MxOWQtMGVmMS00Y2Q0LWI2MDctNDJmNzBhYjg1MGYwIiwiY2xpZW50X2lkIjoiaHEiLCJzY29wZSI6WyJ4eCJdfQ.cz41a5RphfVavmU61045lPXQm4WJZGTNGFiL_9XP5bU";
         Jwt jwt = JwtHelper.decode(token);
         log.info(jwt.toString());
     }

@@ -42,26 +42,20 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
         this.dataSource = dataSource;
     }
 
-    //客户端详情保存位置
-    @Bean
-    public JdbcClientDetailsService getJdbcClientDetailsService() {
-        return new JdbcClientDetailsService(dataSource);
-    }
-
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // 使用JdbcClientDetailsService客户端详情服务
-        clients.withClientDetails(getJdbcClientDetailsService());
+        clients.withClientDetails(new JdbcClientDetailsService(dataSource));
     }
 
     // 使用非对称加密算法来对Token进行签名
     @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+    public JwtAccessToken jwtAccessToken() {
+        JwtAccessToken jwtAccessToken = new JwtAccessToken();
         // 导入证书
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("tcm.jks"), "tcmpass".toCharArray());
-        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("tcm"));
-        return converter;
+        jwtAccessToken.setKeyPair(keyStoreKeyFactory.getKeyPair("tcm"));
+        return jwtAccessToken;
     }
 
     //配置认证管理器以及用户信息业务实现
@@ -70,7 +64,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
         endpoints
                 .authenticationManager(authenticationManager)
                 // 配置JwtAccessToken转换器
-                .accessTokenConverter(new JwtAccessToken())
+                .accessTokenConverter(jwtAccessToken())
                 // 配置tokenStore,需要配置userDetailsService，否则refresh_token会报错
                 .userDetailsService(userService);
     }

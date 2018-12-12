@@ -1,17 +1,12 @@
 package com.jwt;
 
-import com.entity.Role;
 import com.entity.User;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtClaimsSetVerifier;
 
-import javax.crypto.SecretKey;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author qbanxiaoli
