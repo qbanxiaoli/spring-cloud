@@ -10,4 +10,6 @@ import com.qbanxiaoli.common.dao.repository.BaseRepository;
  */
 public interface UserRepository extends BaseRepository<User, Long> {
 
+    User findByUsername(String username);
+
 }

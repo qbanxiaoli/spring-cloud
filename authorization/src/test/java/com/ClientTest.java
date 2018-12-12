@@ -7,6 +7,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
@@ -22,11 +25,16 @@ public class ClientTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Test
     public void Test() {
         User user = new User();
         user.setUsername("admin");
-        user.setPassword("123456");
+        user.setPassword(passwordEncoder().encode("123456"));
         userRepository.save(user);
     }
 
