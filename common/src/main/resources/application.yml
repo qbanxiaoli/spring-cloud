@@ -64,12 +64,24 @@ security:
       jwt:
         key-uri: http://localhost:8081/oauth/token_key
         key-value: |
-          -----BEGIN PUBLIC KEY-----
-          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApp32pTzO7PvyTmOl4uM6
-          /8eZsVkCFqTYLI/WWGAJTQwQU4U/yEMPySpUYPPHdWkzxRbY4cyWs0v+oD/ujyjR
-          vNyH/BXIxR/s+IPJd4NUbCgq5fMqnATePwMzJBm1l2igMbbYvrXxvMleBd9L7lBm
-          tn87Wz04wJ4GpQHnafuA0cU/MYJrhCxKN5bNwKgAw/U7pWu4CFH1ky0U0u2ELBD7
-          7x2Iht40ir8fKLxLZBKRDA7+VeUn0K+7uUJDWHIozb7ZZmo1Ubao34JC7KYmkWYX
-          YrIGNytMseae3t5Wm2rSm7XQaBVfZjszqyNO4IffVYAeDyWvVKRzIwyDwBq+w+kG
-          KQIDAQAB
-          -----END PUBLIC KEY-----
+          -----BEGIN CERTIFICATE-----
+          MIIDbTCCAlWgAwIBAgIECFdStTANBgkqhkiG9w0BAQsFADBnMQswCQYDVQQGEwJV
+          UzEOMAwGA1UECBMFU3RhdGUxDTALBgNVBAcTBENpdHkxFTATBgNVBAoTDE9yZ2Fu
+          aXphdGlvbjENMAsGA1UECxMEVW5pdDETMBEGA1UEAxMKV2ViIFNlcnZlcjAeFw0x
+          ODEyMTMxNDU3MDJaFw0xOTAzMTMxNDU3MDJaMGcxCzAJBgNVBAYTAlVTMQ4wDAYD
+          VQQIEwVTdGF0ZTENMAsGA1UEBxMEQ2l0eTEVMBMGA1UEChMMT3JnYW5pemF0aW9u
+          MQ0wCwYDVQQLEwRVbml0MRMwEQYDVQQDEwpXZWIgU2VydmVyMIIBIjANBgkqhkiG
+          9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwafLDxERCDcTzZ1dla9RYvG4dwKJmceKSc/c
+          ZSxkPcS6GVVvvh0//bO3ymxLLcCf5fYzVMxJwb+QBsrJZWcf5CsRqT1CmoV3BaUw
+          hgKHiygR4XfvNoFXk6D5ws+ANXTS8q66WgrDphmWwCPXSmVBJw7ln/026F7sDDNz
+          vUQtNeDHy1uu4OdU1kS++tv09D6+uhhAaiElU/rtDuJ0F0+1Q/Qgc6fCzaoxs5gz
+          Cj6BiUJ1muTrXkoUacD5KanJ9qT1RKvMRaODJp/ya4DyDRk2E6hbUhSKay0YUnr9
+          lF5zPZSeBraN6+v85pKzBXa6iejn+/ieK1fWByX7qEZnMzTwNQIDAQABoyEwHzAd
+          BgNVHQ4EFgQU7NddWW1zgInW3aqeyevLsGq60mUwDQYJKoZIhvcNAQELBQADggEB
+          AEPNk8Ok6/12bl8WV6onT5GXDUzVH9LdX7aAxlt6yAx/YGPN8/LjzxfQPv3z2BK1
+          4r2pk+J1tgtB8CnTTq/k8EjKqAh2OsgRXDke1Y4q/SgmERnm0VW/5vL3kGWlyefO
+          RPYXnL1jPGx+u2vlGGryHjKGFE0or7Ao7hE4eSLmg+xlbf2oL4gnJYqtzUL2rCs6
+          EymdWK720BpblRiS8oo1qG7uRoZqboCCi5hRhZXVKrwJky92jkVeO7gwyIaYS5Ag
+          EEEI0xJr35nVk40+eCw21TUULILxxKtBCXeQrah0SbmJsAcFccwfkrCFUxMVOJ4Z
+          xIEdpg1ladF39e6Jy+pon8I=
+          -----END CERTIFICATE-----

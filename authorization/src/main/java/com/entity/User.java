@@ -18,14 +18,14 @@ import java.util.List;
  */
 @Getter
 @Setter
-@Entity
-@Table(appliesTo = "user", comment = "用户表")
+@Entity(name = "oauth_user")
+@Table(appliesTo = "oauth_user", comment = "用户表")
 public class User extends GmtEntity implements UserDetails {
 
-    @Column(nullable = false, columnDefinition = "varchar(50) COMMENT '用户名'")
+    @Column(nullable = false, unique = true, columnDefinition = "varchar(50) COMMENT '用户名'")
     private String username;
 
-    @Column(nullable = false, columnDefinition = "varchar(100) COMMENT '密码'")
+    @Column(columnDefinition = "varchar(100) COMMENT '密码'")
     private String password;
 
     @Column(nullable = false, columnDefinition = "tinyint(1) DEFAULT '1' COMMENT '账户是否过期'")
@@ -40,9 +40,9 @@ public class User extends GmtEntity implements UserDetails {
     @Column(nullable = false, columnDefinition = "tinyint(1) DEFAULT '1' COMMENT '账户是否有效'")
     private boolean enabled = true;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId", referencedColumnName = "uuid")
-    private List<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "oauth_user_authority", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
+    private List<Authority> authorityList;
 
     @Transient
     private Collection<? extends GrantedAuthority> authorities;

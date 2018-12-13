@@ -6,7 +6,9 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author qbanxiaoli
@@ -21,9 +23,14 @@ public class JwtAccessToken extends JwtAccessTokenConverter {
         //设置过期时间
         defaultOAuth2AccessToken.setExpiration(new Date(System.currentTimeMillis() + 1000 * 3600 * 24));
         // 设置额外用户信息
-        String uuid = ((User) authentication.getPrincipal()).getUuid();
+        User user = ((User) authentication.getPrincipal());
+        List<String> authorities = new ArrayList<>();
+        user.getAuthorityList().forEach(authority -> {
+            authorities.add(authority.getAuthority());
+        });
         // 将用户信息添加到token额外信息中
-        defaultOAuth2AccessToken.getAdditionalInformation().put("uuid", uuid);
+        defaultOAuth2AccessToken.getAdditionalInformation().put("uuid", user.getUuid());
+        defaultOAuth2AccessToken.getAdditionalInformation().put("authorities", authorities);
         return super.enhance(defaultOAuth2AccessToken, authentication);
     }
 

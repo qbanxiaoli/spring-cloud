@@ -1,6 +1,6 @@
 package com.service;
 
-import com.entity.Role;
+import com.entity.Authority;
 import com.entity.User;
 import com.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -36,11 +36,16 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("用户名不存在");
         }
+        log.info("登录用户: " + user.getUsername());
+        log.info("用户ID: " + user.getUuid());
+        log.info("用户权限列表:");
+        user.getAuthorityList().forEach(authority -> {
+            log.info(authority.getAuthority());
+        });
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         //用于添加用户的权限。只要把用户权限添加到authorities 就万事大吉。
-        for (Role role : user.getRoles()) {
+        for (Authority role : user.getAuthorityList()) {
             authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
-            log.info("loadUserByUsername: " + user);
         }
         user.setAuthorities(authorities); //用于登录时 @AuthenticationPrincipal 标签取值
         return user;

@@ -9,8 +9,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 /**
  * @author Q版小李
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Api(tags = "短信写模块")
 @RequestMapping("/sms")
+@PreAuthorize("hasRole('ROLE_TCM_EMPLOYEE')")
 public class SmsManageController {
 
     private final SmsService smsService;
@@ -28,6 +32,11 @@ public class SmsManageController {
     @Autowired
     public SmsManageController(SmsService smsService) {
         this.smsService = smsService;
+    }
+
+    @GetMapping("/user")
+    public Principal user(Principal user) {
+        return user;
     }
 
     @ApiOperation(value = "发送短信验证码")

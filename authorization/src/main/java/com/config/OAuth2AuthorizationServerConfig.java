@@ -3,16 +3,19 @@ package com.config;
 import com.jwt.JwtAccessToken;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.bootstrap.encrypt.KeyProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 import javax.sql.DataSource;
@@ -25,6 +28,8 @@ import javax.sql.DataSource;
 @Configuration
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
+    private final KeyProperties keyProperties;
+
     private final UserService userService;
 
     //认证管理器
@@ -34,9 +39,11 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     private final DataSource dataSource;
 
     @Autowired
-    public OAuth2AuthorizationServerConfig(UserService userService,
+    public OAuth2AuthorizationServerConfig(KeyProperties keyProperties,
+                                           UserService userService,
                                            AuthenticationManager authenticationManager,
                                            DataSource dataSource) {
+        this.keyProperties = keyProperties;
         this.userService = userService;
         this.authenticationManager = authenticationManager;
         this.dataSource = dataSource;
@@ -53,15 +60,21 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     public JwtAccessToken jwtAccessToken() {
         JwtAccessToken jwtAccessToken = new JwtAccessToken();
         // 导入证书
-        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("tcm.jks"), "tcmpass".toCharArray());
-        jwtAccessToken.setKeyPair(keyStoreKeyFactory.getKeyPair("tcm"));
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(keyProperties.getKeyStore().getLocation(), keyProperties.getKeyStore().getPassword().toCharArray());
+        jwtAccessToken.setKeyPair(keyStoreKeyFactory.getKeyPair(keyProperties.getKeyStore().getAlias()));
         return jwtAccessToken;
+    }
+
+    @Bean
+    public TokenStore jwtTokenStore() {
+        return new JwtTokenStore(jwtAccessToken());
     }
 
     //配置认证管理器以及用户信息业务实现
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
+                .tokenStore(jwtTokenStore())
                 .authenticationManager(authenticationManager)
                 // 配置JwtAccessToken转换器
                 .accessTokenConverter(jwtAccessToken())
@@ -73,6 +86,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
         oauthServer
+                .passwordEncoder(new BCryptPasswordEncoder())
                 // 开启/oauth/token_key验证端口无权限访问
                 .tokenKeyAccess("permitAll()")
                 // 开启/oauth/check_token验证端口认证权限访问
