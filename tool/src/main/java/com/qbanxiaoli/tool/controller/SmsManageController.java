@@ -24,7 +24,6 @@ import java.security.Principal;
 @RestController
 @Api(tags = "短信写模块")
 @RequestMapping("/sms")
-@PreAuthorize("hasRole('ROLE_TCM_EMPLOYEE')")
 public class SmsManageController {
 
     private final SmsService smsService;

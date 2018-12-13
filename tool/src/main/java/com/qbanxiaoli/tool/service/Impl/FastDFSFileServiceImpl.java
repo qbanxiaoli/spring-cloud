@@ -1,7 +1,7 @@
 package com.qbanxiaoli.tool.service.Impl;
 
 
-import com.qbanxiaoli.common.bean.FastDFSClient;
+import com.qbanxiaoli.tool.bean.FastDFSClient;
 import com.qbanxiaoli.common.enums.CommonResponseEnum;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.FileUtil;

@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
@@ -26,6 +27,7 @@ import javax.sql.DataSource;
  * @create 2018/8/12 下午6:18
  */
 @Configuration
+@EnableAuthorizationServer
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     private final KeyProperties keyProperties;
@@ -74,7 +76,6 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
-                .tokenStore(jwtTokenStore())
                 .authenticationManager(authenticationManager)
                 // 配置JwtAccessToken转换器
                 .accessTokenConverter(jwtAccessToken())

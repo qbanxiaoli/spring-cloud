@@ -64,24 +64,12 @@ security:
       jwt:
         key-uri: http://localhost:8081/oauth/token_key
         key-value: |
-          -----BEGIN CERTIFICATE-----
-          MIIDbTCCAlWgAwIBAgIECFdStTANBgkqhkiG9w0BAQsFADBnMQswCQYDVQQGEwJV
-          UzEOMAwGA1UECBMFU3RhdGUxDTALBgNVBAcTBENpdHkxFTATBgNVBAoTDE9yZ2Fu
-          aXphdGlvbjENMAsGA1UECxMEVW5pdDETMBEGA1UEAxMKV2ViIFNlcnZlcjAeFw0x
-          ODEyMTMxNDU3MDJaFw0xOTAzMTMxNDU3MDJaMGcxCzAJBgNVBAYTAlVTMQ4wDAYD
-          VQQIEwVTdGF0ZTENMAsGA1UEBxMEQ2l0eTEVMBMGA1UEChMMT3JnYW5pemF0aW9u
-          MQ0wCwYDVQQLEwRVbml0MRMwEQYDVQQDEwpXZWIgU2VydmVyMIIBIjANBgkqhkiG
-          9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwafLDxERCDcTzZ1dla9RYvG4dwKJmceKSc/c
-          ZSxkPcS6GVVvvh0//bO3ymxLLcCf5fYzVMxJwb+QBsrJZWcf5CsRqT1CmoV3BaUw
-          hgKHiygR4XfvNoFXk6D5ws+ANXTS8q66WgrDphmWwCPXSmVBJw7ln/026F7sDDNz
-          vUQtNeDHy1uu4OdU1kS++tv09D6+uhhAaiElU/rtDuJ0F0+1Q/Qgc6fCzaoxs5gz
-          Cj6BiUJ1muTrXkoUacD5KanJ9qT1RKvMRaODJp/ya4DyDRk2E6hbUhSKay0YUnr9
-          lF5zPZSeBraN6+v85pKzBXa6iejn+/ieK1fWByX7qEZnMzTwNQIDAQABoyEwHzAd
-          BgNVHQ4EFgQU7NddWW1zgInW3aqeyevLsGq60mUwDQYJKoZIhvcNAQELBQADggEB
-          AEPNk8Ok6/12bl8WV6onT5GXDUzVH9LdX7aAxlt6yAx/YGPN8/LjzxfQPv3z2BK1
-          4r2pk+J1tgtB8CnTTq/k8EjKqAh2OsgRXDke1Y4q/SgmERnm0VW/5vL3kGWlyefO
-          RPYXnL1jPGx+u2vlGGryHjKGFE0or7Ao7hE4eSLmg+xlbf2oL4gnJYqtzUL2rCs6
-          EymdWK720BpblRiS8oo1qG7uRoZqboCCi5hRhZXVKrwJky92jkVeO7gwyIaYS5Ag
-          EEEI0xJr35nVk40+eCw21TUULILxxKtBCXeQrah0SbmJsAcFccwfkrCFUxMVOJ4Z
-          xIEdpg1ladF39e6Jy+pon8I=
-          -----END CERTIFICATE-----
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApqQQ60ZVXLpbPeAcM/mm
+          I6drz+RuL/AhvX6kW5gdyrFIPP0loWpCq6NRW9EI4pdpdTYDFGAgzRljwIT932a8
+          usJ7A22fvwR2Ejcc5i6tMGf4s0ukYJdjKDVAr5D1iN3H/bJGyzAwPvr/ilsgN8SB
+          74+3iiBT2xpQ/EYx9p+h5Ph5tMUzi29ZYkjHu5sjCWhylvT0eFaEpmGOy1sLO/KP
+          WT4pWyYkQVUKS9YBbomNm3qULuyPJ4OG6VDEhhftMRsx8X2U8qHevkBrgjnvbF3r
+          BZ+w+qrDhvrmo/FZGn4PIYeFfATMoGE1HdMkRhhOQNPRadOm5vKbJ2XJbcqPTqoA
+          MwIDAQAB
+          -----END PUBLIC KEY-----

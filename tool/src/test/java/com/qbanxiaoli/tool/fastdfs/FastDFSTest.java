@@ -1,6 +1,6 @@
 package com.qbanxiaoli.tool.fastdfs;
 
-import com.qbanxiaoli.common.bean.FastDFSClient;
+import com.qbanxiaoli.tool.bean.FastDFSClient;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

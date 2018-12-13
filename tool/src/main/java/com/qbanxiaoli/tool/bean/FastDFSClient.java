@@ -1,4 +1,4 @@
-package com.qbanxiaoli.common.bean;
+package com.qbanxiaoli.tool.bean;
 
 import com.github.tobato.fastdfs.conn.FdfsWebServer;
 import com.github.tobato.fastdfs.domain.StorePath;

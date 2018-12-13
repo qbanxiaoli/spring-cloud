@@ -18,7 +18,6 @@ import java.security.Principal;
 
 @SpringBootApplication
 @EnableOAuth2Sso
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 @ComponentScan("com.qbanxiaoli")
 @MapperScan("com.qbanxiaoli.tool.dao.mapper")
 @Import(FdfsClientConfig.class)

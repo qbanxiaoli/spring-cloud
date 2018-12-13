@@ -68,12 +68,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        <!-- 使用fastdfs -->
-        <dependency>
-            <groupId>com.github.tobato</groupId>
-            <artifactId>fastdfs-client</artifactId>
-            <version>1.26.2</version>
-        </dependency>
         <!-- 邮件支持 -->
         <dependency>
             <groupId>com.sun.mail</groupId>

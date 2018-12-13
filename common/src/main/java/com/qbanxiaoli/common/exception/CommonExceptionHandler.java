@@ -25,7 +25,7 @@ import java.util.Set;
  */
 @Slf4j
 @RestControllerAdvice
-public class CustomExceptionHandler {
+public class CommonExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseVO handleServletRequestBindingException(ConstraintViolationException e) {
@@ -64,16 +64,6 @@ public class CustomExceptionHandler {
         return new ResponseVO<>(CommonResponseEnum.PARAMETER_ERROR, map);
     }
 
-    @ExceptionHandler(FdfsException.class)
-    public ResponseVO handleFdfsException(FdfsException e) {
-        log.error("连接文件服务器失败：" + e.getMessage());
-        return new ResponseVO<>(CommonResponseEnum.FDFS_CONNECT_FAILURE);
-    }
 
-    @ExceptionHandler(MaxUploadSizeExceededException.class)
-    public ResponseVO handleMaxUploadSizeExceededException(MaxUploadSizeExceededException e) {
-        log.error("上传单个文件大小不能超过1M：" + e.getMessage());
-        return new ResponseVO<>(CommonResponseEnum.MAX_FILE_SIZE);
-    }
 
 }
