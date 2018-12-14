@@ -1,7 +1,7 @@
 package com.qbanxiaoli.common.model.vo;
 
 import com.qbanxiaoli.common.bean.I18nResource;
-import com.qbanxiaoli.common.enums.ResponseEnum;
+import com.qbanxiaoli.common.enums.response.ResponseEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

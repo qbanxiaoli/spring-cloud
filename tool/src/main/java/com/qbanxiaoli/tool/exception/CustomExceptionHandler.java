@@ -1,7 +1,7 @@
 package com.qbanxiaoli.tool.exception;
 
 import com.github.tobato.fastdfs.exception.FdfsException;
-import com.qbanxiaoli.common.enums.CommonResponseEnum;
+import com.qbanxiaoli.common.enums.response.CommonResponseEnum;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;

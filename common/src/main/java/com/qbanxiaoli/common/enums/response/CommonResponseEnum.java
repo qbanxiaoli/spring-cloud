@@ -1,5 +1,6 @@
-package com.qbanxiaoli.common.enums;
+package com.qbanxiaoli.common.enums.response;
 
+import com.qbanxiaoli.common.enums.response.ResponseEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

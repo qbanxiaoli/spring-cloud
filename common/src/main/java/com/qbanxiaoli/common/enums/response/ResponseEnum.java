@@ -1,4 +1,4 @@
-package com.qbanxiaoli.common.enums;
+package com.qbanxiaoli.common.enums.response;
 
 /**
  * @author qbanxiaoli

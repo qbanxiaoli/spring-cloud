@@ -1,6 +1,6 @@
 package com.qbanxiaoli.tool.i18n;
 
-import com.qbanxiaoli.common.enums.CommonResponseEnum;
+import com.qbanxiaoli.common.enums.response.CommonResponseEnum;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
 import com.qbanxiaoli.common.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;

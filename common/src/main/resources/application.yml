@@ -65,11 +65,11 @@ security:
         key-uri: http://localhost:8081/oauth/token_key
         key-value: |
           -----BEGIN PUBLIC KEY-----
-          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApqQQ60ZVXLpbPeAcM/mm
-          I6drz+RuL/AhvX6kW5gdyrFIPP0loWpCq6NRW9EI4pdpdTYDFGAgzRljwIT932a8
-          usJ7A22fvwR2Ejcc5i6tMGf4s0ukYJdjKDVAr5D1iN3H/bJGyzAwPvr/ilsgN8SB
-          74+3iiBT2xpQ/EYx9p+h5Ph5tMUzi29ZYkjHu5sjCWhylvT0eFaEpmGOy1sLO/KP
-          WT4pWyYkQVUKS9YBbomNm3qULuyPJ4OG6VDEhhftMRsx8X2U8qHevkBrgjnvbF3r
-          BZ+w+qrDhvrmo/FZGn4PIYeFfATMoGE1HdMkRhhOQNPRadOm5vKbJ2XJbcqPTqoA
-          MwIDAQAB
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApk+k6Yut8hZDD2cFEyRJ
+          2Meaa8wZVNq/nImp8UQB+gpoEcv6koxMUPYlXDydtMebcXEroQ16uMXgIbFfC45e
+          WCiK/SbCLG8N0jrF7EjCZc13rb19qKiF6H00+x9oSmaAvywvtL8UBMHxMZjd4ObC
+          ybYR9DzcM+8wT0VL89eg7NDSZN3Sk1gnlhcDhzO+9IHm2kQfG0NUk+vpj/qP2u0Y
+          +a4G4PNHc7eNQvTu4bt794+n9+/yRiwIq1yYG/IOWPuDE1vBl1hjEeG6cGitwhQE
+          HchfyeWGEwrRRhxuhfakIQ67eZorp1mLFct4k/AfTSBKSZxYSZqS1JtFUFAeWclA
+          YwIDAQAB
           -----END PUBLIC KEY-----

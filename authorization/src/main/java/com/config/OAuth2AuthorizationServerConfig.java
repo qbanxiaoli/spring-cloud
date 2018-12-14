@@ -27,7 +27,6 @@ import javax.sql.DataSource;
  * @create 2018/8/12 下午6:18
  */
 @Configuration
-@EnableAuthorizationServer
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     private final KeyProperties keyProperties;
