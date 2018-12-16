@@ -1,12 +1,11 @@
 package com.config;
 
-import com.service.UserService;
+import com.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -16,11 +15,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * @create 2018/8/10 上午4:10
  */
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserService userService;
+    private final UserDetailsServiceImpl userService;
 
-    public WebSecurityConfig(UserService userService) {
+    public WebSecurityConfig(UserDetailsServiceImpl userService) {
         this.userService = userService;
     }
 

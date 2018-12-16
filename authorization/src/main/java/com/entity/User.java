@@ -25,6 +25,12 @@ public class User extends GmtEntity implements UserDetails {
     @Column(nullable = false, unique = true, columnDefinition = "varchar(50) COMMENT '用户名'")
     private String username;
 
+    @Column(nullable = false, unique = true, columnDefinition = "varchar(50) COMMENT '手机号码'")
+    private String phone;
+
+    @Column(nullable = false, unique = true, columnDefinition = "varchar(50) COMMENT '邮箱号码'")
+    private String email;
+
     @Column(columnDefinition = "varchar(100) COMMENT '密码'")
     private String password;
 

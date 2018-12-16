@@ -1,6 +1,5 @@
-package com.qbanxiaoli.common.config;
+package com.config;
 
-import com.qbanxiaoli.common.enums.UserRoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.context.annotation.Bean;
@@ -39,8 +38,6 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/sms/**").hasRole(UserRoleEnum.TCM_ADMIN.getAuthority())
-                .antMatchers("/user/**").hasAnyRole(UserRoleEnum.TCM_RESTAURANT.getAuthority(), UserRoleEnum.TCM_EMPLOYEE.getAuthority())
                 .anyRequest().authenticated();
     }
 

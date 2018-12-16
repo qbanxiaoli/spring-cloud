@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@PreAuthorize("hasRole('ROLE_TCM_ADMIN')")
+@PreAuthorize("hasRole('TCM_ADMIN')")
 public class UserQueryController {
 
     @GetMapping("/user")

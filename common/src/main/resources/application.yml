@@ -51,18 +51,13 @@ mybatis:
 
 security:
   oauth2:
-    sso:
-      login-path: /login
     client:
-      client-id: client
+      client-id: tool
       client-secret: toolsecret
-      access-token-uri: http://localhost:8081/oauth/token
-      user-authorization-uri: http://localhost:8081/oauth/authorize
+      access-token-uri: http://localhost:8001/oauth/token
+      user-authorization-uri: http://localhost:8001/oauth/authorize
     resource:
-      user-info-uri: http://localhost:1111
-      prefer-token-info: false
       jwt:
-        key-uri: http://localhost:8081/oauth/token_key
         key-value: |
           -----BEGIN PUBLIC KEY-----
           MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApk+k6Yut8hZDD2cFEyRJ

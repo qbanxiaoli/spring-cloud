@@ -32,7 +32,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey(resourceServerProperties.getJwt().getKeyValue());
+        jwtAccessTokenConverter.setVerifierKey(resourceServerProperties.getJwt().getKeyUri());
         return jwtAccessTokenConverter;
     }
 
