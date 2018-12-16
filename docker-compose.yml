@@ -1,4 +1,4 @@
-version: '3.0'
+version: '2'
 services:
   # 注册中心
   eureka:
@@ -6,9 +6,10 @@ services:
     restart: always
     tty: true
     container_name: eureka
+    mem_limit: 500M
     environment:
     - TZ=Asia/Shanghai
-    - EUREKA_INSTANCE_IP-ADDRESS=192.168.21.61
+    - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
     ports:
     - "1111:1111"
   # 配置中心
@@ -17,26 +18,43 @@ services:
     restart: always
     tty: true
     container_name: config
+    mem_limit: 500M
     environment:
     - TZ=Asia/Shanghai
-    - EUREKA_INSTANCE_IP-ADDRESS=192.168.21.61
-    - EUREKA_HOST=192.168.21.61
+    - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
+    - EUREKA_HOST=192.168.199.182
     - JASYPT_PASSWORD=tool
     ports:
     - "8888:8888"
+  authorization:
+    image: authorization
+    restart: always
+    tty: true
+    container_name: authorization
+    mem_limit: 500M
+    environment:
+      - TZ=Asia/Shanghai
+      - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
+      - EUREKA_HOST=192.168.199.182
+      - JASYPT_PASSWORD=tool
+    ports:
+      - "8001:8001"
+    volumes:
+      - ${HOME}/tool/logs:${HOME}/logs
   # 工具服务
   tool:
     image: tool
     restart: always
     tty: true
     container_name: tool
+    mem_limit: 500M
     environment:
     - TZ=Asia/Shanghai
-    - EUREKA_INSTANCE_IP-ADDRESS=192.168.21.61
-    - EUREKA_HOST=192.168.21.61
+    - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
+    - EUREKA_HOST=192.168.199.182
     - JASYPT_PASSWORD=tool
     ports:
-    - "8001:8001"
+    - "8002:8002"
     volumes:
     - ${HOME}/tool/logs:${HOME}/logs
   # 网关
@@ -45,10 +63,11 @@ services:
     restart: always
     tty: true
     container_name: gateway
+    mem_limit: 500M
     environment:
     - TZ=Asia/Shanghai
-    - EUREKA_INSTANCE_IP-ADDRESS=192.168.21.61
-    - EUREKA_HOST=192.168.21.61
+    - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
+    - EUREKA_HOST=192.168.199.182
     - JASYPT_PASSWORD=tool
     ports:
     - "8000:8000"

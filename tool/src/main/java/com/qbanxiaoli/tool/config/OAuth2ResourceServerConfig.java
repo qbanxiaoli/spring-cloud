@@ -32,7 +32,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setVerifierKey(resourceServerProperties.getJwt().getKeyUri());
+        jwtAccessTokenConverter.setVerifierKey(resourceServerProperties.getJwt().getKeyValue());
         return jwtAccessTokenConverter;
     }
 
@@ -57,10 +57,9 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
         http
-                .csrf().disable()
-                .authorizeRequests().antMatchers("/sms/**").hasRole("TCM_EMPLOYEE");
+                .authorizeRequests().antMatchers("/sms/**").hasRole("TCM_EMPLOYEE")
+                .anyRequest().authenticated();
     }
 
 }
