@@ -34,18 +34,7 @@ public class UserResource {
             throw new UsernameNotFoundException("用户名不存在");
         }
         log.info("登录模式：密码模式");
-        log.info("登录用户: " + user.getUsername());
-        log.info("用户ID: " + user.getUuid());
-        log.info("用户权限列表:");
-        user.getAuthorityList().forEach(authority -> {
-            log.info(authority.getAuthority());
-        });
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for (Authority role : user.getAuthorityList()) {
-            authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
-        }
-        user.setAuthorities(authorities);
-        return user;
+        return getUser(user);
     }
 
     public static User findByPhone(String phone) {
@@ -54,18 +43,7 @@ public class UserResource {
             throw new UsernameNotFoundException("手机号码不存在");
         }
         log.info("登录模式：短信验证模式");
-        log.info("登录用户: " + user.getUsername());
-        log.info("用户ID: " + user.getUuid());
-        log.info("用户权限列表:");
-        user.getAuthorityList().forEach(authority -> {
-            log.info(authority.getAuthority());
-        });
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for (Authority role : user.getAuthorityList()) {
-            authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
-        }
-        user.setAuthorities(authorities);
-        return user;
+        return getUser(user);
     }
 
     public static User findByEmail(String email) {
@@ -74,6 +52,10 @@ public class UserResource {
             throw new UsernameNotFoundException("邮箱号码不存在");
         }
         log.info("登录模式：邮箱验证模式");
+        return getUser(user);
+    }
+
+    private static User getUser(User user) {
         log.info("登录用户: " + user.getUsername());
         log.info("用户ID: " + user.getUuid());
         log.info("用户权限列表:");
