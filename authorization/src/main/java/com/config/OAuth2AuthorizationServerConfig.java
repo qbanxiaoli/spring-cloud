@@ -1,6 +1,7 @@
 package com.config;
 
 import com.enums.GrantTypeEnum;
+import com.exception.CustomWebResponseExceptionTranslator;
 import com.granter.SMSCodeTokenGranter;
 import com.jwt.JwtAccessToken;
 import com.service.UserDetailsServiceImpl;
@@ -44,6 +45,8 @@ import java.util.*;
 @EnableAuthorizationServer
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
+    private final CustomWebResponseExceptionTranslator customWebResponseExceptionTranslator;
+
     private final KeyProperties keyProperties;
 
     private final UserDetailsServiceImpl userDetailsService;
@@ -55,10 +58,12 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     private final DataSource dataSource;
 
     @Autowired
-    public OAuth2AuthorizationServerConfig(KeyProperties keyProperties,
+    public OAuth2AuthorizationServerConfig(CustomWebResponseExceptionTranslator customWebResponseExceptionTranslator,
+                                           KeyProperties keyProperties,
                                            UserDetailsServiceImpl userService,
                                            AuthenticationManager authenticationManager,
                                            DataSource dataSource) {
+        this.customWebResponseExceptionTranslator = customWebResponseExceptionTranslator;
         this.keyProperties = keyProperties;
         this.userDetailsService = userService;
         this.authenticationManager = authenticationManager;
@@ -96,7 +101,8 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 // 配置JwtAccessToken转换器
                 .accessTokenConverter(jwtAccessToken())
                 // 配置tokenStore,需要配置userDetailsService，否则refresh_token会报错
-                .userDetailsService(userDetailsService);
+                .userDetailsService(userDetailsService)
+                .exceptionTranslator(customWebResponseExceptionTranslator);
     }
 
     //配置认证规则，哪些需要认证哪些不需要
