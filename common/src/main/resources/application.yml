@@ -31,6 +31,14 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: true
 
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
 # pagehelper分页插件
 pagehelper:
   # 配置数据库方言，不配置也行，分页插件会自动检测当前的数据库链接，自动选择合适的分页方式，
@@ -52,10 +60,9 @@ mybatis:
 security:
   oauth2:
     client:
-      client-id: tool
-      client-secret: toolsecret
-      access-token-uri: http://localhost:8001/oauth/token
-      user-authorization-uri: http://localhost:8001/oauth/authorize
+      client-id: tcm
+      client-secret: tcmsecret
+      access-token-uri: http://tcm-authorization-service/oauth/token
     resource:
       jwt:
         key-value: |
@@ -68,3 +75,4 @@ security:
           HchfyeWGEwrRRhxuhfakIQ67eZorp1mLFct4k/AfTSBKSZxYSZqS1JtFUFAeWclA
           YwIDAQAB
           -----END PUBLIC KEY-----
+
