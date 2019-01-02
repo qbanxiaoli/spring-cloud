@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
 @Slf4j
 @Validated
 @RestController
-@Api(tags = "文件写模块")
+@Api(tags = "文件模块")
 @RequestMapping("/fastdfs_file")
 public class FastDFSFileManageController {
 
@@ -41,7 +41,7 @@ public class FastDFSFileManageController {
     @ApiOperation(value = "上传图片")
     @PostMapping("/image/upload")
     public ResponseVO<FastDFSFile> uploadImage(@ApiParam(name = "file", value = "待上传图片", required = true)
-                                               @RequestPart(value = "file") MultipartFile multipartFile) {
+                                               @NotNull @RequestPart(value = "file") MultipartFile multipartFile) {
         log.info("上传图片");
         if (multipartFile.isEmpty() || !FileUtil.isImage(multipartFile)) {
             log.warn("上传文件类型错误");

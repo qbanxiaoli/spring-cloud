@@ -2,6 +2,7 @@ package com.qbanxiaoli.tool.bean;
 
 import com.github.tobato.fastdfs.conn.FdfsWebServer;
 import com.github.tobato.fastdfs.domain.StorePath;
+import com.github.tobato.fastdfs.domain.ThumbImageConfig;
 import com.github.tobato.fastdfs.proto.storage.DownloadByteArray;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import lombok.extern.slf4j.Slf4j;
@@ -22,12 +23,17 @@ import java.io.*;
 @Component
 public class FastDFSClient {
 
+    private static ThumbImageConfig thumbImageConfig;
+
     private static FastFileStorageClient fastFileStorageClient;
 
     private static FdfsWebServer fdfsWebServer;
 
     @Autowired
-    public void setFastDFSClient(FastFileStorageClient fastFileStorageClient, FdfsWebServer fdfsWebServer) {
+    public void setFastDFSClient(ThumbImageConfig thumbImageConfig,
+                                 FastFileStorageClient fastFileStorageClient,
+                                 FdfsWebServer fdfsWebServer) {
+        FastDFSClient.thumbImageConfig = thumbImageConfig;
         FastDFSClient.fastFileStorageClient = fastFileStorageClient;
         FastDFSClient.fdfsWebServer = fdfsWebServer;
     }
@@ -57,7 +63,7 @@ public class FastDFSClient {
     public static String uploadImageAndCrtThumbImage(MultipartFile multipartFile) {
         try {
             StorePath storePath = fastFileStorageClient.uploadImageAndCrtThumbImage(multipartFile.getInputStream(), multipartFile.getSize(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()), null);
-            return storePath.getFullPath();
+            return thumbImageConfig.getThumbImagePath(storePath.getFullPath());
         } catch (Exception e) {
             log.error(e.getMessage());
             return null;
@@ -91,7 +97,7 @@ public class FastDFSClient {
         try {
             FileInputStream inputStream = new FileInputStream(file);
             StorePath storePath = fastFileStorageClient.uploadImageAndCrtThumbImage(inputStream, file.length(), FilenameUtils.getExtension(file.getName()), null);
-            return storePath.getFullPath();
+            return thumbImageConfig.getThumbImagePath(storePath.getFullPath());
         } catch (Exception e) {
             log.error(e.getMessage());
             return null;

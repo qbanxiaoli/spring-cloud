@@ -1,6 +1,7 @@
 package com.qbanxiaoli.tool.service.Impl;
 
 
+import com.github.tobato.fastdfs.domain.ThumbImageConfig;
 import com.qbanxiaoli.tool.bean.FastDFSClient;
 import com.qbanxiaoli.common.enums.response.CommonResponseEnum;
 import com.qbanxiaoli.common.model.vo.ResponseVO;
@@ -9,6 +10,8 @@ import com.qbanxiaoli.tool.dao.repository.FastDFSFileRepository;
 import com.qbanxiaoli.tool.model.entity.FastDFSFile;
 import com.qbanxiaoli.tool.service.FastDFSFileService;
 import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnails;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,10 +29,14 @@ import java.nio.charset.StandardCharsets;
 @Service
 public class FastDFSFileServiceImpl implements FastDFSFileService {
 
+    private final ThumbImageConfig thumbImageConfig;
+
     private final FastDFSFileRepository fastDFSFileRepository;
 
     @Autowired
-    public FastDFSFileServiceImpl(FastDFSFileRepository fastDFSFileRepository) {
+    public FastDFSFileServiceImpl(ThumbImageConfig thumbImageConfig,
+                                  FastDFSFileRepository fastDFSFileRepository) {
+        this.thumbImageConfig = thumbImageConfig;
         this.fastDFSFileRepository = fastDFSFileRepository;
     }
 
@@ -41,8 +48,19 @@ public class FastDFSFileServiceImpl implements FastDFSFileService {
      */
     @Override
     public ResponseVO<FastDFSFile> uploadFile(MultipartFile multipartFile) {
+        log.info("上传图片大小：" + multipartFile.getSize() / 1024 + "kb");
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try {
+            Thumbnails.of(multipartFile.getInputStream())
+                    .size(thumbImageConfig.getWidth(), thumbImageConfig.getHeight())
+                    .outputQuality(1.0f)//图片质量
+                    .toOutputStream(byteArrayOutputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        log.info("压缩后图片大小：" + byteArrayOutputStream.toByteArray().length / 1024 + "kb");
         //上传图片
-        String storePath = FastDFSClient.uploadFile(multipartFile);
+        String storePath = FastDFSClient.uploadFile(byteArrayOutputStream.toByteArray(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()));
         log.info("上传文件地址为：" + FastDFSClient.getResAccessUrl(storePath));
         FastDFSFile fastDFSFile = new FastDFSFile();
         //设置文件地址

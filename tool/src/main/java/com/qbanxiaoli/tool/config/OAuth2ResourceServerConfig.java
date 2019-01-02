@@ -50,7 +50,9 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/fastdfs_file/**").permitAll()
                 .anyRequest().authenticated();
     }
 
