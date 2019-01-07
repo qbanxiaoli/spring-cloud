@@ -19,6 +19,8 @@ public interface FastDFSFileService {
      * @author qbanxiaoli
      * @description 上传文件
      */
+    ResponseVO<FastDFSFile> uploadImage(MultipartFile multipartFile);
+
     ResponseVO<FastDFSFile> uploadFile(MultipartFile multipartFile);
 
     ResponseVO downloadFile(String fileUrl, HttpServletResponse response);

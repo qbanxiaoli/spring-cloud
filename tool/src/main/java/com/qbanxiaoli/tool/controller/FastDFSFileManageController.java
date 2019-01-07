@@ -47,7 +47,7 @@ public class FastDFSFileManageController {
             log.warn("上传文件类型错误");
             return new ResponseVO<>(FileResponseEnum.FILE_CONTENT_TYPE_ERROR);
         }
-        return fastDFSFileService.uploadFile(multipartFile);
+        return fastDFSFileService.uploadImage(multipartFile);
     }
 
     @ApiOperation(value = "上传文件")

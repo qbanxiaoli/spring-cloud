@@ -47,13 +47,13 @@ public class FastDFSFileServiceImpl implements FastDFSFileService {
      * @description 上传文件
      */
     @Override
-    public ResponseVO<FastDFSFile> uploadFile(MultipartFile multipartFile) {
+    public ResponseVO<FastDFSFile> uploadImage(MultipartFile multipartFile) {
         log.info("上传图片大小：" + multipartFile.getSize() / 1024 + "kb");
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
             Thumbnails.of(multipartFile.getInputStream())
                     .size(thumbImageConfig.getWidth(), thumbImageConfig.getHeight())
-                    .outputQuality(1.0f)//图片质量
+                    .outputQuality(0.5f)//图片质量
                     .toOutputStream(byteArrayOutputStream);
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,6 +61,29 @@ public class FastDFSFileServiceImpl implements FastDFSFileService {
         log.info("压缩后图片大小：" + byteArrayOutputStream.toByteArray().length / 1024 + "kb");
         //上传图片
         String storePath = FastDFSClient.uploadFile(byteArrayOutputStream.toByteArray(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()));
+        log.info("上传文件地址为：" + FastDFSClient.getResAccessUrl(storePath));
+        FastDFSFile fastDFSFile = new FastDFSFile();
+        //设置文件地址
+        fastDFSFile.setStorePath(storePath);
+        //设置文件服务器访问地址
+        fastDFSFile.setWebServerUrl(FastDFSClient.getWebServerUrl());
+        //设置文件类型
+        fastDFSFile.setContentType(multipartFile.getContentType());
+        //设置文件名
+        fastDFSFile.setFileName(multipartFile.getOriginalFilename());
+        //设置文件扩展名
+        fastDFSFile.setFileExtension(FileUtil.getFileExtension(multipartFile));
+        //设置文件大小
+        fastDFSFile.setFileSize(multipartFile.getSize());
+        //实例化到数据库
+        fastDFSFileRepository.save(fastDFSFile);
+        return new ResponseVO<>(CommonResponseEnum.SUCCESS, fastDFSFile);
+    }
+
+    @Override
+    public ResponseVO<FastDFSFile> uploadFile(MultipartFile multipartFile) {
+        //上传图片
+        String storePath = FastDFSClient.uploadFile(multipartFile);
         log.info("上传文件地址为：" + FastDFSClient.getResAccessUrl(storePath));
         FastDFSFile fastDFSFile = new FastDFSFile();
         //设置文件地址
