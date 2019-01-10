@@ -1,8 +1,8 @@
 package com.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qbanxiaoli.common.enums.response.CommonResponseEnum;
-import com.qbanxiaoli.common.model.vo.ResponseVO;
+import com.enums.response.CommonResponseEnum;
+import com.model.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;

@@ -1,9 +1,9 @@
 package com.controller;
 
-import com.qbanxiaoli.common.enums.response.CommonResponseEnum;
-import com.qbanxiaoli.common.model.vo.JwtVO;
-import com.qbanxiaoli.common.model.vo.ResponseVO;
-import com.qbanxiaoli.common.bean.JwtResource;
+import com.enums.response.CommonResponseEnum;
+import com.model.vo.JwtVO;
+import com.model.vo.ResponseVO;
+import com.bean.JwtResource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;

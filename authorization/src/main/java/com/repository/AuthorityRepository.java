@@ -1,7 +1,7 @@
 package com.repository;
 
 import com.entity.Authority;
-import com.qbanxiaoli.common.dao.repository.BaseRepository;
+import com.dao.repository.BaseRepository;
 
 /**
  * @author qbanxiaoli

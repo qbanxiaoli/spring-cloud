@@ -1,6 +1,6 @@
 package com.entity;
 
-import com.qbanxiaoli.common.model.entity.IdEntity;
+import com.model.entity.IdEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Table;
