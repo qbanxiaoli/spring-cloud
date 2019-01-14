@@ -8,10 +8,10 @@ services:
     container_name: eureka
     mem_limit: 500M
     environment:
-    - TZ=Asia/Shanghai
-    - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
+      - TZ=Asia/Shanghai
+      - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
     ports:
-    - "1111:1111"
+      - "1111:1111"
   # 配置中心
   config:
     image: config
@@ -20,12 +20,26 @@ services:
     container_name: config
     mem_limit: 500M
     environment:
-    - TZ=Asia/Shanghai
-    - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
-    - EUREKA_HOST=192.168.199.182
-    - JASYPT_PASSWORD=tool
+      - TZ=Asia/Shanghai
+      - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
+      - EUREKA_HOST=192.168.199.182
+      - JASYPT_PASSWORD=tool
     ports:
-    - "8888:8888"
+      - "8888:8888"
+  # 配置中心
+  admin:
+    image: admin
+    restart: always
+    tty: true
+    container_name: admin
+    mem_limit: 500M
+    environment:
+      - TZ=Asia/Shanghai
+      - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
+      - EUREKA_HOST=192.168.199.182
+      - JASYPT_PASSWORD=tool
+    ports:
+      - "8001:8001"
   authorization:
     image: authorization
     restart: always
@@ -38,7 +52,7 @@ services:
       - EUREKA_HOST=192.168.199.182
       - JASYPT_PASSWORD=tool
     ports:
-      - "8001:8001"
+      - "8002:8002"
     volumes:
       - ${HOME}/tool/logs:${HOME}/logs
   # 工具服务
@@ -49,14 +63,14 @@ services:
     container_name: tool
     mem_limit: 500M
     environment:
-    - TZ=Asia/Shanghai
-    - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
-    - EUREKA_HOST=192.168.199.182
-    - JASYPT_PASSWORD=tool
+      - TZ=Asia/Shanghai
+      - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
+      - EUREKA_HOST=192.168.199.182
+      - JASYPT_PASSWORD=tool
     ports:
-    - "8002:8002"
+      - "8003:8003"
     volumes:
-    - ${HOME}/tool/logs:${HOME}/logs
+      - ${HOME}/tool/logs:${HOME}/logs
   # 网关
   gateway:
     image: gateway
@@ -65,11 +79,11 @@ services:
     container_name: gateway
     mem_limit: 500M
     environment:
-    - TZ=Asia/Shanghai
-    - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
-    - EUREKA_HOST=192.168.199.182
-    - JASYPT_PASSWORD=tool
+      - TZ=Asia/Shanghai
+      - EUREKA_INSTANCE_IP-ADDRESS=192.168.199.182
+      - EUREKA_HOST=192.168.199.182
+      - JASYPT_PASSWORD=tool
     ports:
-    - "8000:8000"
+      - "8000:8000"
 
 
