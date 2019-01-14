@@ -13,6 +13,7 @@
         <module>common</module>
         <module>eureka</module>
         <module>config</module>
+        <module>admin</module>
         <module>authorization</module>
         <module>gateway</module>
         <module>tool</module>

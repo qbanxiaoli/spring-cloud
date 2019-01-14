@@ -7,9 +7,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>common</name>
-    <description>common project for Spring Boot</description>
-
     <parent>
         <groupId>com</groupId>
         <artifactId>tool-cloud</artifactId>

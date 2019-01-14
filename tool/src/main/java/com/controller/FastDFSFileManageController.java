@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -41,7 +42,7 @@ public class FastDFSFileManageController {
     @ApiOperation(value = "上传图片")
     @PostMapping("/image/upload")
     public ResponseVO<FastDFSFile> uploadImage(@ApiParam(name = "file", value = "待上传图片", required = true)
-                                               @NotNull @RequestPart(value = "file") MultipartFile multipartFile) {
+                                               @NotEmpty @RequestPart(value = "file") MultipartFile multipartFile) {
         log.info("上传图片");
         if (multipartFile.isEmpty() || !FileUtil.isImage(multipartFile)) {
             log.warn("上传文件类型错误");
@@ -56,7 +57,7 @@ public class FastDFSFileManageController {
     @ApiOperation(value = "上传文件")
     @PostMapping("/upload")
     public ResponseVO<FastDFSFile> uploadFile(@ApiParam(name = "file", value = "待上传文件", required = true)
-                                              @NotNull @RequestPart(value = "file") MultipartFile multipartFile) {
+                                              @RequestPart(value = "file") MultipartFile multipartFile) {
         log.info("上传文件");
         return fastDFSFileService.uploadFile(multipartFile);
     }

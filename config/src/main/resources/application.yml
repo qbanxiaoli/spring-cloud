@@ -33,7 +33,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: "*"
 
 eureka:
   instance:
@@ -51,9 +51,12 @@ eureka:
     # 如果心跳停止的时间超过了服务器设置的等待时间，那么服务器端将会从它的服务列表中删除该实例，
     # 从而将流量排除在该实例之外。默认30s
     lease-renewal-interval-in-seconds: 15
+    metadata-map:
+      user.name: ${spring.security.user.name}  #用户名和密码必须和security下配置的用户名和密码相同，否则启动后服务端是DOWN的状态
+      user.password: ${spring.security.user.password}
   client:
     # 服务注册中心地址,多个地址用,隔开
     service-url:
-      defaultZone: http://admin:123456@${eureka.host:localhost}:${eureka.port:1111}/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.host:localhost}:${eureka.port:1111}/eureka/
 
 

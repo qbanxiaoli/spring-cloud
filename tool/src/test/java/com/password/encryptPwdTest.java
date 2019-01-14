@@ -23,7 +23,8 @@ public class encryptPwdTest {
 
     @Test
     public void encryptPwd() {
-        String result = stringEncryptor.decrypt("q6PA5jYgiAuQEei3NujqZpaupQFqVka/S/1aiTXSh4U=");
+        // d9hzbalFHO+vBhrMExlH5A==
+        String result = stringEncryptor.encrypt("12345678");
         log.info(result);
     }
 
