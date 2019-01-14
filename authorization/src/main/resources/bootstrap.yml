@@ -11,16 +11,6 @@ spring:
         enabled: true
         service-id: config-server
 
-# 屏蔽安全验证
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
-
 eureka:
   instance:
     instance-id: ${eureka.instance.ip-address:${spring.cloud.client.ip-address}}:${server.port}

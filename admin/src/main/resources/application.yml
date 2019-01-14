@@ -1,0 +1,37 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: admin-server
+
+# 屏蔽安全验证
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+eureka:
+  instance:
+    instance-id: ${eureka.instance.ip-address:${spring.cloud.client.ip-address}}:${server.port}
+    # 是否优先使用IP地址作为主机名的标识，默认为false
+    prefer-ip-address: true
+    # 60s未收到心跳，剔除instance 要比心跳时间大 服务器端等待的时间，
+    # 因为它收到了最后的心跳，然后才可以从它的视图中删除这个实例，
+    # 并且不允许流量进入这个实例。将这个值设置得太长可能意味着，
+    # 即使实例不存在，流量也可以被路由到实例。将这个值设置得太小可能意味着，
+    # 由于临时网络故障，该实例可能会被排除在流量之外。
+    # 这个值的设置至少要高于leaseRenewalIntervalInSeconds中指定的值。默认90s。
+    lease-expiration-duration-in-seconds: 60
+    # 心跳时间　即每15秒发送一次心跳  表明客户端需要将心跳发送到服务器端，以表明它还活着。
+    # 如果心跳停止的时间超过了服务器设置的等待时间，那么服务器端将会从它的服务列表中删除该实例，
+    # 从而将流量排除在该实例之外。默认30s
+    lease-renewal-interval-in-seconds: 15
+  client:
+    # 服务注册中心地址,多个地址用,隔开
+    service-url:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.host:localhost}:${eureka.port:1111}/eureka/
