@@ -108,15 +108,14 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>1.1.1</version>
+                <version>1.2.0</version>
                 <configuration>
                     <!-- 指定镜像名称 仓库/镜像名:标签 -->
                     <imageName>${project.artifactId}</imageName>
                     <!-- 指定基础镜像，相当于Dockerfile中的FROM<image> -->
                     <baseImage>openjdk:11-jre-slim</baseImage>
                     <!-- 容器启动执行的命令，相当于Dockerfile中的ENTRYPOINT -->
-                    <!--suppress UnresolvedMavenProperty -->
-                    <entryPoint>["java","-Djasypt.encryptor.password=${JASYPT_PASSWORD}","-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <entryPoint>["java","-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <resources>
                         <resource><!-- 指定资源文件 -->
                             <targetPath>/</targetPath><!-- 指定要复制的目录路径，这里是当前目录 -->

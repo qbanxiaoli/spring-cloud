@@ -52,9 +52,10 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/hi").permitAll()
+                .antMatchers("/sms/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
-                .antMatchers("/fastdfs_file/**").permitAll()
+                .antMatchers("/file/**").permitAll()
+                .antMatchers("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**").permitAll()
                 .anyRequest().authenticated();
     }
 

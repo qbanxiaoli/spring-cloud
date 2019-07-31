@@ -29,20 +29,20 @@ import javax.validation.constraints.NotNull;
 @Validated
 @RestController
 @Api(tags = "文件模块")
-@RequestMapping("/fastdfs_file")
-public class FastDFSFileManageController {
+@RequestMapping("/file")
+public class FileManageController {
 
     private final FastDFSFileService fastDFSFileService;
 
     @Autowired
-    public FastDFSFileManageController(FastDFSFileService fastDFSFileService) {
+    public FileManageController(FastDFSFileService fastDFSFileService) {
         this.fastDFSFileService = fastDFSFileService;
     }
 
     @ApiOperation(value = "上传图片")
     @PostMapping("/image/upload")
     public ResponseVO<FastDFSFile> uploadImage(@ApiParam(name = "file", value = "待上传图片", required = true)
-                                               @NotEmpty @RequestPart(value = "file") MultipartFile multipartFile) {
+                                               @RequestPart(value = "file") MultipartFile multipartFile) {
         log.info("上传图片");
         if (multipartFile.isEmpty() || !FileUtil.isImage(multipartFile)) {
             log.warn("上传文件类型错误");

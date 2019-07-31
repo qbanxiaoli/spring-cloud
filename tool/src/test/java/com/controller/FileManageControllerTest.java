@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
-public class FastDFSFileManageControllerTest {
+public class FileManageControllerTest {
 
     @Autowired
     private WebApplicationContext wac;

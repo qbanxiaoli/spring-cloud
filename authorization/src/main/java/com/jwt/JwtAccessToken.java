@@ -25,9 +25,7 @@ public class JwtAccessToken extends JwtAccessTokenConverter {
         // 设置额外用户信息
         User user = ((User) authentication.getPrincipal());
         List<String> authorities = new ArrayList<>();
-        user.getAuthorityList().forEach(authority -> {
-            authorities.add(authority.getAuthority());
-        });
+        user.getAuthorityList().forEach(authority -> authorities.add(authority.getAuthority()));
         // 将用户信息添加到token额外信息中
         defaultOAuth2AccessToken.getAdditionalInformation().put("uuid", user.getUuid());
         defaultOAuth2AccessToken.getAdditionalInformation().put("authorities", authorities);

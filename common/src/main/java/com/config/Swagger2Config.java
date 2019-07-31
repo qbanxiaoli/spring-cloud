@@ -23,7 +23,7 @@ import java.util.List;
 @EnableSwagger2
 public class Swagger2Config {
 
-    private static final String SWAGGER_SCAN_BASE_PACKAGE = "com.qbanxiaoli";
+    private static final String SWAGGER_SCAN_BASE_PACKAGE = "com";
 
     private static final String VERSION = "1.0";
 
